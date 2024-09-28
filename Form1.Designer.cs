@@ -406,6 +406,193 @@
             this.label39 = new System.Windows.Forms.Label();
             this.label40 = new System.Windows.Forms.Label();
             this.label41 = new System.Windows.Forms.Label();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.panel326 = new System.Windows.Forms.Panel();
+            this.panel327 = new System.Windows.Forms.Panel();
+            this.panel328 = new System.Windows.Forms.Panel();
+            this.panel329 = new System.Windows.Forms.Panel();
+            this.panel330 = new System.Windows.Forms.Panel();
+            this.panel331 = new System.Windows.Forms.Panel();
+            this.panel332 = new System.Windows.Forms.Panel();
+            this.panel333 = new System.Windows.Forms.Panel();
+            this.panel334 = new System.Windows.Forms.Panel();
+            this.panel335 = new System.Windows.Forms.Panel();
+            this.panel336 = new System.Windows.Forms.Panel();
+            this.panel337 = new System.Windows.Forms.Panel();
+            this.panel338 = new System.Windows.Forms.Panel();
+            this.panel339 = new System.Windows.Forms.Panel();
+            this.panel340 = new System.Windows.Forms.Panel();
+            this.panel341 = new System.Windows.Forms.Panel();
+            this.panel342 = new System.Windows.Forms.Panel();
+            this.panel343 = new System.Windows.Forms.Panel();
+            this.panel344 = new System.Windows.Forms.Panel();
+            this.panel345 = new System.Windows.Forms.Panel();
+            this.panel346 = new System.Windows.Forms.Panel();
+            this.panel347 = new System.Windows.Forms.Panel();
+            this.panel348 = new System.Windows.Forms.Panel();
+            this.panel349 = new System.Windows.Forms.Panel();
+            this.panel350 = new System.Windows.Forms.Panel();
+            this.panel351 = new System.Windows.Forms.Panel();
+            this.panel352 = new System.Windows.Forms.Panel();
+            this.panel353 = new System.Windows.Forms.Panel();
+            this.panel354 = new System.Windows.Forms.Panel();
+            this.panel355 = new System.Windows.Forms.Panel();
+            this.panel356 = new System.Windows.Forms.Panel();
+            this.panel357 = new System.Windows.Forms.Panel();
+            this.panel358 = new System.Windows.Forms.Panel();
+            this.panel359 = new System.Windows.Forms.Panel();
+            this.panel360 = new System.Windows.Forms.Panel();
+            this.panel361 = new System.Windows.Forms.Panel();
+            this.panel362 = new System.Windows.Forms.Panel();
+            this.panel363 = new System.Windows.Forms.Panel();
+            this.panel364 = new System.Windows.Forms.Panel();
+            this.panel365 = new System.Windows.Forms.Panel();
+            this.panel366 = new System.Windows.Forms.Panel();
+            this.panel367 = new System.Windows.Forms.Panel();
+            this.panel368 = new System.Windows.Forms.Panel();
+            this.panel369 = new System.Windows.Forms.Panel();
+            this.panel370 = new System.Windows.Forms.Panel();
+            this.panel371 = new System.Windows.Forms.Panel();
+            this.panel372 = new System.Windows.Forms.Panel();
+            this.panel373 = new System.Windows.Forms.Panel();
+            this.panel374 = new System.Windows.Forms.Panel();
+            this.panel375 = new System.Windows.Forms.Panel();
+            this.panel376 = new System.Windows.Forms.Panel();
+            this.panel377 = new System.Windows.Forms.Panel();
+            this.panel378 = new System.Windows.Forms.Panel();
+            this.panel379 = new System.Windows.Forms.Panel();
+            this.panel380 = new System.Windows.Forms.Panel();
+            this.panel381 = new System.Windows.Forms.Panel();
+            this.panel382 = new System.Windows.Forms.Panel();
+            this.panel383 = new System.Windows.Forms.Panel();
+            this.panel384 = new System.Windows.Forms.Panel();
+            this.panel385 = new System.Windows.Forms.Panel();
+            this.panel386 = new System.Windows.Forms.Panel();
+            this.panel387 = new System.Windows.Forms.Panel();
+            this.panel388 = new System.Windows.Forms.Panel();
+            this.panel389 = new System.Windows.Forms.Panel();
+            this.panel390 = new System.Windows.Forms.Panel();
+            this.panel391 = new System.Windows.Forms.Panel();
+            this.panel392 = new System.Windows.Forms.Panel();
+            this.panel393 = new System.Windows.Forms.Panel();
+            this.panel394 = new System.Windows.Forms.Panel();
+            this.panel395 = new System.Windows.Forms.Panel();
+            this.panel396 = new System.Windows.Forms.Panel();
+            this.panel397 = new System.Windows.Forms.Panel();
+            this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.panel398 = new System.Windows.Forms.Panel();
+            this.panel399 = new System.Windows.Forms.Panel();
+            this.panel400 = new System.Windows.Forms.Panel();
+            this.panel401 = new System.Windows.Forms.Panel();
+            this.panel402 = new System.Windows.Forms.Panel();
+            this.panel403 = new System.Windows.Forms.Panel();
+            this.panel404 = new System.Windows.Forms.Panel();
+            this.panel405 = new System.Windows.Forms.Panel();
+            this.panel406 = new System.Windows.Forms.Panel();
+            this.panel407 = new System.Windows.Forms.Panel();
+            this.panel408 = new System.Windows.Forms.Panel();
+            this.panel409 = new System.Windows.Forms.Panel();
+            this.panel410 = new System.Windows.Forms.Panel();
+            this.panel411 = new System.Windows.Forms.Panel();
+            this.panel412 = new System.Windows.Forms.Panel();
+            this.panel413 = new System.Windows.Forms.Panel();
+            this.panel414 = new System.Windows.Forms.Panel();
+            this.panel415 = new System.Windows.Forms.Panel();
+            this.panel416 = new System.Windows.Forms.Panel();
+            this.panel417 = new System.Windows.Forms.Panel();
+            this.panel418 = new System.Windows.Forms.Panel();
+            this.panel419 = new System.Windows.Forms.Panel();
+            this.panel420 = new System.Windows.Forms.Panel();
+            this.panel421 = new System.Windows.Forms.Panel();
+            this.panel422 = new System.Windows.Forms.Panel();
+            this.panel423 = new System.Windows.Forms.Panel();
+            this.panel424 = new System.Windows.Forms.Panel();
+            this.panel425 = new System.Windows.Forms.Panel();
+            this.panel426 = new System.Windows.Forms.Panel();
+            this.panel427 = new System.Windows.Forms.Panel();
+            this.panel428 = new System.Windows.Forms.Panel();
+            this.panel429 = new System.Windows.Forms.Panel();
+            this.panel430 = new System.Windows.Forms.Panel();
+            this.panel431 = new System.Windows.Forms.Panel();
+            this.panel432 = new System.Windows.Forms.Panel();
+            this.panel433 = new System.Windows.Forms.Panel();
+            this.panel434 = new System.Windows.Forms.Panel();
+            this.panel435 = new System.Windows.Forms.Panel();
+            this.panel436 = new System.Windows.Forms.Panel();
+            this.panel437 = new System.Windows.Forms.Panel();
+            this.panel438 = new System.Windows.Forms.Panel();
+            this.panel439 = new System.Windows.Forms.Panel();
+            this.panel440 = new System.Windows.Forms.Panel();
+            this.panel441 = new System.Windows.Forms.Panel();
+            this.panel442 = new System.Windows.Forms.Panel();
+            this.panel443 = new System.Windows.Forms.Panel();
+            this.panel444 = new System.Windows.Forms.Panel();
+            this.panel445 = new System.Windows.Forms.Panel();
+            this.panel446 = new System.Windows.Forms.Panel();
+            this.panel447 = new System.Windows.Forms.Panel();
+            this.panel448 = new System.Windows.Forms.Panel();
+            this.panel449 = new System.Windows.Forms.Panel();
+            this.panel450 = new System.Windows.Forms.Panel();
+            this.panel451 = new System.Windows.Forms.Panel();
+            this.panel452 = new System.Windows.Forms.Panel();
+            this.panel453 = new System.Windows.Forms.Panel();
+            this.panel454 = new System.Windows.Forms.Panel();
+            this.panel455 = new System.Windows.Forms.Panel();
+            this.panel456 = new System.Windows.Forms.Panel();
+            this.panel457 = new System.Windows.Forms.Panel();
+            this.panel458 = new System.Windows.Forms.Panel();
+            this.panel459 = new System.Windows.Forms.Panel();
+            this.panel460 = new System.Windows.Forms.Panel();
+            this.panel461 = new System.Windows.Forms.Panel();
+            this.panel462 = new System.Windows.Forms.Panel();
+            this.panel463 = new System.Windows.Forms.Panel();
+            this.panel464 = new System.Windows.Forms.Panel();
+            this.panel465 = new System.Windows.Forms.Panel();
+            this.panel466 = new System.Windows.Forms.Panel();
+            this.panel467 = new System.Windows.Forms.Panel();
+            this.panel468 = new System.Windows.Forms.Panel();
+            this.panel469 = new System.Windows.Forms.Panel();
+            this.groupBox9 = new System.Windows.Forms.GroupBox();
+            this.label42 = new System.Windows.Forms.Label();
+            this.panel470 = new System.Windows.Forms.Panel();
+            this.panel471 = new System.Windows.Forms.Panel();
+            this.panel472 = new System.Windows.Forms.Panel();
+            this.panel473 = new System.Windows.Forms.Panel();
+            this.panel474 = new System.Windows.Forms.Panel();
+            this.panel475 = new System.Windows.Forms.Panel();
+            this.panel476 = new System.Windows.Forms.Panel();
+            this.panel477 = new System.Windows.Forms.Panel();
+            this.panel478 = new System.Windows.Forms.Panel();
+            this.panel479 = new System.Windows.Forms.Panel();
+            this.panel480 = new System.Windows.Forms.Panel();
+            this.panel481 = new System.Windows.Forms.Panel();
+            this.panel482 = new System.Windows.Forms.Panel();
+            this.panel483 = new System.Windows.Forms.Panel();
+            this.panel484 = new System.Windows.Forms.Panel();
+            this.panel485 = new System.Windows.Forms.Panel();
+            this.panel486 = new System.Windows.Forms.Panel();
+            this.panel487 = new System.Windows.Forms.Panel();
+            this.panel488 = new System.Windows.Forms.Panel();
+            this.panel489 = new System.Windows.Forms.Panel();
+            this.panel490 = new System.Windows.Forms.Panel();
+            this.panel491 = new System.Windows.Forms.Panel();
+            this.panel492 = new System.Windows.Forms.Panel();
+            this.panel493 = new System.Windows.Forms.Panel();
+            this.panel494 = new System.Windows.Forms.Panel();
+            this.panel495 = new System.Windows.Forms.Panel();
+            this.panel496 = new System.Windows.Forms.Panel();
+            this.panel497 = new System.Windows.Forms.Panel();
+            this.panel498 = new System.Windows.Forms.Panel();
+            this.panel499 = new System.Windows.Forms.Panel();
+            this.panel500 = new System.Windows.Forms.Panel();
+            this.panel501 = new System.Windows.Forms.Panel();
+            this.panel502 = new System.Windows.Forms.Panel();
+            this.panel503 = new System.Windows.Forms.Panel();
+            this.panel504 = new System.Windows.Forms.Panel();
+            this.panel505 = new System.Windows.Forms.Panel();
+            this.label43 = new System.Windows.Forms.Label();
+            this.label44 = new System.Windows.Forms.Label();
+            this.label45 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.panel15.SuspendLayout();
@@ -414,6 +601,9 @@
             this.groupBox5.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.menuStrip1.SuspendLayout();
+            this.groupBox7.SuspendLayout();
+            this.groupBox8.SuspendLayout();
+            this.groupBox9.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -719,13 +909,16 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label45);
+            this.groupBox2.Controls.Add(this.label44);
+            this.groupBox2.Controls.Add(this.label43);
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.panel15);
             this.groupBox2.Location = new System.Drawing.Point(1332, 45);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(28, 594);
+            this.groupBox2.Size = new System.Drawing.Size(28, 892);
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
             this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
@@ -746,12 +939,12 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(14, 13);
             this.label3.TabIndex = 5;
-            this.label3.Text = "B";
+            this.label3.Text = "E";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(13, 178);
+            this.label2.Location = new System.Drawing.Point(9, 144);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(13, 13);
             this.label2.TabIndex = 4;
@@ -3495,12 +3688,1521 @@
             this.label41.TabIndex = 38;
             this.label41.Text = "33";
             // 
+            // groupBox7
+            // 
+            this.groupBox7.Controls.Add(this.panel326);
+            this.groupBox7.Controls.Add(this.panel327);
+            this.groupBox7.Controls.Add(this.panel328);
+            this.groupBox7.Controls.Add(this.panel329);
+            this.groupBox7.Controls.Add(this.panel330);
+            this.groupBox7.Controls.Add(this.panel331);
+            this.groupBox7.Controls.Add(this.panel332);
+            this.groupBox7.Controls.Add(this.panel333);
+            this.groupBox7.Controls.Add(this.panel334);
+            this.groupBox7.Controls.Add(this.panel335);
+            this.groupBox7.Controls.Add(this.panel336);
+            this.groupBox7.Controls.Add(this.panel337);
+            this.groupBox7.Controls.Add(this.panel338);
+            this.groupBox7.Controls.Add(this.panel339);
+            this.groupBox7.Controls.Add(this.panel340);
+            this.groupBox7.Controls.Add(this.panel341);
+            this.groupBox7.Controls.Add(this.panel342);
+            this.groupBox7.Controls.Add(this.panel343);
+            this.groupBox7.Controls.Add(this.panel344);
+            this.groupBox7.Controls.Add(this.panel345);
+            this.groupBox7.Controls.Add(this.panel346);
+            this.groupBox7.Controls.Add(this.panel347);
+            this.groupBox7.Controls.Add(this.panel348);
+            this.groupBox7.Controls.Add(this.panel349);
+            this.groupBox7.Controls.Add(this.panel350);
+            this.groupBox7.Controls.Add(this.panel351);
+            this.groupBox7.Controls.Add(this.panel352);
+            this.groupBox7.Controls.Add(this.panel353);
+            this.groupBox7.Controls.Add(this.panel354);
+            this.groupBox7.Controls.Add(this.panel355);
+            this.groupBox7.Controls.Add(this.panel356);
+            this.groupBox7.Controls.Add(this.panel357);
+            this.groupBox7.Controls.Add(this.panel358);
+            this.groupBox7.Controls.Add(this.panel359);
+            this.groupBox7.Controls.Add(this.panel360);
+            this.groupBox7.Controls.Add(this.panel361);
+            this.groupBox7.Controls.Add(this.panel362);
+            this.groupBox7.Controls.Add(this.panel363);
+            this.groupBox7.Controls.Add(this.panel364);
+            this.groupBox7.Controls.Add(this.panel365);
+            this.groupBox7.Controls.Add(this.panel366);
+            this.groupBox7.Controls.Add(this.panel367);
+            this.groupBox7.Controls.Add(this.panel368);
+            this.groupBox7.Controls.Add(this.panel369);
+            this.groupBox7.Controls.Add(this.panel370);
+            this.groupBox7.Controls.Add(this.panel371);
+            this.groupBox7.Controls.Add(this.panel372);
+            this.groupBox7.Controls.Add(this.panel373);
+            this.groupBox7.Controls.Add(this.panel374);
+            this.groupBox7.Controls.Add(this.panel375);
+            this.groupBox7.Controls.Add(this.panel376);
+            this.groupBox7.Controls.Add(this.panel377);
+            this.groupBox7.Controls.Add(this.panel378);
+            this.groupBox7.Controls.Add(this.panel379);
+            this.groupBox7.Controls.Add(this.panel380);
+            this.groupBox7.Controls.Add(this.panel381);
+            this.groupBox7.Controls.Add(this.panel382);
+            this.groupBox7.Controls.Add(this.panel383);
+            this.groupBox7.Controls.Add(this.panel384);
+            this.groupBox7.Controls.Add(this.panel385);
+            this.groupBox7.Controls.Add(this.panel386);
+            this.groupBox7.Controls.Add(this.panel387);
+            this.groupBox7.Controls.Add(this.panel388);
+            this.groupBox7.Controls.Add(this.panel389);
+            this.groupBox7.Controls.Add(this.panel390);
+            this.groupBox7.Controls.Add(this.panel391);
+            this.groupBox7.Controls.Add(this.panel392);
+            this.groupBox7.Controls.Add(this.panel393);
+            this.groupBox7.Controls.Add(this.panel394);
+            this.groupBox7.Controls.Add(this.panel395);
+            this.groupBox7.Controls.Add(this.panel396);
+            this.groupBox7.Controls.Add(this.panel397);
+            this.groupBox7.Location = new System.Drawing.Point(35, 567);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Size = new System.Drawing.Size(1291, 140);
+            this.groupBox7.TabIndex = 42;
+            this.groupBox7.TabStop = false;
+            this.groupBox7.Text = "groupBox7";
+            // 
+            // panel326
+            // 
+            this.panel326.Location = new System.Drawing.Point(1262, 80);
+            this.panel326.Name = "panel326";
+            this.panel326.Size = new System.Drawing.Size(23, 34);
+            this.panel326.TabIndex = 39;
+            // 
+            // panel327
+            // 
+            this.panel327.Location = new System.Drawing.Point(1262, 19);
+            this.panel327.Name = "panel327";
+            this.panel327.Size = new System.Drawing.Size(23, 34);
+            this.panel327.TabIndex = 2;
+            // 
+            // panel328
+            // 
+            this.panel328.Location = new System.Drawing.Point(1233, 80);
+            this.panel328.Name = "panel328";
+            this.panel328.Size = new System.Drawing.Size(23, 34);
+            this.panel328.TabIndex = 23;
+            // 
+            // panel329
+            // 
+            this.panel329.Location = new System.Drawing.Point(1233, 19);
+            this.panel329.Name = "panel329";
+            this.panel329.Size = new System.Drawing.Size(23, 34);
+            this.panel329.TabIndex = 2;
+            // 
+            // panel330
+            // 
+            this.panel330.Location = new System.Drawing.Point(102, 80);
+            this.panel330.Name = "panel330";
+            this.panel330.Size = new System.Drawing.Size(23, 34);
+            this.panel330.TabIndex = 24;
+            // 
+            // panel331
+            // 
+            this.panel331.Location = new System.Drawing.Point(102, 19);
+            this.panel331.Name = "panel331";
+            this.panel331.Size = new System.Drawing.Size(23, 34);
+            this.panel331.TabIndex = 2;
+            // 
+            // panel332
+            // 
+            this.panel332.Location = new System.Drawing.Point(1204, 80);
+            this.panel332.Name = "panel332";
+            this.panel332.Size = new System.Drawing.Size(23, 34);
+            this.panel332.TabIndex = 25;
+            // 
+            // panel333
+            // 
+            this.panel333.Location = new System.Drawing.Point(1204, 19);
+            this.panel333.Name = "panel333";
+            this.panel333.Size = new System.Drawing.Size(23, 34);
+            this.panel333.TabIndex = 2;
+            // 
+            // panel334
+            // 
+            this.panel334.Location = new System.Drawing.Point(1175, 80);
+            this.panel334.Name = "panel334";
+            this.panel334.Size = new System.Drawing.Size(23, 34);
+            this.panel334.TabIndex = 26;
+            // 
+            // panel335
+            // 
+            this.panel335.Location = new System.Drawing.Point(1175, 19);
+            this.panel335.Name = "panel335";
+            this.panel335.Size = new System.Drawing.Size(23, 34);
+            this.panel335.TabIndex = 2;
+            // 
+            // panel336
+            // 
+            this.panel336.Location = new System.Drawing.Point(1117, 80);
+            this.panel336.Name = "panel336";
+            this.panel336.Size = new System.Drawing.Size(23, 34);
+            this.panel336.TabIndex = 27;
+            // 
+            // panel337
+            // 
+            this.panel337.Location = new System.Drawing.Point(1117, 19);
+            this.panel337.Name = "panel337";
+            this.panel337.Size = new System.Drawing.Size(23, 34);
+            this.panel337.TabIndex = 2;
+            // 
+            // panel338
+            // 
+            this.panel338.Location = new System.Drawing.Point(1088, 80);
+            this.panel338.Name = "panel338";
+            this.panel338.Size = new System.Drawing.Size(23, 34);
+            this.panel338.TabIndex = 28;
+            // 
+            // panel339
+            // 
+            this.panel339.Location = new System.Drawing.Point(1088, 19);
+            this.panel339.Name = "panel339";
+            this.panel339.Size = new System.Drawing.Size(23, 34);
+            this.panel339.TabIndex = 2;
+            // 
+            // panel340
+            // 
+            this.panel340.Location = new System.Drawing.Point(1059, 80);
+            this.panel340.Name = "panel340";
+            this.panel340.Size = new System.Drawing.Size(23, 34);
+            this.panel340.TabIndex = 29;
+            // 
+            // panel341
+            // 
+            this.panel341.Location = new System.Drawing.Point(1059, 19);
+            this.panel341.Name = "panel341";
+            this.panel341.Size = new System.Drawing.Size(23, 34);
+            this.panel341.TabIndex = 2;
+            // 
+            // panel342
+            // 
+            this.panel342.Location = new System.Drawing.Point(1030, 80);
+            this.panel342.Name = "panel342";
+            this.panel342.Size = new System.Drawing.Size(23, 34);
+            this.panel342.TabIndex = 30;
+            // 
+            // panel343
+            // 
+            this.panel343.Location = new System.Drawing.Point(1030, 19);
+            this.panel343.Name = "panel343";
+            this.panel343.Size = new System.Drawing.Size(23, 34);
+            this.panel343.TabIndex = 2;
+            // 
+            // panel344
+            // 
+            this.panel344.Location = new System.Drawing.Point(972, 80);
+            this.panel344.Name = "panel344";
+            this.panel344.Size = new System.Drawing.Size(23, 34);
+            this.panel344.TabIndex = 31;
+            // 
+            // panel345
+            // 
+            this.panel345.Location = new System.Drawing.Point(972, 19);
+            this.panel345.Name = "panel345";
+            this.panel345.Size = new System.Drawing.Size(23, 34);
+            this.panel345.TabIndex = 2;
+            // 
+            // panel346
+            // 
+            this.panel346.Location = new System.Drawing.Point(943, 80);
+            this.panel346.Name = "panel346";
+            this.panel346.Size = new System.Drawing.Size(23, 34);
+            this.panel346.TabIndex = 32;
+            // 
+            // panel347
+            // 
+            this.panel347.Location = new System.Drawing.Point(943, 19);
+            this.panel347.Name = "panel347";
+            this.panel347.Size = new System.Drawing.Size(23, 34);
+            this.panel347.TabIndex = 2;
+            // 
+            // panel348
+            // 
+            this.panel348.Location = new System.Drawing.Point(914, 80);
+            this.panel348.Name = "panel348";
+            this.panel348.Size = new System.Drawing.Size(23, 34);
+            this.panel348.TabIndex = 33;
+            // 
+            // panel349
+            // 
+            this.panel349.Location = new System.Drawing.Point(914, 19);
+            this.panel349.Name = "panel349";
+            this.panel349.Size = new System.Drawing.Size(23, 34);
+            this.panel349.TabIndex = 2;
+            // 
+            // panel350
+            // 
+            this.panel350.Location = new System.Drawing.Point(885, 80);
+            this.panel350.Name = "panel350";
+            this.panel350.Size = new System.Drawing.Size(23, 34);
+            this.panel350.TabIndex = 34;
+            // 
+            // panel351
+            // 
+            this.panel351.Location = new System.Drawing.Point(885, 19);
+            this.panel351.Name = "panel351";
+            this.panel351.Size = new System.Drawing.Size(23, 34);
+            this.panel351.TabIndex = 2;
+            // 
+            // panel352
+            // 
+            this.panel352.Location = new System.Drawing.Point(827, 80);
+            this.panel352.Name = "panel352";
+            this.panel352.Size = new System.Drawing.Size(23, 34);
+            this.panel352.TabIndex = 35;
+            // 
+            // panel353
+            // 
+            this.panel353.Location = new System.Drawing.Point(827, 19);
+            this.panel353.Name = "panel353";
+            this.panel353.Size = new System.Drawing.Size(23, 34);
+            this.panel353.TabIndex = 2;
+            // 
+            // panel354
+            // 
+            this.panel354.Location = new System.Drawing.Point(798, 80);
+            this.panel354.Name = "panel354";
+            this.panel354.Size = new System.Drawing.Size(23, 34);
+            this.panel354.TabIndex = 36;
+            // 
+            // panel355
+            // 
+            this.panel355.Location = new System.Drawing.Point(798, 19);
+            this.panel355.Name = "panel355";
+            this.panel355.Size = new System.Drawing.Size(23, 34);
+            this.panel355.TabIndex = 2;
+            // 
+            // panel356
+            // 
+            this.panel356.Location = new System.Drawing.Point(769, 80);
+            this.panel356.Name = "panel356";
+            this.panel356.Size = new System.Drawing.Size(23, 34);
+            this.panel356.TabIndex = 37;
+            // 
+            // panel357
+            // 
+            this.panel357.Location = new System.Drawing.Point(769, 19);
+            this.panel357.Name = "panel357";
+            this.panel357.Size = new System.Drawing.Size(23, 34);
+            this.panel357.TabIndex = 2;
+            // 
+            // panel358
+            // 
+            this.panel358.Location = new System.Drawing.Point(740, 80);
+            this.panel358.Name = "panel358";
+            this.panel358.Size = new System.Drawing.Size(23, 34);
+            this.panel358.TabIndex = 22;
+            // 
+            // panel359
+            // 
+            this.panel359.Location = new System.Drawing.Point(740, 19);
+            this.panel359.Name = "panel359";
+            this.panel359.Size = new System.Drawing.Size(23, 34);
+            this.panel359.TabIndex = 2;
+            // 
+            // panel360
+            // 
+            this.panel360.Location = new System.Drawing.Point(682, 80);
+            this.panel360.Name = "panel360";
+            this.panel360.Size = new System.Drawing.Size(23, 34);
+            this.panel360.TabIndex = 21;
+            // 
+            // panel361
+            // 
+            this.panel361.Location = new System.Drawing.Point(682, 19);
+            this.panel361.Name = "panel361";
+            this.panel361.Size = new System.Drawing.Size(23, 34);
+            this.panel361.TabIndex = 2;
+            // 
+            // panel362
+            // 
+            this.panel362.Location = new System.Drawing.Point(653, 80);
+            this.panel362.Name = "panel362";
+            this.panel362.Size = new System.Drawing.Size(23, 34);
+            this.panel362.TabIndex = 20;
+            // 
+            // panel363
+            // 
+            this.panel363.Location = new System.Drawing.Point(653, 19);
+            this.panel363.Name = "panel363";
+            this.panel363.Size = new System.Drawing.Size(23, 34);
+            this.panel363.TabIndex = 2;
+            // 
+            // panel364
+            // 
+            this.panel364.Location = new System.Drawing.Point(624, 80);
+            this.panel364.Name = "panel364";
+            this.panel364.Size = new System.Drawing.Size(23, 34);
+            this.panel364.TabIndex = 11;
+            // 
+            // panel365
+            // 
+            this.panel365.Location = new System.Drawing.Point(624, 19);
+            this.panel365.Name = "panel365";
+            this.panel365.Size = new System.Drawing.Size(23, 34);
+            this.panel365.TabIndex = 2;
+            // 
+            // panel366
+            // 
+            this.panel366.Location = new System.Drawing.Point(595, 80);
+            this.panel366.Name = "panel366";
+            this.panel366.Size = new System.Drawing.Size(23, 34);
+            this.panel366.TabIndex = 5;
+            // 
+            // panel367
+            // 
+            this.panel367.Location = new System.Drawing.Point(595, 19);
+            this.panel367.Name = "panel367";
+            this.panel367.Size = new System.Drawing.Size(23, 34);
+            this.panel367.TabIndex = 2;
+            // 
+            // panel368
+            // 
+            this.panel368.Location = new System.Drawing.Point(537, 80);
+            this.panel368.Name = "panel368";
+            this.panel368.Size = new System.Drawing.Size(23, 34);
+            this.panel368.TabIndex = 6;
+            // 
+            // panel369
+            // 
+            this.panel369.Location = new System.Drawing.Point(537, 19);
+            this.panel369.Name = "panel369";
+            this.panel369.Size = new System.Drawing.Size(23, 34);
+            this.panel369.TabIndex = 2;
+            // 
+            // panel370
+            // 
+            this.panel370.Location = new System.Drawing.Point(508, 80);
+            this.panel370.Name = "panel370";
+            this.panel370.Size = new System.Drawing.Size(23, 34);
+            this.panel370.TabIndex = 7;
+            // 
+            // panel371
+            // 
+            this.panel371.Location = new System.Drawing.Point(508, 19);
+            this.panel371.Name = "panel371";
+            this.panel371.Size = new System.Drawing.Size(23, 34);
+            this.panel371.TabIndex = 2;
+            // 
+            // panel372
+            // 
+            this.panel372.Location = new System.Drawing.Point(479, 80);
+            this.panel372.Name = "panel372";
+            this.panel372.Size = new System.Drawing.Size(23, 34);
+            this.panel372.TabIndex = 8;
+            // 
+            // panel373
+            // 
+            this.panel373.Location = new System.Drawing.Point(479, 19);
+            this.panel373.Name = "panel373";
+            this.panel373.Size = new System.Drawing.Size(23, 34);
+            this.panel373.TabIndex = 2;
+            // 
+            // panel374
+            // 
+            this.panel374.Location = new System.Drawing.Point(450, 80);
+            this.panel374.Name = "panel374";
+            this.panel374.Size = new System.Drawing.Size(23, 34);
+            this.panel374.TabIndex = 9;
+            // 
+            // panel375
+            // 
+            this.panel375.Location = new System.Drawing.Point(450, 19);
+            this.panel375.Name = "panel375";
+            this.panel375.Size = new System.Drawing.Size(23, 34);
+            this.panel375.TabIndex = 2;
+            // 
+            // panel376
+            // 
+            this.panel376.Location = new System.Drawing.Point(392, 80);
+            this.panel376.Name = "panel376";
+            this.panel376.Size = new System.Drawing.Size(23, 34);
+            this.panel376.TabIndex = 10;
+            // 
+            // panel377
+            // 
+            this.panel377.Location = new System.Drawing.Point(392, 19);
+            this.panel377.Name = "panel377";
+            this.panel377.Size = new System.Drawing.Size(23, 34);
+            this.panel377.TabIndex = 2;
+            // 
+            // panel378
+            // 
+            this.panel378.Location = new System.Drawing.Point(363, 80);
+            this.panel378.Name = "panel378";
+            this.panel378.Size = new System.Drawing.Size(23, 34);
+            this.panel378.TabIndex = 12;
+            // 
+            // panel379
+            // 
+            this.panel379.Location = new System.Drawing.Point(363, 19);
+            this.panel379.Name = "panel379";
+            this.panel379.Size = new System.Drawing.Size(23, 34);
+            this.panel379.TabIndex = 2;
+            // 
+            // panel380
+            // 
+            this.panel380.Location = new System.Drawing.Point(334, 80);
+            this.panel380.Name = "panel380";
+            this.panel380.Size = new System.Drawing.Size(23, 34);
+            this.panel380.TabIndex = 19;
+            // 
+            // panel381
+            // 
+            this.panel381.Location = new System.Drawing.Point(334, 19);
+            this.panel381.Name = "panel381";
+            this.panel381.Size = new System.Drawing.Size(23, 34);
+            this.panel381.TabIndex = 2;
+            // 
+            // panel382
+            // 
+            this.panel382.Location = new System.Drawing.Point(305, 80);
+            this.panel382.Name = "panel382";
+            this.panel382.Size = new System.Drawing.Size(23, 34);
+            this.panel382.TabIndex = 13;
+            // 
+            // panel383
+            // 
+            this.panel383.Location = new System.Drawing.Point(305, 19);
+            this.panel383.Name = "panel383";
+            this.panel383.Size = new System.Drawing.Size(23, 34);
+            this.panel383.TabIndex = 2;
+            // 
+            // panel384
+            // 
+            this.panel384.Location = new System.Drawing.Point(247, 80);
+            this.panel384.Name = "panel384";
+            this.panel384.Size = new System.Drawing.Size(23, 34);
+            this.panel384.TabIndex = 14;
+            // 
+            // panel385
+            // 
+            this.panel385.Location = new System.Drawing.Point(247, 19);
+            this.panel385.Name = "panel385";
+            this.panel385.Size = new System.Drawing.Size(23, 34);
+            this.panel385.TabIndex = 2;
+            // 
+            // panel386
+            // 
+            this.panel386.Location = new System.Drawing.Point(218, 80);
+            this.panel386.Name = "panel386";
+            this.panel386.Size = new System.Drawing.Size(23, 34);
+            this.panel386.TabIndex = 15;
+            // 
+            // panel387
+            // 
+            this.panel387.Location = new System.Drawing.Point(218, 19);
+            this.panel387.Name = "panel387";
+            this.panel387.Size = new System.Drawing.Size(23, 34);
+            this.panel387.TabIndex = 2;
+            // 
+            // panel388
+            // 
+            this.panel388.Location = new System.Drawing.Point(189, 80);
+            this.panel388.Name = "panel388";
+            this.panel388.Size = new System.Drawing.Size(23, 34);
+            this.panel388.TabIndex = 16;
+            // 
+            // panel389
+            // 
+            this.panel389.Location = new System.Drawing.Point(189, 19);
+            this.panel389.Name = "panel389";
+            this.panel389.Size = new System.Drawing.Size(23, 34);
+            this.panel389.TabIndex = 2;
+            // 
+            // panel390
+            // 
+            this.panel390.Location = new System.Drawing.Point(160, 80);
+            this.panel390.Name = "panel390";
+            this.panel390.Size = new System.Drawing.Size(23, 34);
+            this.panel390.TabIndex = 17;
+            // 
+            // panel391
+            // 
+            this.panel391.Location = new System.Drawing.Point(160, 19);
+            this.panel391.Name = "panel391";
+            this.panel391.Size = new System.Drawing.Size(23, 34);
+            this.panel391.TabIndex = 2;
+            // 
+            // panel392
+            // 
+            this.panel392.Location = new System.Drawing.Point(73, 80);
+            this.panel392.Name = "panel392";
+            this.panel392.Size = new System.Drawing.Size(23, 34);
+            this.panel392.TabIndex = 18;
+            // 
+            // panel393
+            // 
+            this.panel393.Location = new System.Drawing.Point(73, 19);
+            this.panel393.Name = "panel393";
+            this.panel393.Size = new System.Drawing.Size(23, 34);
+            this.panel393.TabIndex = 2;
+            // 
+            // panel394
+            // 
+            this.panel394.Location = new System.Drawing.Point(44, 80);
+            this.panel394.Name = "panel394";
+            this.panel394.Size = new System.Drawing.Size(23, 34);
+            this.panel394.TabIndex = 38;
+            // 
+            // panel395
+            // 
+            this.panel395.Location = new System.Drawing.Point(44, 19);
+            this.panel395.Name = "panel395";
+            this.panel395.Size = new System.Drawing.Size(23, 34);
+            this.panel395.TabIndex = 2;
+            // 
+            // panel396
+            // 
+            this.panel396.Location = new System.Drawing.Point(15, 80);
+            this.panel396.Name = "panel396";
+            this.panel396.Size = new System.Drawing.Size(23, 34);
+            this.panel396.TabIndex = 4;
+            // 
+            // panel397
+            // 
+            this.panel397.Location = new System.Drawing.Point(15, 19);
+            this.panel397.Name = "panel397";
+            this.panel397.Size = new System.Drawing.Size(23, 34);
+            this.panel397.TabIndex = 1;
+            // 
+            // groupBox8
+            // 
+            this.groupBox8.Controls.Add(this.panel398);
+            this.groupBox8.Controls.Add(this.panel399);
+            this.groupBox8.Controls.Add(this.panel400);
+            this.groupBox8.Controls.Add(this.panel401);
+            this.groupBox8.Controls.Add(this.panel402);
+            this.groupBox8.Controls.Add(this.panel403);
+            this.groupBox8.Controls.Add(this.panel404);
+            this.groupBox8.Controls.Add(this.panel405);
+            this.groupBox8.Controls.Add(this.panel406);
+            this.groupBox8.Controls.Add(this.panel407);
+            this.groupBox8.Controls.Add(this.panel408);
+            this.groupBox8.Controls.Add(this.panel409);
+            this.groupBox8.Controls.Add(this.panel410);
+            this.groupBox8.Controls.Add(this.panel411);
+            this.groupBox8.Controls.Add(this.panel412);
+            this.groupBox8.Controls.Add(this.panel413);
+            this.groupBox8.Controls.Add(this.panel414);
+            this.groupBox8.Controls.Add(this.panel415);
+            this.groupBox8.Controls.Add(this.panel416);
+            this.groupBox8.Controls.Add(this.panel417);
+            this.groupBox8.Controls.Add(this.panel418);
+            this.groupBox8.Controls.Add(this.panel419);
+            this.groupBox8.Controls.Add(this.panel420);
+            this.groupBox8.Controls.Add(this.panel421);
+            this.groupBox8.Controls.Add(this.panel422);
+            this.groupBox8.Controls.Add(this.panel423);
+            this.groupBox8.Controls.Add(this.panel424);
+            this.groupBox8.Controls.Add(this.panel425);
+            this.groupBox8.Controls.Add(this.panel426);
+            this.groupBox8.Controls.Add(this.panel427);
+            this.groupBox8.Controls.Add(this.panel428);
+            this.groupBox8.Controls.Add(this.panel429);
+            this.groupBox8.Controls.Add(this.panel430);
+            this.groupBox8.Controls.Add(this.panel431);
+            this.groupBox8.Controls.Add(this.panel432);
+            this.groupBox8.Controls.Add(this.panel433);
+            this.groupBox8.Controls.Add(this.panel434);
+            this.groupBox8.Controls.Add(this.panel435);
+            this.groupBox8.Controls.Add(this.panel436);
+            this.groupBox8.Controls.Add(this.panel437);
+            this.groupBox8.Controls.Add(this.panel438);
+            this.groupBox8.Controls.Add(this.panel439);
+            this.groupBox8.Controls.Add(this.panel440);
+            this.groupBox8.Controls.Add(this.panel441);
+            this.groupBox8.Controls.Add(this.panel442);
+            this.groupBox8.Controls.Add(this.panel443);
+            this.groupBox8.Controls.Add(this.panel444);
+            this.groupBox8.Controls.Add(this.panel445);
+            this.groupBox8.Controls.Add(this.panel446);
+            this.groupBox8.Controls.Add(this.panel447);
+            this.groupBox8.Controls.Add(this.panel448);
+            this.groupBox8.Controls.Add(this.panel449);
+            this.groupBox8.Controls.Add(this.panel450);
+            this.groupBox8.Controls.Add(this.panel451);
+            this.groupBox8.Controls.Add(this.panel452);
+            this.groupBox8.Controls.Add(this.panel453);
+            this.groupBox8.Controls.Add(this.panel454);
+            this.groupBox8.Controls.Add(this.panel455);
+            this.groupBox8.Controls.Add(this.panel456);
+            this.groupBox8.Controls.Add(this.panel457);
+            this.groupBox8.Controls.Add(this.panel458);
+            this.groupBox8.Controls.Add(this.panel459);
+            this.groupBox8.Controls.Add(this.panel460);
+            this.groupBox8.Controls.Add(this.panel461);
+            this.groupBox8.Controls.Add(this.panel462);
+            this.groupBox8.Controls.Add(this.panel463);
+            this.groupBox8.Controls.Add(this.panel464);
+            this.groupBox8.Controls.Add(this.panel465);
+            this.groupBox8.Controls.Add(this.panel466);
+            this.groupBox8.Controls.Add(this.panel467);
+            this.groupBox8.Controls.Add(this.panel468);
+            this.groupBox8.Controls.Add(this.panel469);
+            this.groupBox8.Location = new System.Drawing.Point(35, 713);
+            this.groupBox8.Name = "groupBox8";
+            this.groupBox8.Size = new System.Drawing.Size(1291, 140);
+            this.groupBox8.TabIndex = 43;
+            this.groupBox8.TabStop = false;
+            this.groupBox8.Text = "groupBox8";
+            // 
+            // panel398
+            // 
+            this.panel398.Location = new System.Drawing.Point(1262, 80);
+            this.panel398.Name = "panel398";
+            this.panel398.Size = new System.Drawing.Size(23, 34);
+            this.panel398.TabIndex = 39;
+            // 
+            // panel399
+            // 
+            this.panel399.Location = new System.Drawing.Point(1262, 19);
+            this.panel399.Name = "panel399";
+            this.panel399.Size = new System.Drawing.Size(23, 34);
+            this.panel399.TabIndex = 2;
+            // 
+            // panel400
+            // 
+            this.panel400.Location = new System.Drawing.Point(1233, 80);
+            this.panel400.Name = "panel400";
+            this.panel400.Size = new System.Drawing.Size(23, 34);
+            this.panel400.TabIndex = 23;
+            // 
+            // panel401
+            // 
+            this.panel401.Location = new System.Drawing.Point(1233, 19);
+            this.panel401.Name = "panel401";
+            this.panel401.Size = new System.Drawing.Size(23, 34);
+            this.panel401.TabIndex = 2;
+            // 
+            // panel402
+            // 
+            this.panel402.Location = new System.Drawing.Point(102, 80);
+            this.panel402.Name = "panel402";
+            this.panel402.Size = new System.Drawing.Size(23, 34);
+            this.panel402.TabIndex = 24;
+            // 
+            // panel403
+            // 
+            this.panel403.Location = new System.Drawing.Point(102, 19);
+            this.panel403.Name = "panel403";
+            this.panel403.Size = new System.Drawing.Size(23, 34);
+            this.panel403.TabIndex = 2;
+            // 
+            // panel404
+            // 
+            this.panel404.Location = new System.Drawing.Point(1204, 80);
+            this.panel404.Name = "panel404";
+            this.panel404.Size = new System.Drawing.Size(23, 34);
+            this.panel404.TabIndex = 25;
+            // 
+            // panel405
+            // 
+            this.panel405.Location = new System.Drawing.Point(1204, 19);
+            this.panel405.Name = "panel405";
+            this.panel405.Size = new System.Drawing.Size(23, 34);
+            this.panel405.TabIndex = 2;
+            // 
+            // panel406
+            // 
+            this.panel406.Location = new System.Drawing.Point(1175, 80);
+            this.panel406.Name = "panel406";
+            this.panel406.Size = new System.Drawing.Size(23, 34);
+            this.panel406.TabIndex = 26;
+            // 
+            // panel407
+            // 
+            this.panel407.Location = new System.Drawing.Point(1175, 19);
+            this.panel407.Name = "panel407";
+            this.panel407.Size = new System.Drawing.Size(23, 34);
+            this.panel407.TabIndex = 2;
+            // 
+            // panel408
+            // 
+            this.panel408.Location = new System.Drawing.Point(1117, 80);
+            this.panel408.Name = "panel408";
+            this.panel408.Size = new System.Drawing.Size(23, 34);
+            this.panel408.TabIndex = 27;
+            // 
+            // panel409
+            // 
+            this.panel409.Location = new System.Drawing.Point(1117, 19);
+            this.panel409.Name = "panel409";
+            this.panel409.Size = new System.Drawing.Size(23, 34);
+            this.panel409.TabIndex = 2;
+            // 
+            // panel410
+            // 
+            this.panel410.Location = new System.Drawing.Point(1088, 80);
+            this.panel410.Name = "panel410";
+            this.panel410.Size = new System.Drawing.Size(23, 34);
+            this.panel410.TabIndex = 28;
+            // 
+            // panel411
+            // 
+            this.panel411.Location = new System.Drawing.Point(1088, 19);
+            this.panel411.Name = "panel411";
+            this.panel411.Size = new System.Drawing.Size(23, 34);
+            this.panel411.TabIndex = 2;
+            // 
+            // panel412
+            // 
+            this.panel412.Location = new System.Drawing.Point(1059, 80);
+            this.panel412.Name = "panel412";
+            this.panel412.Size = new System.Drawing.Size(23, 34);
+            this.panel412.TabIndex = 29;
+            // 
+            // panel413
+            // 
+            this.panel413.Location = new System.Drawing.Point(1059, 19);
+            this.panel413.Name = "panel413";
+            this.panel413.Size = new System.Drawing.Size(23, 34);
+            this.panel413.TabIndex = 2;
+            // 
+            // panel414
+            // 
+            this.panel414.Location = new System.Drawing.Point(1030, 80);
+            this.panel414.Name = "panel414";
+            this.panel414.Size = new System.Drawing.Size(23, 34);
+            this.panel414.TabIndex = 30;
+            // 
+            // panel415
+            // 
+            this.panel415.Location = new System.Drawing.Point(1030, 19);
+            this.panel415.Name = "panel415";
+            this.panel415.Size = new System.Drawing.Size(23, 34);
+            this.panel415.TabIndex = 2;
+            // 
+            // panel416
+            // 
+            this.panel416.Location = new System.Drawing.Point(972, 80);
+            this.panel416.Name = "panel416";
+            this.panel416.Size = new System.Drawing.Size(23, 34);
+            this.panel416.TabIndex = 31;
+            // 
+            // panel417
+            // 
+            this.panel417.Location = new System.Drawing.Point(972, 19);
+            this.panel417.Name = "panel417";
+            this.panel417.Size = new System.Drawing.Size(23, 34);
+            this.panel417.TabIndex = 2;
+            // 
+            // panel418
+            // 
+            this.panel418.Location = new System.Drawing.Point(943, 80);
+            this.panel418.Name = "panel418";
+            this.panel418.Size = new System.Drawing.Size(23, 34);
+            this.panel418.TabIndex = 32;
+            // 
+            // panel419
+            // 
+            this.panel419.Location = new System.Drawing.Point(943, 19);
+            this.panel419.Name = "panel419";
+            this.panel419.Size = new System.Drawing.Size(23, 34);
+            this.panel419.TabIndex = 2;
+            // 
+            // panel420
+            // 
+            this.panel420.Location = new System.Drawing.Point(914, 80);
+            this.panel420.Name = "panel420";
+            this.panel420.Size = new System.Drawing.Size(23, 34);
+            this.panel420.TabIndex = 33;
+            // 
+            // panel421
+            // 
+            this.panel421.Location = new System.Drawing.Point(914, 19);
+            this.panel421.Name = "panel421";
+            this.panel421.Size = new System.Drawing.Size(23, 34);
+            this.panel421.TabIndex = 2;
+            // 
+            // panel422
+            // 
+            this.panel422.Location = new System.Drawing.Point(885, 80);
+            this.panel422.Name = "panel422";
+            this.panel422.Size = new System.Drawing.Size(23, 34);
+            this.panel422.TabIndex = 34;
+            // 
+            // panel423
+            // 
+            this.panel423.Location = new System.Drawing.Point(885, 19);
+            this.panel423.Name = "panel423";
+            this.panel423.Size = new System.Drawing.Size(23, 34);
+            this.panel423.TabIndex = 2;
+            // 
+            // panel424
+            // 
+            this.panel424.Location = new System.Drawing.Point(827, 80);
+            this.panel424.Name = "panel424";
+            this.panel424.Size = new System.Drawing.Size(23, 34);
+            this.panel424.TabIndex = 35;
+            // 
+            // panel425
+            // 
+            this.panel425.Location = new System.Drawing.Point(827, 19);
+            this.panel425.Name = "panel425";
+            this.panel425.Size = new System.Drawing.Size(23, 34);
+            this.panel425.TabIndex = 2;
+            // 
+            // panel426
+            // 
+            this.panel426.Location = new System.Drawing.Point(798, 80);
+            this.panel426.Name = "panel426";
+            this.panel426.Size = new System.Drawing.Size(23, 34);
+            this.panel426.TabIndex = 36;
+            // 
+            // panel427
+            // 
+            this.panel427.Location = new System.Drawing.Point(798, 19);
+            this.panel427.Name = "panel427";
+            this.panel427.Size = new System.Drawing.Size(23, 34);
+            this.panel427.TabIndex = 2;
+            // 
+            // panel428
+            // 
+            this.panel428.Location = new System.Drawing.Point(769, 80);
+            this.panel428.Name = "panel428";
+            this.panel428.Size = new System.Drawing.Size(23, 34);
+            this.panel428.TabIndex = 37;
+            // 
+            // panel429
+            // 
+            this.panel429.Location = new System.Drawing.Point(769, 19);
+            this.panel429.Name = "panel429";
+            this.panel429.Size = new System.Drawing.Size(23, 34);
+            this.panel429.TabIndex = 2;
+            // 
+            // panel430
+            // 
+            this.panel430.Location = new System.Drawing.Point(740, 80);
+            this.panel430.Name = "panel430";
+            this.panel430.Size = new System.Drawing.Size(23, 34);
+            this.panel430.TabIndex = 22;
+            // 
+            // panel431
+            // 
+            this.panel431.Location = new System.Drawing.Point(740, 19);
+            this.panel431.Name = "panel431";
+            this.panel431.Size = new System.Drawing.Size(23, 34);
+            this.panel431.TabIndex = 2;
+            // 
+            // panel432
+            // 
+            this.panel432.Location = new System.Drawing.Point(682, 80);
+            this.panel432.Name = "panel432";
+            this.panel432.Size = new System.Drawing.Size(23, 34);
+            this.panel432.TabIndex = 21;
+            // 
+            // panel433
+            // 
+            this.panel433.Location = new System.Drawing.Point(682, 19);
+            this.panel433.Name = "panel433";
+            this.panel433.Size = new System.Drawing.Size(23, 34);
+            this.panel433.TabIndex = 2;
+            // 
+            // panel434
+            // 
+            this.panel434.Location = new System.Drawing.Point(653, 80);
+            this.panel434.Name = "panel434";
+            this.panel434.Size = new System.Drawing.Size(23, 34);
+            this.panel434.TabIndex = 20;
+            // 
+            // panel435
+            // 
+            this.panel435.Location = new System.Drawing.Point(653, 19);
+            this.panel435.Name = "panel435";
+            this.panel435.Size = new System.Drawing.Size(23, 34);
+            this.panel435.TabIndex = 2;
+            // 
+            // panel436
+            // 
+            this.panel436.Location = new System.Drawing.Point(624, 80);
+            this.panel436.Name = "panel436";
+            this.panel436.Size = new System.Drawing.Size(23, 34);
+            this.panel436.TabIndex = 11;
+            // 
+            // panel437
+            // 
+            this.panel437.Location = new System.Drawing.Point(624, 19);
+            this.panel437.Name = "panel437";
+            this.panel437.Size = new System.Drawing.Size(23, 34);
+            this.panel437.TabIndex = 2;
+            // 
+            // panel438
+            // 
+            this.panel438.Location = new System.Drawing.Point(595, 80);
+            this.panel438.Name = "panel438";
+            this.panel438.Size = new System.Drawing.Size(23, 34);
+            this.panel438.TabIndex = 5;
+            // 
+            // panel439
+            // 
+            this.panel439.Location = new System.Drawing.Point(595, 19);
+            this.panel439.Name = "panel439";
+            this.panel439.Size = new System.Drawing.Size(23, 34);
+            this.panel439.TabIndex = 2;
+            // 
+            // panel440
+            // 
+            this.panel440.Location = new System.Drawing.Point(537, 80);
+            this.panel440.Name = "panel440";
+            this.panel440.Size = new System.Drawing.Size(23, 34);
+            this.panel440.TabIndex = 6;
+            // 
+            // panel441
+            // 
+            this.panel441.Location = new System.Drawing.Point(537, 19);
+            this.panel441.Name = "panel441";
+            this.panel441.Size = new System.Drawing.Size(23, 34);
+            this.panel441.TabIndex = 2;
+            // 
+            // panel442
+            // 
+            this.panel442.Location = new System.Drawing.Point(508, 80);
+            this.panel442.Name = "panel442";
+            this.panel442.Size = new System.Drawing.Size(23, 34);
+            this.panel442.TabIndex = 7;
+            // 
+            // panel443
+            // 
+            this.panel443.Location = new System.Drawing.Point(508, 19);
+            this.panel443.Name = "panel443";
+            this.panel443.Size = new System.Drawing.Size(23, 34);
+            this.panel443.TabIndex = 2;
+            // 
+            // panel444
+            // 
+            this.panel444.Location = new System.Drawing.Point(479, 80);
+            this.panel444.Name = "panel444";
+            this.panel444.Size = new System.Drawing.Size(23, 34);
+            this.panel444.TabIndex = 8;
+            // 
+            // panel445
+            // 
+            this.panel445.Location = new System.Drawing.Point(479, 19);
+            this.panel445.Name = "panel445";
+            this.panel445.Size = new System.Drawing.Size(23, 34);
+            this.panel445.TabIndex = 2;
+            // 
+            // panel446
+            // 
+            this.panel446.Location = new System.Drawing.Point(450, 80);
+            this.panel446.Name = "panel446";
+            this.panel446.Size = new System.Drawing.Size(23, 34);
+            this.panel446.TabIndex = 9;
+            // 
+            // panel447
+            // 
+            this.panel447.Location = new System.Drawing.Point(450, 19);
+            this.panel447.Name = "panel447";
+            this.panel447.Size = new System.Drawing.Size(23, 34);
+            this.panel447.TabIndex = 2;
+            // 
+            // panel448
+            // 
+            this.panel448.Location = new System.Drawing.Point(392, 80);
+            this.panel448.Name = "panel448";
+            this.panel448.Size = new System.Drawing.Size(23, 34);
+            this.panel448.TabIndex = 10;
+            // 
+            // panel449
+            // 
+            this.panel449.Location = new System.Drawing.Point(392, 19);
+            this.panel449.Name = "panel449";
+            this.panel449.Size = new System.Drawing.Size(23, 34);
+            this.panel449.TabIndex = 2;
+            // 
+            // panel450
+            // 
+            this.panel450.Location = new System.Drawing.Point(363, 80);
+            this.panel450.Name = "panel450";
+            this.panel450.Size = new System.Drawing.Size(23, 34);
+            this.panel450.TabIndex = 12;
+            // 
+            // panel451
+            // 
+            this.panel451.Location = new System.Drawing.Point(363, 19);
+            this.panel451.Name = "panel451";
+            this.panel451.Size = new System.Drawing.Size(23, 34);
+            this.panel451.TabIndex = 2;
+            // 
+            // panel452
+            // 
+            this.panel452.Location = new System.Drawing.Point(334, 80);
+            this.panel452.Name = "panel452";
+            this.panel452.Size = new System.Drawing.Size(23, 34);
+            this.panel452.TabIndex = 19;
+            // 
+            // panel453
+            // 
+            this.panel453.Location = new System.Drawing.Point(334, 19);
+            this.panel453.Name = "panel453";
+            this.panel453.Size = new System.Drawing.Size(23, 34);
+            this.panel453.TabIndex = 2;
+            // 
+            // panel454
+            // 
+            this.panel454.Location = new System.Drawing.Point(305, 80);
+            this.panel454.Name = "panel454";
+            this.panel454.Size = new System.Drawing.Size(23, 34);
+            this.panel454.TabIndex = 13;
+            // 
+            // panel455
+            // 
+            this.panel455.Location = new System.Drawing.Point(305, 19);
+            this.panel455.Name = "panel455";
+            this.panel455.Size = new System.Drawing.Size(23, 34);
+            this.panel455.TabIndex = 2;
+            // 
+            // panel456
+            // 
+            this.panel456.Location = new System.Drawing.Point(247, 80);
+            this.panel456.Name = "panel456";
+            this.panel456.Size = new System.Drawing.Size(23, 34);
+            this.panel456.TabIndex = 14;
+            // 
+            // panel457
+            // 
+            this.panel457.Location = new System.Drawing.Point(247, 19);
+            this.panel457.Name = "panel457";
+            this.panel457.Size = new System.Drawing.Size(23, 34);
+            this.panel457.TabIndex = 2;
+            // 
+            // panel458
+            // 
+            this.panel458.Location = new System.Drawing.Point(218, 80);
+            this.panel458.Name = "panel458";
+            this.panel458.Size = new System.Drawing.Size(23, 34);
+            this.panel458.TabIndex = 15;
+            // 
+            // panel459
+            // 
+            this.panel459.Location = new System.Drawing.Point(218, 19);
+            this.panel459.Name = "panel459";
+            this.panel459.Size = new System.Drawing.Size(23, 34);
+            this.panel459.TabIndex = 2;
+            // 
+            // panel460
+            // 
+            this.panel460.Location = new System.Drawing.Point(189, 80);
+            this.panel460.Name = "panel460";
+            this.panel460.Size = new System.Drawing.Size(23, 34);
+            this.panel460.TabIndex = 16;
+            // 
+            // panel461
+            // 
+            this.panel461.Location = new System.Drawing.Point(189, 19);
+            this.panel461.Name = "panel461";
+            this.panel461.Size = new System.Drawing.Size(23, 34);
+            this.panel461.TabIndex = 2;
+            // 
+            // panel462
+            // 
+            this.panel462.Location = new System.Drawing.Point(160, 80);
+            this.panel462.Name = "panel462";
+            this.panel462.Size = new System.Drawing.Size(23, 34);
+            this.panel462.TabIndex = 17;
+            // 
+            // panel463
+            // 
+            this.panel463.Location = new System.Drawing.Point(160, 19);
+            this.panel463.Name = "panel463";
+            this.panel463.Size = new System.Drawing.Size(23, 34);
+            this.panel463.TabIndex = 2;
+            // 
+            // panel464
+            // 
+            this.panel464.Location = new System.Drawing.Point(73, 80);
+            this.panel464.Name = "panel464";
+            this.panel464.Size = new System.Drawing.Size(23, 34);
+            this.panel464.TabIndex = 18;
+            // 
+            // panel465
+            // 
+            this.panel465.Location = new System.Drawing.Point(73, 19);
+            this.panel465.Name = "panel465";
+            this.panel465.Size = new System.Drawing.Size(23, 34);
+            this.panel465.TabIndex = 2;
+            // 
+            // panel466
+            // 
+            this.panel466.Location = new System.Drawing.Point(44, 80);
+            this.panel466.Name = "panel466";
+            this.panel466.Size = new System.Drawing.Size(23, 34);
+            this.panel466.TabIndex = 38;
+            // 
+            // panel467
+            // 
+            this.panel467.Location = new System.Drawing.Point(44, 19);
+            this.panel467.Name = "panel467";
+            this.panel467.Size = new System.Drawing.Size(23, 34);
+            this.panel467.TabIndex = 2;
+            // 
+            // panel468
+            // 
+            this.panel468.Location = new System.Drawing.Point(15, 80);
+            this.panel468.Name = "panel468";
+            this.panel468.Size = new System.Drawing.Size(23, 34);
+            this.panel468.TabIndex = 4;
+            // 
+            // panel469
+            // 
+            this.panel469.Location = new System.Drawing.Point(15, 19);
+            this.panel469.Name = "panel469";
+            this.panel469.Size = new System.Drawing.Size(23, 34);
+            this.panel469.TabIndex = 1;
+            // 
+            // groupBox9
+            // 
+            this.groupBox9.Controls.Add(this.label42);
+            this.groupBox9.Controls.Add(this.panel470);
+            this.groupBox9.Controls.Add(this.panel471);
+            this.groupBox9.Controls.Add(this.panel472);
+            this.groupBox9.Controls.Add(this.panel473);
+            this.groupBox9.Controls.Add(this.panel474);
+            this.groupBox9.Controls.Add(this.panel475);
+            this.groupBox9.Controls.Add(this.panel476);
+            this.groupBox9.Controls.Add(this.panel477);
+            this.groupBox9.Controls.Add(this.panel478);
+            this.groupBox9.Controls.Add(this.panel479);
+            this.groupBox9.Controls.Add(this.panel480);
+            this.groupBox9.Controls.Add(this.panel481);
+            this.groupBox9.Controls.Add(this.panel482);
+            this.groupBox9.Controls.Add(this.panel483);
+            this.groupBox9.Controls.Add(this.panel484);
+            this.groupBox9.Controls.Add(this.panel485);
+            this.groupBox9.Controls.Add(this.panel486);
+            this.groupBox9.Controls.Add(this.panel487);
+            this.groupBox9.Controls.Add(this.panel488);
+            this.groupBox9.Controls.Add(this.panel489);
+            this.groupBox9.Controls.Add(this.panel490);
+            this.groupBox9.Controls.Add(this.panel491);
+            this.groupBox9.Controls.Add(this.panel492);
+            this.groupBox9.Controls.Add(this.panel493);
+            this.groupBox9.Controls.Add(this.panel494);
+            this.groupBox9.Controls.Add(this.panel495);
+            this.groupBox9.Controls.Add(this.panel496);
+            this.groupBox9.Controls.Add(this.panel497);
+            this.groupBox9.Controls.Add(this.panel498);
+            this.groupBox9.Controls.Add(this.panel499);
+            this.groupBox9.Controls.Add(this.panel500);
+            this.groupBox9.Controls.Add(this.panel501);
+            this.groupBox9.Controls.Add(this.panel502);
+            this.groupBox9.Controls.Add(this.panel503);
+            this.groupBox9.Controls.Add(this.panel504);
+            this.groupBox9.Controls.Add(this.panel505);
+            this.groupBox9.Location = new System.Drawing.Point(35, 859);
+            this.groupBox9.Name = "groupBox9";
+            this.groupBox9.Size = new System.Drawing.Size(1291, 78);
+            this.groupBox9.TabIndex = 40;
+            this.groupBox9.TabStop = false;
+            this.groupBox9.Text = "groupBox9";
+            // 
+            // label42
+            // 
+            this.label42.AutoSize = true;
+            this.label42.Location = new System.Drawing.Point(15, -16);
+            this.label42.Name = "label42";
+            this.label42.Size = new System.Drawing.Size(15, 13);
+            this.label42.TabIndex = 7;
+            this.label42.Text = "G";
+            // 
+            // panel470
+            // 
+            this.panel470.Location = new System.Drawing.Point(1262, 19);
+            this.panel470.Name = "panel470";
+            this.panel470.Size = new System.Drawing.Size(23, 34);
+            this.panel470.TabIndex = 2;
+            // 
+            // panel471
+            // 
+            this.panel471.Location = new System.Drawing.Point(1233, 19);
+            this.panel471.Name = "panel471";
+            this.panel471.Size = new System.Drawing.Size(23, 34);
+            this.panel471.TabIndex = 2;
+            // 
+            // panel472
+            // 
+            this.panel472.Location = new System.Drawing.Point(102, 19);
+            this.panel472.Name = "panel472";
+            this.panel472.Size = new System.Drawing.Size(23, 34);
+            this.panel472.TabIndex = 2;
+            // 
+            // panel473
+            // 
+            this.panel473.Location = new System.Drawing.Point(1204, 19);
+            this.panel473.Name = "panel473";
+            this.panel473.Size = new System.Drawing.Size(23, 34);
+            this.panel473.TabIndex = 2;
+            // 
+            // panel474
+            // 
+            this.panel474.Location = new System.Drawing.Point(1175, 19);
+            this.panel474.Name = "panel474";
+            this.panel474.Size = new System.Drawing.Size(23, 34);
+            this.panel474.TabIndex = 2;
+            // 
+            // panel475
+            // 
+            this.panel475.Location = new System.Drawing.Point(1117, 19);
+            this.panel475.Name = "panel475";
+            this.panel475.Size = new System.Drawing.Size(23, 34);
+            this.panel475.TabIndex = 2;
+            // 
+            // panel476
+            // 
+            this.panel476.Location = new System.Drawing.Point(1088, 19);
+            this.panel476.Name = "panel476";
+            this.panel476.Size = new System.Drawing.Size(23, 34);
+            this.panel476.TabIndex = 2;
+            // 
+            // panel477
+            // 
+            this.panel477.Location = new System.Drawing.Point(1059, 19);
+            this.panel477.Name = "panel477";
+            this.panel477.Size = new System.Drawing.Size(23, 34);
+            this.panel477.TabIndex = 2;
+            // 
+            // panel478
+            // 
+            this.panel478.Location = new System.Drawing.Point(1030, 19);
+            this.panel478.Name = "panel478";
+            this.panel478.Size = new System.Drawing.Size(23, 34);
+            this.panel478.TabIndex = 2;
+            // 
+            // panel479
+            // 
+            this.panel479.Location = new System.Drawing.Point(972, 19);
+            this.panel479.Name = "panel479";
+            this.panel479.Size = new System.Drawing.Size(23, 34);
+            this.panel479.TabIndex = 2;
+            // 
+            // panel480
+            // 
+            this.panel480.Location = new System.Drawing.Point(943, 19);
+            this.panel480.Name = "panel480";
+            this.panel480.Size = new System.Drawing.Size(23, 34);
+            this.panel480.TabIndex = 2;
+            // 
+            // panel481
+            // 
+            this.panel481.Location = new System.Drawing.Point(914, 19);
+            this.panel481.Name = "panel481";
+            this.panel481.Size = new System.Drawing.Size(23, 34);
+            this.panel481.TabIndex = 2;
+            // 
+            // panel482
+            // 
+            this.panel482.Location = new System.Drawing.Point(885, 19);
+            this.panel482.Name = "panel482";
+            this.panel482.Size = new System.Drawing.Size(23, 34);
+            this.panel482.TabIndex = 2;
+            // 
+            // panel483
+            // 
+            this.panel483.Location = new System.Drawing.Point(827, 19);
+            this.panel483.Name = "panel483";
+            this.panel483.Size = new System.Drawing.Size(23, 34);
+            this.panel483.TabIndex = 2;
+            // 
+            // panel484
+            // 
+            this.panel484.Location = new System.Drawing.Point(798, 19);
+            this.panel484.Name = "panel484";
+            this.panel484.Size = new System.Drawing.Size(23, 34);
+            this.panel484.TabIndex = 2;
+            // 
+            // panel485
+            // 
+            this.panel485.Location = new System.Drawing.Point(769, 19);
+            this.panel485.Name = "panel485";
+            this.panel485.Size = new System.Drawing.Size(23, 34);
+            this.panel485.TabIndex = 2;
+            // 
+            // panel486
+            // 
+            this.panel486.Location = new System.Drawing.Point(740, 19);
+            this.panel486.Name = "panel486";
+            this.panel486.Size = new System.Drawing.Size(23, 34);
+            this.panel486.TabIndex = 2;
+            // 
+            // panel487
+            // 
+            this.panel487.Location = new System.Drawing.Point(682, 19);
+            this.panel487.Name = "panel487";
+            this.panel487.Size = new System.Drawing.Size(23, 34);
+            this.panel487.TabIndex = 2;
+            // 
+            // panel488
+            // 
+            this.panel488.Location = new System.Drawing.Point(653, 19);
+            this.panel488.Name = "panel488";
+            this.panel488.Size = new System.Drawing.Size(23, 34);
+            this.panel488.TabIndex = 2;
+            // 
+            // panel489
+            // 
+            this.panel489.Location = new System.Drawing.Point(624, 19);
+            this.panel489.Name = "panel489";
+            this.panel489.Size = new System.Drawing.Size(23, 34);
+            this.panel489.TabIndex = 2;
+            // 
+            // panel490
+            // 
+            this.panel490.Location = new System.Drawing.Point(595, 19);
+            this.panel490.Name = "panel490";
+            this.panel490.Size = new System.Drawing.Size(23, 34);
+            this.panel490.TabIndex = 2;
+            // 
+            // panel491
+            // 
+            this.panel491.Location = new System.Drawing.Point(537, 19);
+            this.panel491.Name = "panel491";
+            this.panel491.Size = new System.Drawing.Size(23, 34);
+            this.panel491.TabIndex = 2;
+            // 
+            // panel492
+            // 
+            this.panel492.Location = new System.Drawing.Point(508, 19);
+            this.panel492.Name = "panel492";
+            this.panel492.Size = new System.Drawing.Size(23, 34);
+            this.panel492.TabIndex = 2;
+            // 
+            // panel493
+            // 
+            this.panel493.Location = new System.Drawing.Point(479, 19);
+            this.panel493.Name = "panel493";
+            this.panel493.Size = new System.Drawing.Size(23, 34);
+            this.panel493.TabIndex = 2;
+            // 
+            // panel494
+            // 
+            this.panel494.Location = new System.Drawing.Point(450, 19);
+            this.panel494.Name = "panel494";
+            this.panel494.Size = new System.Drawing.Size(23, 34);
+            this.panel494.TabIndex = 2;
+            // 
+            // panel495
+            // 
+            this.panel495.Location = new System.Drawing.Point(392, 19);
+            this.panel495.Name = "panel495";
+            this.panel495.Size = new System.Drawing.Size(23, 34);
+            this.panel495.TabIndex = 2;
+            // 
+            // panel496
+            // 
+            this.panel496.Location = new System.Drawing.Point(363, 19);
+            this.panel496.Name = "panel496";
+            this.panel496.Size = new System.Drawing.Size(23, 34);
+            this.panel496.TabIndex = 2;
+            // 
+            // panel497
+            // 
+            this.panel497.Location = new System.Drawing.Point(334, 19);
+            this.panel497.Name = "panel497";
+            this.panel497.Size = new System.Drawing.Size(23, 34);
+            this.panel497.TabIndex = 2;
+            // 
+            // panel498
+            // 
+            this.panel498.Location = new System.Drawing.Point(305, 19);
+            this.panel498.Name = "panel498";
+            this.panel498.Size = new System.Drawing.Size(23, 34);
+            this.panel498.TabIndex = 2;
+            // 
+            // panel499
+            // 
+            this.panel499.Location = new System.Drawing.Point(247, 19);
+            this.panel499.Name = "panel499";
+            this.panel499.Size = new System.Drawing.Size(23, 34);
+            this.panel499.TabIndex = 2;
+            // 
+            // panel500
+            // 
+            this.panel500.Location = new System.Drawing.Point(218, 19);
+            this.panel500.Name = "panel500";
+            this.panel500.Size = new System.Drawing.Size(23, 34);
+            this.panel500.TabIndex = 2;
+            // 
+            // panel501
+            // 
+            this.panel501.Location = new System.Drawing.Point(189, 19);
+            this.panel501.Name = "panel501";
+            this.panel501.Size = new System.Drawing.Size(23, 34);
+            this.panel501.TabIndex = 2;
+            // 
+            // panel502
+            // 
+            this.panel502.Location = new System.Drawing.Point(160, 19);
+            this.panel502.Name = "panel502";
+            this.panel502.Size = new System.Drawing.Size(23, 34);
+            this.panel502.TabIndex = 2;
+            // 
+            // panel503
+            // 
+            this.panel503.Location = new System.Drawing.Point(73, 19);
+            this.panel503.Name = "panel503";
+            this.panel503.Size = new System.Drawing.Size(23, 34);
+            this.panel503.TabIndex = 2;
+            // 
+            // panel504
+            // 
+            this.panel504.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.panel504.Location = new System.Drawing.Point(44, 19);
+            this.panel504.Name = "panel504";
+            this.panel504.Size = new System.Drawing.Size(23, 34);
+            this.panel504.TabIndex = 2;
+            // 
+            // panel505
+            // 
+            this.panel505.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.panel505.Location = new System.Drawing.Point(15, 19);
+            this.panel505.Name = "panel505";
+            this.panel505.Size = new System.Drawing.Size(23, 34);
+            this.panel505.TabIndex = 1;
+            // 
+            // label43
+            // 
+            this.label43.AutoSize = true;
+            this.label43.Location = new System.Drawing.Point(10, 580);
+            this.label43.Name = "label43";
+            this.label43.Size = new System.Drawing.Size(14, 13);
+            this.label43.TabIndex = 44;
+            this.label43.Text = "C";
+            // 
+            // label44
+            // 
+            this.label44.AutoSize = true;
+            this.label44.Location = new System.Drawing.Point(9, 733);
+            this.label44.Name = "label44";
+            this.label44.Size = new System.Drawing.Size(14, 13);
+            this.label44.TabIndex = 45;
+            this.label44.Text = "B";
+            // 
+            // label45
+            // 
+            this.label45.AutoSize = true;
+            this.label45.Location = new System.Drawing.Point(7, 843);
+            this.label45.Name = "label45";
+            this.label45.Size = new System.Drawing.Size(14, 13);
+            this.label45.TabIndex = 44;
+            this.label45.Text = "A";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
-            this.ClientSize = new System.Drawing.Size(1426, 651);
+            this.ClientSize = new System.Drawing.Size(1426, 1002);
+            this.Controls.Add(this.groupBox9);
+            this.Controls.Add(this.groupBox8);
+            this.Controls.Add(this.groupBox7);
             this.Controls.Add(this.label38);
             this.Controls.Add(this.label39);
             this.Controls.Add(this.label40);
@@ -3560,6 +5262,10 @@
             this.groupBox6.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.groupBox7.ResumeLayout(false);
+            this.groupBox8.ResumeLayout(false);
+            this.groupBox9.ResumeLayout(false);
+            this.groupBox9.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -3945,6 +5651,193 @@
         private System.Windows.Forms.Label label39;
         private System.Windows.Forms.Label label40;
         private System.Windows.Forms.Label label41;
+        private System.Windows.Forms.GroupBox groupBox7;
+        private System.Windows.Forms.Panel panel326;
+        private System.Windows.Forms.Panel panel327;
+        private System.Windows.Forms.Panel panel328;
+        private System.Windows.Forms.Panel panel329;
+        private System.Windows.Forms.Panel panel330;
+        private System.Windows.Forms.Panel panel331;
+        private System.Windows.Forms.Panel panel332;
+        private System.Windows.Forms.Panel panel333;
+        private System.Windows.Forms.Panel panel334;
+        private System.Windows.Forms.Panel panel335;
+        private System.Windows.Forms.Panel panel336;
+        private System.Windows.Forms.Panel panel337;
+        private System.Windows.Forms.Panel panel338;
+        private System.Windows.Forms.Panel panel339;
+        private System.Windows.Forms.Panel panel340;
+        private System.Windows.Forms.Panel panel341;
+        private System.Windows.Forms.Panel panel342;
+        private System.Windows.Forms.Panel panel343;
+        private System.Windows.Forms.Panel panel344;
+        private System.Windows.Forms.Panel panel345;
+        private System.Windows.Forms.Panel panel346;
+        private System.Windows.Forms.Panel panel347;
+        private System.Windows.Forms.Panel panel348;
+        private System.Windows.Forms.Panel panel349;
+        private System.Windows.Forms.Panel panel350;
+        private System.Windows.Forms.Panel panel351;
+        private System.Windows.Forms.Panel panel352;
+        private System.Windows.Forms.Panel panel353;
+        private System.Windows.Forms.Panel panel354;
+        private System.Windows.Forms.Panel panel355;
+        private System.Windows.Forms.Panel panel356;
+        private System.Windows.Forms.Panel panel357;
+        private System.Windows.Forms.Panel panel358;
+        private System.Windows.Forms.Panel panel359;
+        private System.Windows.Forms.Panel panel360;
+        private System.Windows.Forms.Panel panel361;
+        private System.Windows.Forms.Panel panel362;
+        private System.Windows.Forms.Panel panel363;
+        private System.Windows.Forms.Panel panel364;
+        private System.Windows.Forms.Panel panel365;
+        private System.Windows.Forms.Panel panel366;
+        private System.Windows.Forms.Panel panel367;
+        private System.Windows.Forms.Panel panel368;
+        private System.Windows.Forms.Panel panel369;
+        private System.Windows.Forms.Panel panel370;
+        private System.Windows.Forms.Panel panel371;
+        private System.Windows.Forms.Panel panel372;
+        private System.Windows.Forms.Panel panel373;
+        private System.Windows.Forms.Panel panel374;
+        private System.Windows.Forms.Panel panel375;
+        private System.Windows.Forms.Panel panel376;
+        private System.Windows.Forms.Panel panel377;
+        private System.Windows.Forms.Panel panel378;
+        private System.Windows.Forms.Panel panel379;
+        private System.Windows.Forms.Panel panel380;
+        private System.Windows.Forms.Panel panel381;
+        private System.Windows.Forms.Panel panel382;
+        private System.Windows.Forms.Panel panel383;
+        private System.Windows.Forms.Panel panel384;
+        private System.Windows.Forms.Panel panel385;
+        private System.Windows.Forms.Panel panel386;
+        private System.Windows.Forms.Panel panel387;
+        private System.Windows.Forms.Panel panel388;
+        private System.Windows.Forms.Panel panel389;
+        private System.Windows.Forms.Panel panel390;
+        private System.Windows.Forms.Panel panel391;
+        private System.Windows.Forms.Panel panel392;
+        private System.Windows.Forms.Panel panel393;
+        private System.Windows.Forms.Panel panel394;
+        private System.Windows.Forms.Panel panel395;
+        private System.Windows.Forms.Panel panel396;
+        private System.Windows.Forms.Panel panel397;
+        private System.Windows.Forms.GroupBox groupBox8;
+        private System.Windows.Forms.Panel panel398;
+        private System.Windows.Forms.Panel panel399;
+        private System.Windows.Forms.Panel panel400;
+        private System.Windows.Forms.Panel panel401;
+        private System.Windows.Forms.Panel panel402;
+        private System.Windows.Forms.Panel panel403;
+        private System.Windows.Forms.Panel panel404;
+        private System.Windows.Forms.Panel panel405;
+        private System.Windows.Forms.Panel panel406;
+        private System.Windows.Forms.Panel panel407;
+        private System.Windows.Forms.Panel panel408;
+        private System.Windows.Forms.Panel panel409;
+        private System.Windows.Forms.Panel panel410;
+        private System.Windows.Forms.Panel panel411;
+        private System.Windows.Forms.Panel panel412;
+        private System.Windows.Forms.Panel panel413;
+        private System.Windows.Forms.Panel panel414;
+        private System.Windows.Forms.Panel panel415;
+        private System.Windows.Forms.Panel panel416;
+        private System.Windows.Forms.Panel panel417;
+        private System.Windows.Forms.Panel panel418;
+        private System.Windows.Forms.Panel panel419;
+        private System.Windows.Forms.Panel panel420;
+        private System.Windows.Forms.Panel panel421;
+        private System.Windows.Forms.Panel panel422;
+        private System.Windows.Forms.Panel panel423;
+        private System.Windows.Forms.Panel panel424;
+        private System.Windows.Forms.Panel panel425;
+        private System.Windows.Forms.Panel panel426;
+        private System.Windows.Forms.Panel panel427;
+        private System.Windows.Forms.Panel panel428;
+        private System.Windows.Forms.Panel panel429;
+        private System.Windows.Forms.Panel panel430;
+        private System.Windows.Forms.Panel panel431;
+        private System.Windows.Forms.Panel panel432;
+        private System.Windows.Forms.Panel panel433;
+        private System.Windows.Forms.Panel panel434;
+        private System.Windows.Forms.Panel panel435;
+        private System.Windows.Forms.Panel panel436;
+        private System.Windows.Forms.Panel panel437;
+        private System.Windows.Forms.Panel panel438;
+        private System.Windows.Forms.Panel panel439;
+        private System.Windows.Forms.Panel panel440;
+        private System.Windows.Forms.Panel panel441;
+        private System.Windows.Forms.Panel panel442;
+        private System.Windows.Forms.Panel panel443;
+        private System.Windows.Forms.Panel panel444;
+        private System.Windows.Forms.Panel panel445;
+        private System.Windows.Forms.Panel panel446;
+        private System.Windows.Forms.Panel panel447;
+        private System.Windows.Forms.Panel panel448;
+        private System.Windows.Forms.Panel panel449;
+        private System.Windows.Forms.Panel panel450;
+        private System.Windows.Forms.Panel panel451;
+        private System.Windows.Forms.Panel panel452;
+        private System.Windows.Forms.Panel panel453;
+        private System.Windows.Forms.Panel panel454;
+        private System.Windows.Forms.Panel panel455;
+        private System.Windows.Forms.Panel panel456;
+        private System.Windows.Forms.Panel panel457;
+        private System.Windows.Forms.Panel panel458;
+        private System.Windows.Forms.Panel panel459;
+        private System.Windows.Forms.Panel panel460;
+        private System.Windows.Forms.Panel panel461;
+        private System.Windows.Forms.Panel panel462;
+        private System.Windows.Forms.Panel panel463;
+        private System.Windows.Forms.Panel panel464;
+        private System.Windows.Forms.Panel panel465;
+        private System.Windows.Forms.Panel panel466;
+        private System.Windows.Forms.Panel panel467;
+        private System.Windows.Forms.Panel panel468;
+        private System.Windows.Forms.Panel panel469;
+        private System.Windows.Forms.GroupBox groupBox9;
+        private System.Windows.Forms.Label label42;
+        private System.Windows.Forms.Panel panel470;
+        private System.Windows.Forms.Panel panel471;
+        private System.Windows.Forms.Panel panel472;
+        private System.Windows.Forms.Panel panel473;
+        private System.Windows.Forms.Panel panel474;
+        private System.Windows.Forms.Panel panel475;
+        private System.Windows.Forms.Panel panel476;
+        private System.Windows.Forms.Panel panel477;
+        private System.Windows.Forms.Panel panel478;
+        private System.Windows.Forms.Panel panel479;
+        private System.Windows.Forms.Panel panel480;
+        private System.Windows.Forms.Panel panel481;
+        private System.Windows.Forms.Panel panel482;
+        private System.Windows.Forms.Panel panel483;
+        private System.Windows.Forms.Panel panel484;
+        private System.Windows.Forms.Panel panel485;
+        private System.Windows.Forms.Panel panel486;
+        private System.Windows.Forms.Panel panel487;
+        private System.Windows.Forms.Panel panel488;
+        private System.Windows.Forms.Panel panel489;
+        private System.Windows.Forms.Panel panel490;
+        private System.Windows.Forms.Panel panel491;
+        private System.Windows.Forms.Panel panel492;
+        private System.Windows.Forms.Panel panel493;
+        private System.Windows.Forms.Panel panel494;
+        private System.Windows.Forms.Panel panel495;
+        private System.Windows.Forms.Panel panel496;
+        private System.Windows.Forms.Panel panel497;
+        private System.Windows.Forms.Panel panel498;
+        private System.Windows.Forms.Panel panel499;
+        private System.Windows.Forms.Panel panel500;
+        private System.Windows.Forms.Panel panel501;
+        private System.Windows.Forms.Panel panel502;
+        private System.Windows.Forms.Panel panel503;
+        private System.Windows.Forms.Panel panel504;
+        private System.Windows.Forms.Panel panel505;
+        private System.Windows.Forms.Label label45;
+        private System.Windows.Forms.Label label44;
+        private System.Windows.Forms.Label label43;
     }
 }
 
