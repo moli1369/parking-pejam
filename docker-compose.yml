@@ -1,0 +1,14 @@
+services:
+  parking-pejam:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      Parking__AdminKey: "change-this-in-production"
+      ConnectionStrings__Parking: "Data Source=/data/parking.db"
+    volumes:
+      - parking-data:/data
+    restart: unless-stopped
+
+volumes:
+  parking-data:
