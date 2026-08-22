@@ -19,6 +19,7 @@
       <div class="top-actions">
         <span id="connection" class="status-pill offline">Connecting…</span>
         <button id="refreshBtn" class="ghost">Refresh</button>
+        <button id="reportsBtn" class="ghost">Reports</button>
       </div>
     </header>
 
@@ -51,6 +52,21 @@
       </section>
     </main>
   </div>
+
+  <dialog id="reportsDialog">
+    <div class="dialog-card">
+      <span class="eyebrow">REPORT CENTER</span>
+      <h2>Export & analysis</h2>
+      <p>Download live data for Excel/analysis, or generate a print-ready report and save it as PDF from your browser.</p>
+      <div class="report-actions">
+        <a class="report-action" href="/api/parking/export/spots.csv">Parking spots · CSV / Excel</a>
+        <a class="report-action" href="/api/parking/export/events.csv?take=200">Audit events · CSV / Excel</a>
+        <a class="report-action" href="/api/parking/export/report.json">Full snapshot · JSON</a>
+        <button id="printReportBtn" class="report-action">Printable report · PDF</button>
+      </div>
+      <div class="dialog-actions"><button id="closeReportsBtn" class="ghost">Close</button></div>
+    </div>
+  </dialog>
 
   <dialog id="settingsDialog">
     <form method="dialog" class="dialog-card" id="settingsForm">

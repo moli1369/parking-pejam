@@ -1,3 +1,4 @@
+using System.Text;
 using Microsoft.EntityFrameworkCore;
 using ParkingPejam.Application.Contracts;
 using ParkingPejam.Domain.Entities;
@@ -60,8 +61,44 @@ api.MapPut("/spots/{id:guid}/status", async (
     return updated is null ? Results.NotFound() : Results.Ok(updated);
 });
 
+api.MapGet("/export/spots.csv", async (IParkingService service, CancellationToken ct) =>
+{
+    var spots = await service.GetSpotsAsync(cancellationToken: ct);
+    var csv = new StringBuilder();
+    csv.AppendLine("SpotNumber,Zone,Row,Column,Status,UpdatedAtUtc");
+    foreach (var spot in spots)
+        csv.AppendLine(Csv(spot.SpotNumber) + "," + Csv(spot.Zone) + "," + spot.Row + "," + spot.Column + "," + Csv(spot.Status.ToString()) + "," + Csv(spot.UpdatedAtUtc.ToString("O")));
+
+    return Results.File(Encoding.UTF8.GetBytes(csv.ToString()), "text/csv; charset=utf-8", $"parking-spots-{DateTime.UtcNow:yyyyMMdd-HHmmss}.csv");
+});
+
+api.MapGet("/export/events.csv", async (int? take, IParkingService service, CancellationToken ct) =>
+{
+    var events = await service.GetEventsAsync(take ?? 200, ct);
+    var csv = new StringBuilder();
+    csv.AppendLine("SpotNumber,OldStatus,NewStatus,Source,Actor,TimestampUtc");
+    foreach (var item in events)
+        csv.AppendLine(string.Join(",", Csv(item.SpotNumber), Csv(item.OldStatus.ToString()), Csv(item.NewStatus.ToString()), Csv(item.Source), Csv(item.Actor), Csv(item.TimestampUtc.ToString("O"))));
+
+    return Results.File(Encoding.UTF8.GetBytes(csv.ToString()), "text/csv; charset=utf-8", $"parking-events-{DateTime.UtcNow:yyyyMMdd-HHmmss}.csv");
+});
+
+api.MapGet("/export/report.json", async (IParkingService service, CancellationToken ct) =>
+{
+    var stats = await service.GetStatisticsAsync(ct);
+    var spots = await service.GetSpotsAsync(cancellationToken: ct);
+    var events = await service.GetEventsAsync(200, ct);
+    return Results.Ok(new { generatedAtUtc = DateTimeOffset.UtcNow, statistics = stats, spots, events });
+});
+
 app.MapFallbackToFile("index.html");
 app.Run();
+
+static string Csv(string? value)
+{
+    value ??= string.Empty;
+    return "\"" + value.Replace("\"", "\"\"") + "\"";
+}
 
 static bool IsAuthorized(HttpRequest request, IWebHostEnvironment env, IConfiguration config)
 {
