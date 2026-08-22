@@ -1,0 +1,20 @@
+name: CI
+
+on:
+  push:
+    branches: [ master, v2-web-platform ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
+      - name: Restore
+        run: dotnet restore ParkingPejam.sln
+      - name: Build web platform
+        run: dotnet build src/ParkingPejam.Web/ParkingPejam.Web.csproj --configuration Release --no-restore
