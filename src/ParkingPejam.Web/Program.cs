@@ -2,15 +2,20 @@ using Microsoft.EntityFrameworkCore;
 using ParkingPejam.Application.Contracts;
 using ParkingPejam.Domain.Entities;
 using ParkingPejam.Infrastructure;
+using ParkingPejam.Web;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<ParkingDbContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("Parking") ?? "Data Source=parking.db"));
 builder.Services.AddScoped<IParkingService, ParkingService>();
 builder.Services.AddHealthChecks().AddDbContextCheck<ParkingDbContext>();
+builder.Services.AddProblemDetails();
+builder.Services.AddOpenApi();
+builder.Services.AddHostedService<SimulationService>();
 
 var app = builder.Build();
 
+app.UseExceptionHandler();
 await using (var scope = app.Services.CreateAsyncScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<ParkingDbContext>();
@@ -20,7 +25,7 @@ await using (var scope = app.Services.CreateAsyncScope())
 
 app.UseDefaultFiles();
 app.UseStaticFiles();
-
+app.MapOpenApi("/openapi/{documentName}.json");
 app.MapHealthChecks("/health");
 
 var api = app.MapGroup("/api/parking");
