@@ -18,7 +18,6 @@ await using (var scope = app.Services.CreateAsyncScope())
     await SeedAsync(db);
 }
 
-app.UseHttpsRedirection();
 app.UseDefaultFiles();
 app.UseStaticFiles();
 
