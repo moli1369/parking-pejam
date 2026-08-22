@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#07111f">
+<meta name="description" content="Parking Pejam — interactive parking operations demo">
+<title>Parking Pejam · Live Operations Demo</title>
+<link rel="stylesheet" href="./app.css">
+</head>
+<body>
+<div class="shell">
+<header class="hero">
+  <div>
+    <div class="eyebrow">PEJAM · PARKING OPERATIONS PLATFORM</div>
+    <h1>Control your parking.<br><span>See everything.</span></h1>
+    <p class="hero-copy">Interactive showcase demo — no installation, no backend required. Changes are simulated locally in your browser.</p>
+  </div>
+  <div class="hero-actions">
+    <button id="simulateBtn" class="primary">▶ Run live simulation</button>
+    <button id="resetBtn" class="ghost">Reset demo</button>
+  </div>
+</header>
+<section class="statusbar">
+  <div><span class="live-dot"></span><strong id="modeLabel">Demo mode</strong><span class="muted"> · local browser simulation</span></div>
+  <div class="status-actions"><button id="reportBtn" class="ghost small">Reports</button><button id="printBtn" class="ghost small">Print / PDF</button></div>
+</section>
+<section class="metrics" id="metrics"></section>
+<section class="toolbar panel">
+  <div class="search-wrap"><span>⌕</span><input id="search" placeholder="Search spot e.g. A-101"></div>
+  <div id="zoneTabs" class="tabs"></div>
+  <select id="statusFilter"><option value="all">All statuses</option><option>Free</option><option>Occupied</option><option>Reserved</option><option>OutOfService</option></select>
+</section>
+<main class="layout">
+  <section class="panel map-panel">
+    <div class="panel-head"><div><div class="eyebrow">LIVE MAP</div><h2>Parking layout</h2></div><div class="legend"><span><i class="free"></i>Free</span><span><i class="occupied"></i>Occupied</span><span><i class="reserved"></i>Reserved</span><span><i class="out"></i>Out</span></div></div>
+    <div id="zones"></div>
+  </section>
+  <aside class="panel side-panel">
+    <div class="panel-head"><div><div class="eyebrow">AUDIT TRAIL</div><h2>Recent activity</h2></div><span class="count-badge" id="eventCount">0</span></div>
+    <div id="events" class="events"></div>
+    <div class="side-footer"><span>Occupancy</span><strong id="occupancyText">0%</strong></div>
+    <div class="progress"><span id="occupancyBar"></span></div>
+  </aside>
+</main>
+<section class="bottom-grid">
+  <div class="panel mini-panel"><div class="eyebrow">ZONE UTILISATION</div><h3>Live distribution</h3><div id="zoneBars" class="bars"></div></div>
+  <div class="panel mini-panel"><div class="eyebrow">PRODUCT NOTES</div><h3>Built for a real deployment</h3><p class="muted">The production app uses ASP.NET Core, EF Core, SQLite, Docker and a Clean Architecture split. This page is the public demo layer.</p><div class="chips"><span>.NET 10</span><span>REST API</span><span>EF Core</span><span>Docker</span><span>PWA</span><span>Audit Log</span></div></div>
+</section>
+<footer>Parking Pejam · Product showcase · <a href="https://github.com/moli1369/parking-pejam">View source on GitHub</a></footer>
+</div>
+<script src="./app.js"></script>
+</body>
+</html>
