@@ -4,13 +4,14 @@ A production-oriented **parking monitoring and management platform** built as a 
 
 ## 🚀 Live demo
 
-**GitHub Pages showcase:** https://moli1369.github.io/parking-pejam/
+**Interactive three-language showcase:** https://moli1369.github.io/parking-pejam/
 
-The public demo is fully interactive and runs without a backend. It includes local simulation, filtering, parking-state changes, audit activity and browser-based exports so the product can be reviewed instantly.
+The public demo supports **English, German and Persian**, including RTL mode for Persian. It runs without a backend and includes local simulation, search/filtering, parking-state changes, audit activity and browser-based exports.
 
 ## Features
 
 - Responsive operations dashboard with live parking map
+- EN / DE / FA localization with RTL Persian layout
 - Parking status management: Free, Occupied, Reserved, Out of Service
 - Search, zone filters and status filters
 - Audit trail for every status change
@@ -46,19 +47,19 @@ The public demo is fully interactive and runs without a backend. It includes loc
                   └────────────┬────────────┘
                                │
             ┌──────────────────▼──────────────────┐
-            │ Application                          │
-            │ Use cases / DTOs / contracts        │
+            │ Application                         │
+            │ Use cases / DTOs / contracts       │
             └──────────────────┬──────────────────┘
                                │
             ┌──────────────────▼──────────────────┐
-            │ Domain                              │
-            │ ParkingSpot / ParkingEvent         │
+            │ Domain                             │
+            │ ParkingSpot / ParkingEvent        │
             └──────────────────┬──────────────────┘
                                │
             ┌──────────────────▼──────────────────┐
-            │ Infrastructure                      │
-            │ EF Core + SQLite / persistence     │
-            └─────────────────────────────────────┘
+            │ Infrastructure                     │
+            │ EF Core + SQLite / persistence    │
+            └────────────────────────────────────┘
 ```
 
 ## Tech stack
@@ -123,7 +124,7 @@ parking-pejam/
 ├── docs/                         # GitHub Pages interactive showcase
 ├── src/
 │   ├── ParkingPejam.Domain/     # Business entities and rules
-│   ├── ParkingPejam.Application/# Contracts and application services
+│   ├── ParkingPejam.Application/ # Contracts and application services
 │   ├── ParkingPejam.Infrastructure/ # EF Core + SQLite
 │   └── ParkingPejam.Web/        # API + dashboard
 ├── Dockerfile
