@@ -4,7 +4,8 @@ services:
     ports:
       - "8080:8080"
     environment:
-      Parking__AdminKey: "${PARKING_ADMIN_KEY:?Set PARKING_ADMIN_KEY before starting}"
+      Parking__BootstrapAdminPassword: "${PARKING_BOOTSTRAP_ADMIN_PASSWORD:?Set PARKING_BOOTSTRAP_ADMIN_PASSWORD before starting}"
+      Parking__SensorIngressKey: "${PARKING_SENSOR_INGRESS_KEY:?Set PARKING_SENSOR_INGRESS_KEY before starting}"
       ConnectionStrings__Parking: "Data Source=/data/parking.db"
     volumes:
       - parking-data:/data
