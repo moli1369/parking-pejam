@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#08111f">
 <meta name="description" content="Parking Pejam — interactive parking operations showcase">
 <title>Parking Pejam · Operations</title>
-<link rel="stylesheet" href="./app.css?v=4">
+<link rel="stylesheet" href="./app.css?v=5">
 </head>
 <body>
 <div class="shell">
@@ -23,16 +23,40 @@
 <section class="toolbar panel">
   <label class="search-wrap"><span>⌕</span><input id="search" data-i18n-placeholder="searchPlaceholder" placeholder="Search spot, e.g. A-01" autocomplete="off"></label>
   <div id="zoneTabs" class="tabs"></div>
-  <select id="statusFilter" aria-label="Status"><option value="all" data-i18n="allStatuses">All statuses</option><option value="Free" data-i18n="free">Free</option><option value="Occupied" data-i18n="occupied">Occupied</option><option value="Reserved" data-i18n="reserved">Reserved</option><option value="OutOfService" data-i18n="outOfService">Out of service</option></select>
+  <select id="statusFilter" aria-label="Status"><option value="all" data-i18n="allStatuses">All statuses</option><option value="Free" data-i18n="free">Free</option><option value="Occupied" data-i18n="occupiedStatus">Occupied</option><option value="Reserved" data-i18n="reservedStatus">Reserved</option><option value="OutOfService" data-i18n="outOfService">Out of service</option></select>
 </section>
 <main class="main-grid">
-<section class="panel map-panel"><div class="panel-head"><div><div class="eyebrow" data-i18n="liveMap">LIVE MAP</div><h2 data-i18n="parkingLayout">Parking layout</h2><div class="muted" id="visibleSummary"></div></div><div class="legend"><span><i class="dot free"></i><span data-i18n="free">Free</span></span><span><i class="dot occupied"></i><span data-i18n="occupied">Occupied</span></span><span><i class="dot reserved"></i><span data-i18n="reserved">Reserved</span></span><span><i class="dot out"></i><span data-i18n="outOfService">Out of service</span></span></div></div><div id="zones"></div></section>
+<section class="panel map-panel"><div class="panel-head"><div><div class="eyebrow" data-i18n="liveMap">LIVE MAP</div><h2 data-i18n="parkingLayout">Parking layout</h2><div class="muted" id="visibleSummary"></div></div><div class="legend"><span><i class="dot free"></i><span data-i18n="free">Free</span></span><span><i class="dot occupied"></i><span data-i18n="occupiedStatus">Occupied</span></span><span><i class="dot reserved"></i><span data-i18n="reservedStatus">Reserved</span></span><span><i class="dot out"></i><span data-i18n="outOfService">Out of service</span></span></div></div><div id="zones"></div></section>
 <aside class="panel side-panel"><div class="panel-head"><div><div class="eyebrow" data-i18n="auditTrail">AUDIT TRAIL</div><h2 data-i18n="recentActivity">Recent activity</h2></div><span class="count-badge" id="eventCount">0</span></div><div id="events" class="events"></div><div class="side-footer"><div><span data-i18n="occupancy">Occupancy</span><strong id="occupancyText">0%</strong></div><span id="healthText" class="health-pill">● OK</span></div><div class="progress"><span id="occupancyBar"></span></div></aside>
 </main>
 <section class="bottom-grid"><div class="panel mini-panel"><div class="eyebrow" data-i18n="zoneUtilisation">ZONE UTILISATION</div><h3 data-i18n="liveDistribution">Live distribution</h3><div id="zoneBars" class="bars"></div></div><div class="panel mini-panel product-panel"><div class="eyebrow" data-i18n="productReady">PRODUCT READY</div><h3 data-i18n="builtForDeployment">Designed for real deployment</h3><p class="muted" data-i18n="productCopy">The production platform combines ASP.NET Core, EF Core, SQLite, Docker, API endpoints, audit logging and a responsive PWA-ready interface.</p><div class="chips"><span>.NET 10</span><span>REST API</span><span>EF Core</span><span>SQLite</span><span>Docker</span><span>PWA</span><span>Audit Log</span></div></div></section>
 <dialog id="reportDialog"><div class="dialog-card"><div class="eyebrow" data-i18n="reportCenter">REPORT CENTER</div><h2 data-i18n="exportAnalysis">Export & analysis</h2><p class="muted" data-i18n="reportCopy">Download the current demo state for Excel/analysis or generate a print-ready PDF report.</p><div class="report-grid"><button id="exportSpots" class="report-btn"><strong>CSV</strong><span data-i18n="spotsReport">Parking spots</span></button><button id="exportEvents" class="report-btn"><strong>CSV</strong><span data-i18n="eventsReport">Audit events</span></button><button id="exportJson" class="report-btn"><strong>JSON</strong><span data-i18n="snapshotReport">Full snapshot</span></button><button id="printFromDialog" class="report-btn"><strong>PDF</strong><span data-i18n="printableReport">Printable report</span></button></div><button id="closeReport" class="ghost full" data-i18n="close">Close</button></div></dialog>
+
+<dialog id="vehicleDialog">
+  <div class="vehicle-modal">
+    <div class="vehicle-modal-top">
+      <div><div class="eyebrow">PARKING INTELLIGENCE</div><h2 id="vehicleTitle">A-01</h2><div id="vehicleSubtitle" class="vehicle-subtitle">Vehicle & occupancy details</div></div>
+      <button id="closeVehicle" class="modal-close" aria-label="Close">×</button>
+    </div>
+    <div class="vehicle-hero">
+      <div class="vehicle-avatar">🚗</div>
+      <div class="vehicle-hero-main"><div id="vehicleStatus" class="vehicle-status">● Occupied</div><div id="vehicleModel" class="vehicle-model">Mercedes-Benz C-Class</div><div id="vehiclePlate" class="vehicle-plate">N-PE 2026</div></div>
+      <div class="vehicle-live"><span class="live-dot"></span><span id="vehicleSensor">Sensor online</span></div>
+    </div>
+    <div class="vehicle-grid">
+      <div class="detail-card"><span>OWNER / DRIVER</span><strong id="vehicleDriver">—</strong><small id="vehicleOperator">Checked in by —</small></div>
+      <div class="detail-card"><span>ENTRY TIME</span><strong id="vehicleEntry">—</strong><small id="vehicleDuration">Duration —</small></div>
+      <div class="detail-card"><span>VIN / CHASSIS</span><strong id="vehicleVin">—</strong><small>17-character vehicle identifier</small></div>
+      <div class="detail-card"><span>CONDITION</span><strong id="vehicleCondition">—</strong><small id="vehicleConditionNote">Vehicle condition</small></div>
+    </div>
+    <div class="vehicle-section"><div class="vehicle-section-title">VEHICLE PROFILE</div><div class="profile-grid"><div><span>Make</span><strong id="vehicleMake">—</strong></div><div><span>Model</span><strong id="vehicleModel2">—</strong></div><div><span>Year</span><strong id="vehicleYear">—</strong></div><div><span>Color</span><strong id="vehicleColor">—</strong></div><div><span>License plate</span><strong id="vehiclePlate2">—</strong></div><div><span>Parking zone</span><strong id="vehicleZone">—</strong></div></div></div>
+    <div class="vehicle-section"><div class="vehicle-section-title">SENSOR TELEMETRY</div><div class="telemetry"><div><span>Sensor ID</span><strong id="vehicleSensorId">—</strong></div><div><span>Last reading</span><strong id="vehicleReading">—</strong></div><div><span>Battery</span><strong id="vehicleBattery">—</strong></div></div></div>
+    <div class="vehicle-footer"><span>Demo data — production version reads these fields from the sensor/API layer.</span><button id="closeVehicle2" class="ghost">Close</button></div>
+  </div>
+</dialog>
 <footer><span>Parking Pejam · <span data-i18n="showcase">Product showcase</span></span><span>·</span><a href="https://github.com/moli1369/parking-pejam" target="_blank" rel="noreferrer" data-i18n="viewGithub">View on GitHub</a></footer>
 </div>
 <script src="./app.js?v=4"></script>
+<script src="./vehicle-details.js?v=1"></script>
 </body>
 </html>
