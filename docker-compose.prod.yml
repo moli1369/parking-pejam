@@ -17,7 +17,7 @@ services:
   app:
     build:
       context: .
-      dockerfile: src/ParkingPejam.Web/Dockerfile
+      dockerfile: Dockerfile
     restart: unless-stopped
     depends_on:
       db:
@@ -28,8 +28,12 @@ services:
       ConnectionStrings__Parking: Host=db;Port=5432;Database=${POSTGRES_DB:-parking_pejam};Username=${POSTGRES_USER:-parking};Password=${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD}
       Parking__BootstrapAdminPassword: ${PARKING_BOOTSTRAP_ADMIN_PASSWORD:?set PARKING_BOOTSTRAP_ADMIN_PASSWORD}
       Parking__SensorIngressKey: ${PARKING_SENSOR_INGRESS_KEY:?set PARKING_SENSOR_INGRESS_KEY}
+      Licensing__RequireLicense: "true"
+      Licensing__LicensePath: /app/license/license.json
+      Licensing__InstallationId: ${PARKING_LICENSE_INSTALLATION_ID:?set PARKING_LICENSE_INSTALLATION_ID}
     volumes:
       - app_data:/app/Data
+      - ./deploy/license:/app/license:ro
 
   nginx:
     image: nginx:1.29-alpine
@@ -38,10 +42,8 @@ services:
       - app
     ports:
       - "80:80"
-      - "443:443"
     volumes:
       - ./deploy/nginx.conf:/etc/nginx/conf.d/default.conf:ro
-      - ./deploy/certs:/etc/nginx/certs:ro
 
 volumes:
   postgres_data:
