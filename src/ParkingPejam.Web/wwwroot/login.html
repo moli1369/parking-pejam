@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#07111f"><title>Parking Pejam · Sign in</title>
+  <style>body{margin:0;min-height:100vh;display:grid;place-items:center;background:radial-gradient(circle at 15% 0%,#183554,#07111f 46%),#07111f;color:#eef6ff;font-family:Inter,system-ui,sans-serif}.card{width:min(92vw,420px);padding:34px;border:1px solid #23405f;border-radius:24px;background:#0b1727;box-shadow:0 30px 90px #0007}.eyebrow{font-size:.7rem;letter-spacing:.16em;opacity:.55;font-weight:900}.brand{font-size:2rem;font-weight:950;margin:8px 0 4px}.muted{color:#8ea0b8;line-height:1.6}.field{margin-top:14px}.field label{display:block;font-size:.8rem;color:#9fb0c5;margin-bottom:7px}.field input{width:100%;box-sizing:border-box;padding:13px 14px;border-radius:12px;border:1px solid #2a4160;background:#081321;color:#fff;font:inherit;outline:none}.field input:focus{border-color:#4f9bca}.submit{width:100%;margin-top:20px;padding:13px;border:0;border-radius:12px;background:#227b5d;color:#fff;font-weight:900;font-size:1rem;cursor:pointer}.submit:disabled{opacity:.55}.error{min-height:20px;margin-top:12px;color:#ff8992;font-size:.8rem}.demo{margin-top:18px;padding:11px 12px;border-radius:12px;background:#091a2b;border:1px solid #203a55;color:#8fa4bc;font-size:.74rem}.lang{margin-top:18px;text-align:center;font-size:.72rem;color:#7890ab}</style>
+</head>
+<body><main class="card">
+  <div class="eyebrow">PEJAM · PARKING OPERATIONS PLATFORM</div><div class="brand">Control Center</div>
+  <p class="muted">Secure sign-in for operators and administrators. Sensor devices use a separate machine credential.</p>
+  <form id="loginForm">
+    <div class="field"><label>Username</label><input id="username" autocomplete="username" required></div>
+    <div class="field"><label>Password</label><input id="password" type="password" autocomplete="current-password" required></div>
+    <button class="submit" id="submitBtn">Sign in</button><div class="error" id="error"></div>
+  </form>
+  <div class="demo">For a private deployment, set <b>Parking__BootstrapAdminPassword</b> before first start. Never put a real production password in source control.</div>
+  <div class="lang">English · Deutsch · فارسی</div>
+</main>
+<script>
+const form=document.getElementById('loginForm'),error=document.getElementById('error'),btn=document.getElementById('submitBtn');
+form.addEventListener('submit',async e=>{e.preventDefault();error.textContent='';btn.disabled=true;try{const r=await fetch('/api/auth/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({username:username.value,password:password.value})});if(!r.ok)throw new Error(r.status===401?'Invalid username or password.':'Unable to sign in.');location.href='/';}catch(x){error.textContent=x.message}finally{btn.disabled=false}});
+</script></body></html>
