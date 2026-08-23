@@ -6,6 +6,9 @@ on:
   pull_request:
     branches: [ master ]
 
+permissions:
+  contents: read
+
 jobs:
   build-test:
     runs-on: ubuntu-latest
@@ -30,7 +33,7 @@ jobs:
       - name: Run tests
         run: dotnet test tests/ParkingPejam.Tests/ParkingPejam.Tests.csproj --configuration Release --no-restore
 
-  docker:
+  docker-security:
     runs-on: ubuntu-latest
     needs: build-test
     steps:
@@ -39,3 +42,25 @@ jobs:
 
       - name: Build production container
         run: docker build --tag parking-pejam:ci .
+
+      - name: Scan image with Trivy
+        run: |
+          docker run --rm \
+            -v /var/run/docker.sock:/var/run/docker.sock \
+            -v "$HOME/.cache/trivy:/root/.cache/" \
+            aquasec/trivy:0.72.0 \
+            image --exit-code 1 --severity HIGH,CRITICAL --ignore-unfixed parking-pejam:ci
+
+      - name: Generate SBOM
+        run: |
+          docker run --rm \
+            -v /var/run/docker.sock:/var/run/docker.sock \
+            -v "$PWD:/work" \
+            aquasec/trivy:0.72.0 \
+            image --format cyclonedx --output /work/parking-pejam-sbom.json parking-pejam:ci
+
+      - name: Upload SBOM
+        uses: actions/upload-artifact@v4
+        with:
+          name: parking-pejam-sbom
+          path: parking-pejam-sbom.json
