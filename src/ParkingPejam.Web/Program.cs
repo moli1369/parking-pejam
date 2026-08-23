@@ -35,11 +35,14 @@ builder.Services.AddAuthorization();
 var app=builder.Build();
 app.UseExceptionHandler();
 app.UseStaticFiles();
+app.UseAuthentication();
 app.Use(async (ctx, next) =>
 {
-    if (!ctx.Request.Path.StartsWithSegments("/api/license") &&
-        !ctx.Request.Path.StartsWithSegments("/health") &&
-        ctx.Request.Path.StartsWithSegments("/api"))
+    var isApi = ctx.Request.Path.StartsWithSegments("/api");
+    var isPublicApi = ctx.Request.Path.StartsWithSegments("/api/license") || ctx.Request.Path.StartsWithSegments("/api/auth");
+    var isHealth = ctx.Request.Path.StartsWithSegments("/health");
+
+    if (isApi && !isPublicApi && !isHealth && ctx.User.Identity?.IsAuthenticated == true)
     {
         var license = ctx.RequestServices.GetRequiredService<LicenseService>().Validate();
         if (!license.IsValid)
@@ -57,7 +60,6 @@ app.Use(async (ctx, next) =>
     }
     await next();
 });
-app.UseAuthentication();
 app.UseAuthorization();
 await using(var scope=app.Services.CreateAsyncScope()){
     var db=scope.ServiceProvider.GetRequiredService<ParkingDbContext>();
