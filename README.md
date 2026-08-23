@@ -1,105 +1,107 @@
 # Parking Pejam
 
-A production-oriented **parking monitoring and management platform** built as a web-first product.
+A production-oriented **sensor-driven parking monitoring and management platform** built as a web-first product.
 
-## 🚀 Live demo
+## 🚀 Live showcase
 
-**Interactive three-language showcase:** https://moli1369.github.io/parking-pejam/
+**GitHub Pages demo:** https://moli1369.github.io/parking-pejam/
 
-The public demo supports **English, German and Persian**, including RTL mode for Persian. It runs without a backend and includes local simulation, search/filtering, parking-state changes, audit activity and browser-based exports.
+The public showcase is a static interactive demo in English, German and Persian (RTL). The **real product backend** is ASP.NET Core and includes authentication, roles, persistent parking state and sensor ingestion.
 
-## Features
+## Core capabilities
 
-- Responsive operations dashboard with live parking map
-- EN / DE / FA localization with RTL Persian layout
-- Parking status management: Free, Occupied, Reserved, Out of Service
-- Search, zone filters and status filters
-- Audit trail for every status change
-- Live simulation mode for presentations and testing
-- ASP.NET Core REST API
+- Sensor-driven Free / Occupied state
+- Parking sensor ingestion API with device credential
+- Sensor heartbeat / online status
+- Stored sensor readings (occupancy, battery and temperature)
+- Audit trail with `source=sensor` for automatic state changes
+- Secure username/password login with HttpOnly cookie session
+- Roles: `Admin`, `Operator`, `Viewer`
+- Viewer is read-only; Operator/Admin can change state manually
+- Responsive live parking map and operational dashboard
+- CSV / JSON / printable PDF reporting
+- ASP.NET Core REST API + OpenAPI
 - Clean Architecture: Domain → Application → Infrastructure → Web
 - Entity Framework Core + SQLite persistence
-- CSV exports compatible with Excel
-- JSON snapshot export for analysis
-- Printable operations report that can be saved as PDF
-- PWA-ready frontend for tablets and phones
-- Health check endpoint
-- Docker and Docker Compose deployment
+- Docker / Docker Compose
 - GitHub Actions CI
 - GitHub Pages showcase deployment
 
-## Architecture
+## Sensor protocol
+
+A sensor sends an occupancy reading to:
 
 ```text
-                         Public Showcase
-                       GitHub Pages / Demo
-                              │
-                              │ static
-                              ▼
-                  ┌─────────────────────────┐
-                  │ Responsive Web / PWA    │
-                  │ Dashboard + Parking Map │
-                  └────────────┬────────────┘
-                               │ HTTP/JSON
-                  ┌────────────▼────────────┐
-                  │ ASP.NET Core Web / API  │
-                  │ Auth guard + Health     │
-                  └────────────┬────────────┘
-                               │
-            ┌──────────────────▼──────────────────┐
-            │ Application                         │
-            │ Use cases / DTOs / contracts       │
-            └──────────────────┬──────────────────┘
-                               │
-            ┌──────────────────▼──────────────────┐
-            │ Domain                             │
-            │ ParkingSpot / ParkingEvent        │
-            └──────────────────┬──────────────────┘
-                               │
-            ┌──────────────────▼──────────────────┐
-            │ Infrastructure                     │
-            │ EF Core + SQLite / persistence    │
-            └────────────────────────────────────┘
+POST /api/sensors/{externalId}/readings
+X-Sensor-Key: <device-ingress-key>
+Content-Type: application/json
+
+{
+  "occupied": true,
+  "batteryPercent": 87,
+  "temperatureC": 23.4
+}
 ```
 
-## Tech stack
+The backend validates the device key, stores the reading, updates `LastSeenUtc`, and changes the linked parking spot to `Occupied` or `Free`. The change is recorded in the audit trail with the sensor ID as the actor.
 
-- C# / .NET 10 LTS
-- ASP.NET Core Minimal API
-- Entity Framework Core 10
-- SQLite
-- HTML / CSS / JavaScript PWA frontend
-- Docker / Docker Compose
-- GitHub Actions
-- GitHub Pages
+## Authentication
+
+Login:
+
+```text
+POST /api/auth/login
+```
+
+Session:
+
+```text
+GET  /api/auth/me
+POST /api/auth/logout
+```
+
+The first admin user is bootstrapped only when `Parking:BootstrapAdminPassword` is provided. Passwords are stored as salted password hashes, never plaintext.
+
+## Roles
+
+| Role | Read dashboard | Export | Change spot | Sensor inventory |
+|---|---:|---:|---:|---:|
+| Viewer | ✓ | ✓ | — | ✓ |
+| Operator | ✓ | ✓ | ✓ | ✓ |
+| Admin | ✓ | ✓ | ✓ | ✓ |
 
 ## Run locally
 
+Set the first admin password and sensor ingress key as environment variables, then run:
+
 ```bash
+Parking__BootstrapAdminPassword="use-a-long-random-password"
+Parking__SensorIngressKey="use-a-long-random-sensor-key"
 dotnet run --project src/ParkingPejam.Web
 ```
 
-The application creates `parking.db` automatically and seeds demo parking spaces across zones A–C.
+Open `/login.html` and sign in as:
 
-For local development, status changes are allowed when `ASPNETCORE_ENVIRONMENT=Development` and no `Parking:AdminKey` is configured.
-
-For a configured environment:
-
-```bash
-Parking__AdminKey="use-a-long-random-secret"
-ConnectionStrings__Parking="Data Source=parking.db"
+```text
+username: admin
+password: <your bootstrap password>
 ```
 
 ## Docker
 
 ```bash
-export PARKING_ADMIN_KEY="use-a-long-random-secret"
+export PARKING_BOOTSTRAP_ADMIN_PASSWORD="use-a-long-random-password"
+export PARKING_SENSOR_INGRESS_KEY="use-a-long-random-sensor-key"
 docker compose up --build -d
 ```
 
 ## API
 
 ```text
+POST /api/auth/login
+POST /api/auth/logout
+GET  /api/auth/me
+
 GET  /api/parking/spots
 GET  /api/parking/spots/{id}
 GET  /api/parking/statistics
@@ -108,29 +110,41 @@ PUT  /api/parking/spots/{id}/status
 GET  /api/parking/export/spots.csv
 GET  /api/parking/export/events.csv?take=200
 GET  /api/parking/export/report.json
+
+POST /api/sensors/{externalId}/readings
+GET  /api/sensors
 GET  /health
 ```
 
-Protected status changes require `X-Admin-Key` outside Development. `X-Actor` can identify the operator in the audit trail.
-
-## Commercial roadmap
-
-The architecture is ready for the next product layer: multi-site tenancy, user roles, real sensor/IoT ingestion, reservations, license-plate recognition, notifications, reporting, payment integration, PostgreSQL for larger deployments, and external integrations.
-
-## Repository structure
+## Architecture
 
 ```text
-parking-pejam/
-├── docs/                         # GitHub Pages interactive showcase
-├── src/
-│   ├── ParkingPejam.Domain/     # Business entities and rules
-│   ├── ParkingPejam.Application/ # Contracts and application services
-│   ├── ParkingPejam.Infrastructure/ # EF Core + SQLite
-│   └── ParkingPejam.Web/        # API + dashboard
-├── Dockerfile
-├── docker-compose.yml
-└── .github/workflows/            # CI + Pages deployment
+        Sensors / IoT Devices
+                 │
+                 │ X-Sensor-Key
+                 ▼
+        ASP.NET Core Sensor API
+                 │
+          persisted readings
+                 │
+        ┌────────▼────────┐
+        │  EF Core/SQLite │
+        └────────┬────────┘
+                 │
+      ┌──────────▼──────────┐
+      │ Parking Domain      │
+      │ Spots + Events      │
+      └──────────┬──────────┘
+                 │
+      ┌──────────▼──────────┐
+      │ Authenticated Web   │
+      │ Dashboard / PWA     │
+      └─────────────────────┘
 ```
+
+## Important deployment note
+
+GitHub Pages can host the **showcase demo** but cannot run the ASP.NET Core backend or securely process user authentication and live sensor traffic. The real product therefore needs a backend deployment (Docker/server/cloud) behind HTTPS.
 
 ## Author
 
