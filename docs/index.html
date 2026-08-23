@@ -4,59 +4,59 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#08111f">
-<meta name="description" content="Parking Pejam — interactive parking operations showcase">
-<title>Parking Pejam · Operations</title>
-<link rel="stylesheet" href="./app.css?v=5">
+<meta name="description" content="Parking Pejam — interactive vehicle import yard operations showcase">
+<title>Parking Pejam · Import Yard Operations</title>
+<link rel="stylesheet" href="./app.css?v=6">
 </head>
 <body>
 <div class="shell">
 <header class="topbar">
-  <div class="brand"><div class="brand-mark">P</div><div><div class="brand-name">PARKING PEJAM</div><div class="brand-sub" data-i18n="brandSub">OPERATIONS PLATFORM</div></div></div>
+  <div class="brand"><div class="brand-mark">P</div><div><div class="brand-name">PARKING PEJAM</div><div class="brand-sub" data-i18n="brandSub">IMPORT YARD OPERATIONS</div></div></div>
   <div class="top-actions"><div class="language-switcher" role="group" aria-label="Language"><button data-lang="en" class="lang active">EN</button><button data-lang="de" class="lang">DE</button><button data-lang="fa" class="lang">FA</button></div><a class="source-link" href="https://github.com/moli1369/parking-pejam" target="_blank" rel="noreferrer"><span>⌁</span> <span data-i18n="source">Source</span></a></div>
 </header>
 <section class="hero">
-  <div class="hero-copy-block"><div class="eyebrow" data-i18n="eyebrow">PARKING OPERATIONS · LIVE DEMO</div><h1 data-i18n="heroTitle">One control center.<br><span>Every parking decision.</span></h1><p class="hero-copy" data-i18n="heroCopy">A polished browser demo of the Parking Pejam platform. Click spaces, run a live simulation, inspect the audit trail and export reports — no installation required.</p><div class="hero-badges"><span>● <span data-i18n="demoMode">Demo mode</span></span><span data-i18n="localOnly">Local browser state</span><span data-i18n="noInstall">No installation</span></div></div>
-  <div class="hero-actions"><button id="simulateBtn" class="primary"><span>▶</span> <span data-i18n="runSimulation">Run live simulation</span></button><button id="resetBtn" class="ghost"><span>↺</span> <span data-i18n="reset">Reset</span></button></div>
+  <div class="hero-copy-block"><div class="eyebrow" data-i18n="eyebrow">VEHICLE IMPORT · YARD CONTROL</div><h1 data-i18n="heroTitle">Every vehicle.<br><span>Every import. One control center.</span></h1><p class="hero-copy" data-i18n="heroCopy">Track imported vehicles from arrival and inspection to yard storage, customs clearance and final dispatch — with sensors, LPR, inventory and operator history in one place.</p><div class="hero-badges"><span>● <span data-i18n="demoMode">Import yard demo</span></span><span data-i18n="localOnly">Local vehicle inventory simulation</span><span data-i18n="noInstall">No installation</span></div></div>
+  <div class="hero-actions"><button id="simulateBtn" class="primary"><span>▶</span> <span data-i18n="runSimulation">Run sensor simulation</span></button><button id="resetBtn" class="ghost"><span>↺</span> <span data-i18n="reset">Reset</span></button></div>
 </section>
-<section class="live-strip panel"><div><span class="live-dot"></span><strong data-i18n="liveDemo">Live demo</strong><span class="muted"> · <span data-i18n="simulatedInBrowser">simulated in your browser</span></span></div><div class="strip-actions"><button id="reportBtn" class="ghost small" data-i18n="reports">Reports</button><button id="printBtn" class="ghost small" data-i18n="printPdf">Print / PDF</button></div></section>
+<section class="live-strip panel"><div><span class="live-dot"></span><strong data-i18n="liveDemo">Live import inventory</strong><span class="muted"> · <span data-i18n="simulatedInBrowser">sensor states simulated locally</span></span></div><div class="strip-actions"><button id="reportBtn" class="ghost small" data-i18n="reports">Reports</button><button id="printBtn" class="ghost small" data-i18n="printPdf">Print / PDF</button></div></section>
 <section class="metrics" id="metrics"></section>
 <section class="toolbar panel">
-  <label class="search-wrap"><span>⌕</span><input id="search" data-i18n-placeholder="searchPlaceholder" placeholder="Search spot, e.g. A-01" autocomplete="off"></label>
+  <label class="search-wrap"><span>⌕</span><input id="search" data-i18n-placeholder="searchPlaceholder" placeholder="Search vehicle, VIN or yard slot" autocomplete="off"></label>
   <div id="zoneTabs" class="tabs"></div>
-  <select id="statusFilter" aria-label="Status"><option value="all" data-i18n="allStatuses">All statuses</option><option value="Free" data-i18n="free">Free</option><option value="Occupied" data-i18n="occupiedStatus">Occupied</option><option value="Reserved" data-i18n="reservedStatus">Reserved</option><option value="OutOfService" data-i18n="outOfService">Out of service</option></select>
+  <select id="statusFilter" aria-label="Status"><option value="all" data-i18n="allStatuses">All statuses</option><option value="Free" data-i18n="free">Available</option><option value="Occupied" data-i18n="occupiedStatus">Vehicle stored</option><option value="Reserved" data-i18n="reservedStatus">Reserved</option><option value="OutOfService" data-i18n="outOfService">Out of service</option></select>
 </section>
 <main class="main-grid">
-<section class="panel map-panel"><div class="panel-head"><div><div class="eyebrow" data-i18n="liveMap">LIVE MAP</div><h2 data-i18n="parkingLayout">Parking layout</h2><div class="muted" id="visibleSummary"></div></div><div class="legend"><span><i class="dot free"></i><span data-i18n="free">Free</span></span><span><i class="dot occupied"></i><span data-i18n="occupiedStatus">Occupied</span></span><span><i class="dot reserved"></i><span data-i18n="reservedStatus">Reserved</span></span><span><i class="dot out"></i><span data-i18n="outOfService">Out of service</span></span></div></div><div id="zones"></div></section>
-<aside class="panel side-panel"><div class="panel-head"><div><div class="eyebrow" data-i18n="auditTrail">AUDIT TRAIL</div><h2 data-i18n="recentActivity">Recent activity</h2></div><span class="count-badge" id="eventCount">0</span></div><div id="events" class="events"></div><div class="side-footer"><div><span data-i18n="occupancy">Occupancy</span><strong id="occupancyText">0%</strong></div><span id="healthText" class="health-pill">● OK</span></div><div class="progress"><span id="occupancyBar"></span></div></aside>
+<section class="panel map-panel"><div class="panel-head"><div><div class="eyebrow" data-i18n="liveMap">YARD INVENTORY MAP</div><h2 data-i18n="parkingLayout">Vehicle yard layout</h2><div class="muted" id="visibleSummary"></div></div><div class="legend"><span><i class="dot free"></i><span data-i18n="free">Available</span></span><span><i class="dot occupied"></i><span data-i18n="occupiedStatus">Vehicle stored</span></span><span><i class="dot reserved"></i><span data-i18n="reservedStatus">Reserved</span></span><span><i class="dot out"></i><span data-i18n="outOfService">Out of service</span></span></div></div><div id="zones"></div></section>
+<aside class="panel side-panel"><div class="panel-head"><div><div class="eyebrow" data-i18n="auditTrail">VEHICLE / SENSOR ACTIVITY</div><h2 data-i18n="recentActivity">Recent vehicle activity</h2></div><span class="count-badge" id="eventCount">0</span></div><div id="events" class="events"></div><div class="side-footer"><div><span data-i18n="occupancy">Occupancy</span><strong id="occupancyText">0%</strong></div><span id="healthText" class="health-pill">● OK</span></div><div class="progress"><span id="occupancyBar"></span></div></aside>
 </main>
-<section class="bottom-grid"><div class="panel mini-panel"><div class="eyebrow" data-i18n="zoneUtilisation">ZONE UTILISATION</div><h3 data-i18n="liveDistribution">Live distribution</h3><div id="zoneBars" class="bars"></div></div><div class="panel mini-panel product-panel"><div class="eyebrow" data-i18n="productReady">PRODUCT READY</div><h3 data-i18n="builtForDeployment">Designed for real deployment</h3><p class="muted" data-i18n="productCopy">The production platform combines ASP.NET Core, EF Core, SQLite, Docker, API endpoints, audit logging and a responsive PWA-ready interface.</p><div class="chips"><span>.NET 10</span><span>REST API</span><span>EF Core</span><span>SQLite</span><span>Docker</span><span>PWA</span><span>Audit Log</span></div></div></section>
-<dialog id="reportDialog"><div class="dialog-card"><div class="eyebrow" data-i18n="reportCenter">REPORT CENTER</div><h2 data-i18n="exportAnalysis">Export & analysis</h2><p class="muted" data-i18n="reportCopy">Download the current demo state for Excel/analysis or generate a print-ready PDF report.</p><div class="report-grid"><button id="exportSpots" class="report-btn"><strong>CSV</strong><span data-i18n="spotsReport">Parking spots</span></button><button id="exportEvents" class="report-btn"><strong>CSV</strong><span data-i18n="eventsReport">Audit events</span></button><button id="exportJson" class="report-btn"><strong>JSON</strong><span data-i18n="snapshotReport">Full snapshot</span></button><button id="printFromDialog" class="report-btn"><strong>PDF</strong><span data-i18n="printableReport">Printable report</span></button></div><button id="closeReport" class="ghost full" data-i18n="close">Close</button></div></dialog>
-
+<section class="bottom-grid"><div class="panel mini-panel"><div class="eyebrow" data-i18n="zoneUtilisation">YARD ZONE UTILISATION</div><h3 data-i18n="liveDistribution">Live inventory distribution</h3><div id="zoneBars" class="bars"></div></div><div class="panel mini-panel product-panel"><div class="eyebrow" data-i18n="productReady">IMPORT PLATFORM</div><h3 data-i18n="builtForDeployment">Built for vehicle importers</h3><p class="muted" data-i18n="productCopy">Vehicle-centric inventory control with LPR, sensor telemetry, ERP integration, customs status, VIN and operational audit history.</p><div class="chips"><span>LPR</span><span>VIN</span><span>ERP</span><span>Sensor API</span><span>Customs</span><span>Inventory</span><span>Audit Log</span></div></div></section>
+<dialog id="reportDialog"><div class="dialog-card"><div class="eyebrow" data-i18n="reportCenter">REPORT CENTER</div><h2 data-i18n="exportAnalysis">Export & analysis</h2><p class="muted" data-i18n="reportCopy">Download the current demo state for Excel/analysis or generate a print-ready PDF report.</p><div class="report-grid"><button id="exportSpots" class="report-btn"><strong>CSV</strong><span data-i18n="spotsReport">Vehicle inventory</span></button><button id="exportEvents" class="report-btn"><strong>CSV</strong><span data-i18n="eventsReport">Sensor / audit events</span></button><button id="exportJson" class="report-btn"><strong>JSON</strong><span data-i18n="snapshotReport">Full inventory snapshot</span></button><button id="printFromDialog" class="report-btn"><strong>PDF</strong><span data-i18n="printableReport">Printable report</span></button></div><button id="closeReport" class="ghost full" data-i18n="close">Close</button></div></dialog>
 <dialog id="vehicleDialog">
   <div class="vehicle-modal">
     <div class="vehicle-modal-top">
-      <div><div class="eyebrow">PARKING INTELLIGENCE</div><h2 id="vehicleTitle">A-01</h2><div id="vehicleSubtitle" class="vehicle-subtitle">Vehicle & occupancy details</div></div>
+      <div><div class="eyebrow">IMPORT YARD INTELLIGENCE</div><h2 id="vehicleTitle">A-01</h2><div id="vehicleSubtitle" class="vehicle-subtitle">Imported vehicle & inventory details</div></div>
       <button id="closeVehicle" class="modal-close" aria-label="Close">×</button>
     </div>
     <div class="vehicle-hero">
       <div class="vehicle-avatar">🚗</div>
-      <div class="vehicle-hero-main"><div id="vehicleStatus" class="vehicle-status">● Occupied</div><div id="vehicleModel" class="vehicle-model">Mercedes-Benz C-Class</div><div id="vehiclePlate" class="vehicle-plate">N-PE 2026</div></div>
+      <div class="vehicle-hero-main"><div id="vehicleStatus" class="vehicle-status">● Vehicle stored</div><div id="vehicleModel" class="vehicle-model">Mercedes-Benz C-Class</div><div id="vehiclePlate" class="vehicle-plate">N-PE 2026</div></div>
       <div class="vehicle-live"><span class="live-dot"></span><span id="vehicleSensor">Sensor online</span></div>
     </div>
     <div class="vehicle-grid">
-      <div class="detail-card"><span>OWNER / DRIVER</span><strong id="vehicleDriver">—</strong><small id="vehicleOperator">Checked in by —</small></div>
-      <div class="detail-card"><span>ENTRY TIME</span><strong id="vehicleEntry">—</strong><small id="vehicleDuration">Duration —</small></div>
-      <div class="detail-card"><span>VIN / CHASSIS</span><strong id="vehicleVin">—</strong><small>17-character vehicle identifier</small></div>
-      <div class="detail-card"><span>CONDITION</span><strong id="vehicleCondition">—</strong><small id="vehicleConditionNote">Vehicle condition</small></div>
+      <div class="detail-card"><span data-i18n="owner">OWNER / DRIVER</span><strong id="vehicleDriver">—</strong><small id="vehicleOperator">Received by —</small></div>
+      <div class="detail-card"><span data-i18n="entry">YARD RECEIVED</span><strong id="vehicleEntry">—</strong><small id="vehicleDuration">Duration —</small></div>
+      <div class="detail-card"><span data-i18n="vin">VIN / CHASSIS</span><strong id="vehicleVin">—</strong><small>17-character vehicle identifier</small></div>
+      <div class="detail-card"><span data-i18n="condition">CONDITION</span><strong id="vehicleCondition">—</strong><small id="vehicleConditionNote">Vehicle condition</small></div>
     </div>
-    <div class="vehicle-section"><div class="vehicle-section-title">VEHICLE PROFILE</div><div class="profile-grid"><div><span>Make</span><strong id="vehicleMake">—</strong></div><div><span>Model</span><strong id="vehicleModel2">—</strong></div><div><span>Year</span><strong id="vehicleYear">—</strong></div><div><span>Color</span><strong id="vehicleColor">—</strong></div><div><span>License plate</span><strong id="vehiclePlate2">—</strong></div><div><span>Parking zone</span><strong id="vehicleZone">—</strong></div></div></div>
-    <div class="vehicle-section"><div class="vehicle-section-title">SENSOR TELEMETRY</div><div class="telemetry"><div><span>Sensor ID</span><strong id="vehicleSensorId">—</strong></div><div><span>Last reading</span><strong id="vehicleReading">—</strong></div><div><span>Battery</span><strong id="vehicleBattery">—</strong></div></div></div>
-    <div class="vehicle-footer"><span>Demo data — production version reads these fields from the sensor/API layer.</span><button id="closeVehicle2" class="ghost">Close</button></div>
+    <div class="vehicle-section"><div class="vehicle-section-title" data-i18n="profile">VEHICLE PROFILE</div><div class="profile-grid"><div><span data-i18n="make">Make</span><strong id="vehicleMake">—</strong></div><div><span data-i18n="model">Model</span><strong id="vehicleModel2">—</strong></div><div><span data-i18n="year">Year</span><strong id="vehicleYear">—</strong></div><div><span data-i18n="color">Color</span><strong id="vehicleColor">—</strong></div><div><span data-i18n="plate">License plate</span><strong id="vehiclePlate2">—</strong></div><div><span data-i18n="zone">Yard location</span><strong id="vehicleZone">—</strong></div></div></div>
+    <div class="vehicle-section"><div class="vehicle-section-title" data-i18n="telemetry">SENSOR TELEMETRY</div><div class="telemetry"><div><span data-i18n="sensorId">Sensor ID</span><strong id="vehicleSensorId">—</strong></div><div><span data-i18n="reading">Last reading</span><strong id="vehicleReading">—</strong></div><div><span data-i18n="battery">Battery</span><strong id="vehicleBattery">—</strong></div></div></div>
+    <div class="vehicle-footer"><span>Demo inventory data</span><button id="closeVehicle2" class="ghost" data-i18n="close">Close</button></div>
   </div>
 </dialog>
-<footer><span>Parking Pejam · <span data-i18n="showcase">Product showcase</span></span><span>·</span><a href="https://github.com/moli1369/parking-pejam" target="_blank" rel="noreferrer" data-i18n="viewGithub">View on GitHub</a></span></footer>
+<footer><span>Parking Pejam · Import Yard Operations</span><span>·</span><a href="https://github.com/moli1369/parking-pejam" target="_blank" rel="noreferrer" data-i18n="viewGithub">View on GitHub</a></footer>
 </div>
 <script src="./app.js?v=4"></script>
-<script src="./vehicle-details.js?v=2"></script>
+<script src="./vehicle-details-v3.js?v=1"></script>
+<script src="./import-branding.js?v=1"></script>
 </body>
 </html>
