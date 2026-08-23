@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using ParkingPejam.Domain.Entities;
 using ParkingPejam.Infrastructure;
 
 namespace ParkingPejam.Web;
@@ -13,12 +14,12 @@ public static class OperationsQueryEndpoints
         {
             var now = DateTimeOffset.UtcNow;
             var vehicles = await db.ImportedVehicles.AsNoTracking().ToListAsync(ct);
-            var activeHolds = await db.VehicleHolds.AsNoTracking().CountAsync(x => x.Status != Domain.Entities.HoldStatus.Released, ct);
+            var activeHolds = await db.VehicleHolds.AsNoTracking().CountAsync(x => x.Status != HoldStatus.Released, ct);
             var sensors = await db.ParkingSensors.AsNoTracking().ToListAsync(ct);
             var onlineSensors = sensors.Count(x => x.LastSeenUtc != null && x.LastSeenUtc > now.AddMinutes(-2));
-            var dispatchReady = vehicles.Count(x => x.InventoryStatus == Domain.Entities.VehicleInventoryStatus.ReadyForDispatch);
-            var inYard = vehicles.Count(x => x.InventoryStatus == Domain.Entities.VehicleInventoryStatus.InYard);
-            var dwell30 = vehicles.Count(x => x.InventoryStatus != Domain.Entities.VehicleInventoryStatus.Dispatched && (now - x.ReceivedAtUtc).TotalDays >= 30);
+            var dispatchReady = vehicles.Count(x => x.InventoryStatus == VehicleInventoryStatus.ReadyForDispatch);
+            var inYard = vehicles.Count(x => x.InventoryStatus == VehicleInventoryStatus.InYard);
+            var dwell30 = vehicles.Count(x => x.InventoryStatus != VehicleInventoryStatus.Dispatched && (now - x.ReceivedAtUtc).TotalDays >= 30);
             return Results.Ok(new
             {
                 vehicles = vehicles.Count,
