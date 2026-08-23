@@ -20,7 +20,14 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
 builder.Services.AddAuthorization();
 var app=builder.Build();
 app.UseExceptionHandler(); app.UseAuthentication(); app.UseAuthorization();
-await using(var scope=app.Services.CreateAsyncScope()){var db=scope.ServiceProvider.GetRequiredService<ParkingDbContext>();await db.Database.EnsureCreatedAsync();await DatabaseSchemaBootstrapper.EnsureImportSchemaAsync(db);await DispatchSchemaBootstrapper.EnsureAsync(db);await SeedAsync(db,app.Configuration,scope.ServiceProvider.GetRequiredService<IPasswordHasher<User>>());}
+await using(var scope=app.Services.CreateAsyncScope()){
+    var db=scope.ServiceProvider.GetRequiredService<ParkingDbContext>();
+    await db.Database.EnsureCreatedAsync();
+    await DatabaseSchemaBootstrapper.EnsureImportSchemaAsync(db);
+    await DispatchSchemaBootstrapper.EnsureAsync(db);
+    await AdvancedSchemaBootstrapper.EnsureAsync(db);
+    await SeedAsync(db,app.Configuration,scope.ServiceProvider.GetRequiredService<IPasswordHasher<User>>());
+}
 app.UseDefaultFiles(); app.UseStaticFiles(); app.MapOpenApi("/openapi/{documentName}.json"); app.MapHealthChecks("/health");
 var auth=app.MapGroup("/api/auth");
 auth.MapPost("/login",async(LoginRequest request,ParkingDbContext db,IPasswordHasher<User> hasher,HttpContext ctx,CancellationToken ct)=>{var username=request.Username?.Trim();if(string.IsNullOrWhiteSpace(username)||string.IsNullOrWhiteSpace(request.Password))return Results.BadRequest(new{message="Username and password are required."});var user=await db.Users.SingleOrDefaultAsync(x=>x.Username==username&&x.IsActive,ct);if(user is null||hasher.VerifyHashedPassword(user,user.PasswordHash,request.Password)==PasswordVerificationResult.Failed)return Results.Unauthorized();var claims=new[]{new Claim(ClaimTypes.NameIdentifier,user.Id.ToString()),new Claim(ClaimTypes.Name,user.Username),new Claim(ClaimTypes.Role,user.Role)};await ctx.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,new ClaimsPrincipal(new ClaimsIdentity(claims,CookieAuthenticationDefaults.AuthenticationScheme)));return Results.Ok(new{username=user.Username,role=user.Role});});
@@ -40,6 +47,7 @@ sensors.MapPost("/{externalId}/readings",async(string externalId,SensorReadingRe
 sensors.MapGet("",async(ParkingDbContext db,CancellationToken ct)=>Results.Ok(await db.ParkingSensors.AsNoTracking().Include(x=>x.ParkingSpot).OrderBy(x=>x.ExternalId).Select(x=>new{x.ExternalId,spot=x.ParkingSpot!.SpotNumber,x.CurrentOccupied,x.LastSeenUtc,online=x.LastSeenUtc!=null&&x.LastSeenUtc>DateTimeOffset.UtcNow.AddMinutes(-2)}).ToListAsync(ct))).RequireAuthorization();
 app.MapImportWorkflow();
 app.MapDispatchWorkflow();
+app.MapAdvancedOperations();
 app.MapGet("/",(ClaimsPrincipal user)=>user.Identity?.IsAuthenticated==true?Results.Ok(new{application="Parking Pejam",status="authenticated"}):Results.Redirect("/login.html"));
 app.MapFallbackToFile("index.html"); app.Run();
 static string Csv(string? value)=>"\""+(value??string.Empty).Replace("\"","\"\"")+"\"";
