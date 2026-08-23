@@ -8,4 +8,4 @@ Publicly visible demonstration assets may be used only for evaluation of the Par
 
 A valid signed license may grant limited rights for a specified company, installation, number of users, yards, vehicles, and product modules. All rights remain with the copyright holder except those explicitly granted by the signed license or a separate commercial agreement.
 
-See `docs/LICENSEING.md` for the technical licensing model and deployment requirements.
+See `docs/LICENSING.md` for the technical licensing model and deployment requirements.
