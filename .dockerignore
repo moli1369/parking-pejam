@@ -1,0 +1,12 @@
+.git
+.github
+.gitignore
+.vscode
+.idea
+*.user
+*.suo
+**/bin
+**/obj
+parking.db
+README.md
+docs
