@@ -4,7 +4,7 @@ services:
     ports:
       - "8080:8080"
     environment:
-      Parking__AdminKey: "change-this-in-production"
+      Parking__AdminKey: "${PARKING_ADMIN_KEY:?Set PARKING_ADMIN_KEY before starting}"
       ConnectionStrings__Parking: "Data Source=/data/parking.db"
     volumes:
       - parking-data:/data
