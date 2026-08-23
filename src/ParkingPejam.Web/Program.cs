@@ -6,10 +6,21 @@ using Microsoft.EntityFrameworkCore;
 using ParkingPejam.Application.Contracts;
 using ParkingPejam.Domain.Entities;
 using ParkingPejam.Infrastructure;
-using ParkingPejam.Web;
+using Npgsql;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddDbContext<ParkingDbContext>(options => options.UseSqlite(builder.Configuration.GetConnectionString("Parking") ?? "Data Source=parking.db"));
+var provider = builder.Configuration["Database:Provider"]?.Trim().ToLowerInvariant() ?? "sqlite";
+var connectionString = builder.Configuration.GetConnectionString("Parking") ??
+    (provider == "postgres" ? "Host=localhost;Port=5432;Database=parking_pejam;Username=parking;Password=change-me" : "Data Source=parking.db");
+
+builder.Services.AddDbContext<ParkingDbContext>(options =>
+{
+    if (provider is "postgres" or "postgresql")
+        options.UseNpgsql(connectionString);
+    else
+        options.UseSqlite(connectionString);
+});
+
 builder.Services.AddScoped<IParkingService, ParkingService>();
 builder.Services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
 builder.Services.AddHealthChecks().AddDbContextCheck<ParkingDbContext>();
@@ -23,9 +34,12 @@ app.UseExceptionHandler(); app.UseAuthentication(); app.UseAuthorization();
 await using(var scope=app.Services.CreateAsyncScope()){
     var db=scope.ServiceProvider.GetRequiredService<ParkingDbContext>();
     await db.Database.EnsureCreatedAsync();
-    await DatabaseSchemaBootstrapper.EnsureImportSchemaAsync(db);
-    await DispatchSchemaBootstrapper.EnsureAsync(db);
-    await AdvancedSchemaBootstrapper.EnsureAsync(db);
+    if (provider == "sqlite")
+    {
+        await DatabaseSchemaBootstrapper.EnsureImportSchemaAsync(db);
+        await DispatchSchemaBootstrapper.EnsureAsync(db);
+        await AdvancedSchemaBootstrapper.EnsureAsync(db);
+    }
     await SeedAsync(db,app.Configuration,scope.ServiceProvider.GetRequiredService<IPasswordHasher<User>>());
 }
 app.UseDefaultFiles(); app.UseStaticFiles(); app.MapOpenApi("/openapi/{documentName}.json"); app.MapHealthChecks("/health");
