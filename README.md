@@ -1,12 +1,20 @@
 # Parking Pejam
 
-A production-oriented parking monitoring and management platform.
+A production-oriented **parking monitoring and management platform** built as a web-first product.
+
+## 🚀 Live demo
+
+**GitHub Pages showcase:** https://moli1369.github.io/parking-pejam/
+
+The public demo is fully interactive and runs without a backend. It includes local simulation, filtering, parking-state changes, audit activity and browser-based exports so the product can be reviewed instantly.
 
 ## Features
 
-- Responsive web operations dashboard with live parking map
+- Responsive operations dashboard with live parking map
 - Parking status management: Free, Occupied, Reserved, Out of Service
+- Search, zone filters and status filters
 - Audit trail for every status change
+- Live simulation mode for presentations and testing
 - ASP.NET Core REST API
 - Clean Architecture: Domain → Application → Infrastructure → Web
 - Entity Framework Core + SQLite persistence
@@ -17,32 +25,52 @@ A production-oriented parking monitoring and management platform.
 - Health check endpoint
 - Docker and Docker Compose deployment
 - GitHub Actions CI
-- Demo simulation engine for presentations and testing
+- GitHub Pages showcase deployment
 
 ## Architecture
 
 ```text
-Responsive Web / PWA
-        │
-        ▼
-ASP.NET Core Web + REST API
-        │
-        ├── Application
-        ├── Domain
-        └── Infrastructure
-              │
-              └── EF Core + SQLite
+                         Public Showcase
+                       GitHub Pages / Demo
+                              │
+                              │ static
+                              ▼
+                  ┌─────────────────────────┐
+                  │ Responsive Web / PWA    │
+                  │ Dashboard + Parking Map │
+                  └────────────┬────────────┘
+                               │ HTTP/JSON
+                  ┌────────────▼────────────┐
+                  │ ASP.NET Core Web / API  │
+                  │ Auth guard + Health     │
+                  └────────────┬────────────┘
+                               │
+            ┌──────────────────▼──────────────────┐
+            │ Application                          │
+            │ Use cases / DTOs / contracts        │
+            └──────────────────┬──────────────────┘
+                               │
+            ┌──────────────────▼──────────────────┐
+            │ Domain                              │
+            │ ParkingSpot / ParkingEvent         │
+            └──────────────────┬──────────────────┘
+                               │
+            ┌──────────────────▼──────────────────┐
+            │ Infrastructure                      │
+            │ EF Core + SQLite / persistence     │
+            └─────────────────────────────────────┘
 ```
 
-## Tech Stack
+## Tech stack
 
 - C# / .NET 10 LTS
 - ASP.NET Core Minimal API
 - Entity Framework Core 10
 - SQLite
-- HTML / CSS / JavaScript
+- HTML / CSS / JavaScript PWA frontend
 - Docker / Docker Compose
 - GitHub Actions
+- GitHub Pages
 
 ## Run locally
 
@@ -86,7 +114,22 @@ Protected status changes require `X-Admin-Key` outside Development. `X-Actor` ca
 
 ## Commercial roadmap
 
-The architecture leaves room for multi-site tenancy, user roles, real sensor/IoT ingestion, reservations, license-plate recognition, notifications, payment integration, reporting, and PostgreSQL for larger deployments.
+The architecture is ready for the next product layer: multi-site tenancy, user roles, real sensor/IoT ingestion, reservations, license-plate recognition, notifications, reporting, payment integration, PostgreSQL for larger deployments, and external integrations.
+
+## Repository structure
+
+```text
+parking-pejam/
+├── docs/                         # GitHub Pages interactive showcase
+├── src/
+│   ├── ParkingPejam.Domain/     # Business entities and rules
+│   ├── ParkingPejam.Application/# Contracts and application services
+│   ├── ParkingPejam.Infrastructure/ # EF Core + SQLite
+│   └── ParkingPejam.Web/        # API + dashboard
+├── Dockerfile
+├── docker-compose.yml
+└── .github/workflows/            # CI + Pages deployment
+```
 
 ## Author
 
