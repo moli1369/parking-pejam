@@ -18,6 +18,8 @@ public sealed class ParkingSpot
     public ParkingSpotStatus Status { get; set; } = ParkingSpotStatus.Free;
     public DateTimeOffset UpdatedAtUtc { get; set; } = DateTimeOffset.UtcNow;
     public bool IsActive { get; set; } = true;
+    public Guid? ImportedVehicleId { get; set; }
+    public ImportedVehicle? ImportedVehicle { get; set; }
 
     public void ChangeStatus(ParkingSpotStatus status)
     {
