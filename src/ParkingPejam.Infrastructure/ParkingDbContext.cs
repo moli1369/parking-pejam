@@ -14,6 +14,23 @@ public sealed class ParkingDbContext(DbContextOptions<ParkingDbContext> options)
     public DbSet<ImportedVehicle> ImportedVehicles => Set<ImportedVehicle>();
     public DbSet<VehicleArrivalRecord> VehicleArrivalRecords => Set<VehicleArrivalRecord>();
     public DbSet<VehicleDispatchRecord> VehicleDispatchRecords => Set<VehicleDispatchRecord>();
+    public DbSet<ImportManifestEntry> ImportManifestEntries => Set<ImportManifestEntry>();
+    public DbSet<VehicleInspection> VehicleInspections => Set<VehicleInspection>();
+    public DbSet<VehicleInspectionPhoto> VehicleInspectionPhotos => Set<VehicleInspectionPhoto>();
+    public DbSet<VehicleHold> VehicleHolds => Set<VehicleHold>();
+    public DbSet<YardNode> YardNodes => Set<YardNode>();
+    public DbSet<YardQrCode> YardQrCodes => Set<YardQrCode>();
+    public DbSet<Driver> Drivers => Set<Driver>();
+    public DbSet<TransportTruck> TransportTrucks => Set<TransportTruck>();
+    public DbSet<GateVisit> GateVisits => Set<GateVisit>();
+    public DbSet<DispatchLoadPlan> DispatchLoadPlans => Set<DispatchLoadPlan>();
+    public DbSet<DispatchLoadItem> DispatchLoadItems => Set<DispatchLoadItem>();
+    public DbSet<VehicleDocument> VehicleDocuments => Set<VehicleDocument>();
+    public DbSet<CustomerAccount> CustomerAccounts => Set<CustomerAccount>();
+    public DbSet<VehicleCustomerLink> VehicleCustomerLinks => Set<VehicleCustomerLink>();
+    public DbSet<KeyAssignment> KeyAssignments => Set<KeyAssignment>();
+    public DbSet<BillingActivity> BillingActivities => Set<BillingActivity>();
+    public DbSet<VehicleLprDetection> VehicleLprDetections => Set<VehicleLprDetection>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -118,5 +135,23 @@ public sealed class ParkingDbContext(DbContextOptions<ParkingDbContext> options)
             entity.Property(x => x.OperatorUsername).HasMaxLength(128);
             entity.HasOne(x => x.ImportedVehicle).WithMany().HasForeignKey(x => x.ImportedVehicleId).OnDelete(DeleteBehavior.Cascade);
         });
+
+        modelBuilder.Entity<ImportManifestEntry>(e => { e.HasKey(x => x.Id); e.HasIndex(x => new { x.ImportShipmentId, x.Vin }).IsUnique(); });
+        modelBuilder.Entity<VehicleInspection>(e => { e.HasKey(x => x.Id); e.HasIndex(x => x.ImportedVehicleId); });
+        modelBuilder.Entity<VehicleInspectionPhoto>(e => e.HasKey(x => x.Id));
+        modelBuilder.Entity<VehicleHold>(e => { e.HasKey(x => x.Id); e.HasIndex(x => new { x.ImportedVehicleId, x.Status }); });
+        modelBuilder.Entity<YardNode>(e => { e.HasKey(x => x.Id); e.HasIndex(x => x.Code).IsUnique(); e.HasOne(x => x.Parent).WithMany().HasForeignKey(x => x.ParentId).OnDelete(DeleteBehavior.Restrict); });
+        modelBuilder.Entity<YardQrCode>(e => { e.HasKey(x => x.Id); e.HasIndex(x => x.Token).IsUnique(); });
+        modelBuilder.Entity<Driver>(e => { e.HasKey(x => x.Id); e.HasIndex(x => x.DriverNumber).IsUnique(); });
+        modelBuilder.Entity<TransportTruck>(e => { e.HasKey(x => x.Id); e.HasIndex(x => x.PlateNumber).IsUnique(); });
+        modelBuilder.Entity<GateVisit>(e => { e.HasKey(x => x.Id); e.HasIndex(x => new { x.ImportedVehicleId, x.Type, x.StartedAtUtc }); });
+        modelBuilder.Entity<DispatchLoadPlan>(e => { e.HasKey(x => x.Id); e.HasIndex(x => x.LoadReference).IsUnique(); });
+        modelBuilder.Entity<DispatchLoadItem>(e => { e.HasKey(x => x.Id); e.HasIndex(x => new { x.DispatchLoadPlanId, x.ImportedVehicleId }).IsUnique(); });
+        modelBuilder.Entity<VehicleDocument>(e => { e.HasKey(x => x.Id); e.HasIndex(x => new { x.ImportedVehicleId, x.Type }); });
+        modelBuilder.Entity<CustomerAccount>(e => { e.HasKey(x => x.Id); e.HasIndex(x => x.ExternalReference).IsUnique(); });
+        modelBuilder.Entity<VehicleCustomerLink>(e => e.HasKey(x => x.Id));
+        modelBuilder.Entity<KeyAssignment>(e => { e.HasKey(x => x.Id); e.HasIndex(x => new { x.ImportedVehicleId, x.ReturnedAtUtc }); });
+        modelBuilder.Entity<BillingActivity>(e => { e.HasKey(x => x.Id); e.HasIndex(x => new { x.ImportedVehicleId, x.ActivityAtUtc }); });
+        modelBuilder.Entity<VehicleLprDetection>(e => { e.HasKey(x => x.Id); e.HasIndex(x => new { x.PlateNumber, x.DetectedAtUtc }); });
     }
 }
