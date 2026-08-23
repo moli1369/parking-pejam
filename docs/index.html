@@ -7,6 +7,7 @@
 <meta name="description" content="Parking Pejam — interactive vehicle import yard operations showcase">
 <title>Parking Pejam · Import Yard Operations</title>
 <link rel="stylesheet" href="./app.css?v=6">
+<link rel="stylesheet" href="./arrival-form.css?v=1">
 </head>
 <body>
 <div class="shell">
@@ -33,31 +34,21 @@
 <dialog id="reportDialog"><div class="dialog-card"><div class="eyebrow" data-i18n="reportCenter">REPORT CENTER</div><h2 data-i18n="exportAnalysis">Export & analysis</h2><p class="muted" data-i18n="reportCopy">Download the current demo state for Excel/analysis or generate a print-ready PDF report.</p><div class="report-grid"><button id="exportSpots" class="report-btn"><strong>CSV</strong><span data-i18n="spotsReport">Vehicle inventory</span></button><button id="exportEvents" class="report-btn"><strong>CSV</strong><span data-i18n="eventsReport">Sensor / audit events</span></button><button id="exportJson" class="report-btn"><strong>JSON</strong><span data-i18n="snapshotReport">Full inventory snapshot</span></button><button id="printFromDialog" class="report-btn"><strong>PDF</strong><span data-i18n="printableReport">Printable report</span></button></div><button id="closeReport" class="ghost full" data-i18n="close">Close</button></div></dialog>
 <dialog id="vehicleDialog">
   <div class="vehicle-modal">
-    <div class="vehicle-modal-top">
-      <div><div class="eyebrow">IMPORT YARD INTELLIGENCE</div><h2 id="vehicleTitle">A-01</h2><div id="vehicleSubtitle" class="vehicle-subtitle">Imported vehicle & inventory details</div></div>
-      <button id="closeVehicle" class="modal-close" aria-label="Close">×</button>
-    </div>
-    <div class="vehicle-hero">
-      <div class="vehicle-avatar">🚗</div>
-      <div class="vehicle-hero-main"><div id="vehicleStatus" class="vehicle-status">● Vehicle stored</div><div id="vehicleModel" class="vehicle-model">Mercedes-Benz C-Class</div><div id="vehiclePlate" class="vehicle-plate">N-PE 2026</div></div>
-      <div class="vehicle-live"><span class="live-dot"></span><span id="vehicleSensor">Sensor online</span></div>
-    </div>
-    <div class="vehicle-grid">
-      <div class="detail-card"><span data-i18n="owner">OWNER / DRIVER</span><strong id="vehicleDriver">—</strong><small id="vehicleOperator">Received by —</small></div>
-      <div class="detail-card"><span data-i18n="entry">YARD RECEIVED</span><strong id="vehicleEntry">—</strong><small id="vehicleDuration">Duration —</small></div>
-      <div class="detail-card"><span data-i18n="vin">VIN / CHASSIS</span><strong id="vehicleVin">—</strong><small>17-character vehicle identifier</small></div>
-      <div class="detail-card"><span data-i18n="condition">CONDITION</span><strong id="vehicleCondition">—</strong><small id="vehicleConditionNote">Vehicle condition</small></div>
-    </div>
+    <div class="vehicle-modal-top"><div><div class="eyebrow">IMPORT YARD INTELLIGENCE</div><h2 id="vehicleTitle">A-01</h2><div id="vehicleSubtitle" class="vehicle-subtitle">Imported vehicle & inventory details</div></div><button id="closeVehicle" class="modal-close" aria-label="Close">×</button></div>
+    <div class="vehicle-hero"><div class="vehicle-avatar">🚗</div><div class="vehicle-hero-main"><div id="vehicleStatus" class="vehicle-status">● Vehicle stored</div><div id="vehicleModel" class="vehicle-model">Mercedes-Benz C-Class</div><div id="vehiclePlate" class="vehicle-plate">N-PE 2026</div></div><div class="vehicle-live"><span class="live-dot"></span><span id="vehicleSensor">Sensor online</span></div></div>
+    <div class="vehicle-grid"><div class="detail-card"><span data-i18n="owner">OWNER / DRIVER</span><strong id="vehicleDriver">—</strong><small id="vehicleOperator">Received by —</small></div><div class="detail-card"><span data-i18n="entry">YARD RECEIVED</span><strong id="vehicleEntry">—</strong><small id="vehicleDuration">Duration —</small></div><div class="detail-card"><span data-i18n="vin">VIN / CHASSIS</span><strong id="vehicleVin">—</strong><small>17-character vehicle identifier</small></div><div class="detail-card"><span data-i18n="condition">CONDITION</span><strong id="vehicleCondition">—</strong><small id="vehicleConditionNote">Vehicle condition</small></div></div>
     <div class="vehicle-section"><div class="vehicle-section-title" data-i18n="profile">VEHICLE PROFILE</div><div class="profile-grid"><div><span data-i18n="make">Make</span><strong id="vehicleMake">—</strong></div><div><span data-i18n="model">Model</span><strong id="vehicleModel2">—</strong></div><div><span data-i18n="year">Year</span><strong id="vehicleYear">—</strong></div><div><span data-i18n="color">Color</span><strong id="vehicleColor">—</strong></div><div><span data-i18n="plate">License plate</span><strong id="vehiclePlate2">—</strong></div><div><span data-i18n="zone">Yard location</span><strong id="vehicleZone">—</strong></div></div></div>
     <div class="vehicle-section"><div class="vehicle-section-title" data-i18n="telemetry">SENSOR TELEMETRY</div><div class="telemetry"><div><span data-i18n="sensorId">Sensor ID</span><strong id="vehicleSensorId">—</strong></div><div><span data-i18n="reading">Last reading</span><strong id="vehicleReading">—</strong></div><div><span data-i18n="battery">Battery</span><strong id="vehicleBattery">—</strong></div></div></div>
     <div class="vehicle-footer"><span>Demo inventory data</span><button id="closeVehicle2" class="ghost" data-i18n="close">Close</button></div>
   </div>
 </dialog>
-<footer><span>Parking Pejam · Import Yard Operations</span><span>·</span><a href="https://github.com/moli1369/parking-pejam" target="_blank" rel="noreferrer" data-i18n="viewGithub">View on GitHub</a></footer>
+<footer><span>Parking Pejam · Import Yard Operations</span><span>·</span><a href="https://github.com/moli1369/parking-pejam" target="_blank" rel="noreferrer" data-i18n="viewGithub">View on GitHub</a></span></footer>
 </div>
 <script src="./app.js?v=4"></script>
 <script src="./vehicle-details-v3.js?v=1"></script>
 <script src="./import-branding.js?v=1"></script>
 <script src="./vehicle-ui-polish.js?v=1"></script>
+<script src="./arrival-form.js?v=1"></script>
+<script src="./arrival-ui.js?v=1"></script>
 </body>
 </html>
