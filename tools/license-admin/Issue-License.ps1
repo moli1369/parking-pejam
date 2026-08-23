@@ -14,10 +14,7 @@ param(
 )
 
 $ErrorActionPreference = "Stop"
-
-if (-not (Test-Path -LiteralPath $PrivateKeyPath)) {
-    throw "Private signing key not found: $PrivateKeyPath"
-}
+if (-not (Test-Path -LiteralPath $PrivateKeyPath)) { throw "Private signing key not found: $PrivateKeyPath" }
 
 $now = [DateTimeOffset]::UtcNow
 $payload = [ordered]@{
@@ -27,33 +24,28 @@ $payload = [ordered]@{
     plan = $Plan
     issuedAtUtc = $now.ToString("O")
     expiresAtUtc = $now.AddDays($Days).ToString("O")
-    offlineGraceDays = $OfflineGraceDays
+    gracePeriodDays = $OfflineGraceDays
     maxUsers = $MaxUsers
     maxYards = $MaxYards
     maxVehiclesPerMonth = $MaxVehiclesPerMonth
     modules = @($Modules | Sort-Object -Unique)
 }
 
-# Canonical JSON is signed, so field order and encoding must remain deterministic.
 $canonical = ($payload | ConvertTo-Json -Compress -Depth 5)
 $bytes = [Text.Encoding]::UTF8.GetBytes($canonical)
-
 $rsa = [Security.Cryptography.RSA]::Create()
 try {
     $pem = Get-Content -LiteralPath $PrivateKeyPath -Raw
     $rsa.ImportFromPem($pem)
-    $signature = $rsa.SignData($bytes, [Security.Cryptography.HashAlgorithmName]::SHA256, [Security.Cryptography.RSASignaturePadding]::Pkcs1)
+    $signature = $rsa.SignData($bytes, [Security.Cryptography.HashAlgorithmName]::SHA256, [Security.Cryptography.RSASignaturePadding]::Pss)
 }
-finally {
-    $rsa.Dispose()
-}
+finally { $rsa.Dispose() }
 
 $result = [ordered]@{
-    algorithm = "RSA-SHA256"
+    algorithm = "RSA-PSS-SHA256-3072"
     payload = $payload
     signature = [Convert]::ToBase64String($signature)
 }
-
 $json = $result | ConvertTo-Json -Depth 8
 $parent = Split-Path -Parent $OutputPath
 if ($parent -and -not (Test-Path $parent)) { New-Item -ItemType Directory -Path $parent -Force | Out-Null }
