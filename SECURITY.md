@@ -9,26 +9,33 @@ Parking Pejam is designed as a defense-in-depth self-hosted application. No self
 - Production containers drop Linux capabilities and enable `no-new-privileges`.
 - The application filesystem is read-only except for its explicit data volume and temporary filesystem.
 - PostgreSQL is isolated on a private Docker network and is not published to the Internet.
-- Secrets are supplied by environment/secret management and are excluded from Git and Docker build context.
-- Authentication uses hashed passwords and HttpOnly/SameSite cookies.
+- Production secrets are supplied through Docker Compose Secrets and mounted only into services that need them.
+- Authentication uses salted password hashes and HttpOnly/SameSite cookies.
 - Login is rate-limited.
 - Security response headers are emitted by the application and reverse proxy.
 - ASP.NET Core Data Protection keys are persisted in the application data volume so authentication remains stable across restarts.
-- Commercial licenses are signed with a vendor-only RSA private key and verified with an embedded public key.
+- Commercial licenses are signed with a vendor-only RSA-PSS 3072-bit private key and verified with an embedded public key.
 - Licenses are bound to an explicit InstallationId and can expire with an offline grace period.
 - License module enforcement happens server-side; UI-only feature hiding is never treated as an authorization boundary.
 - Sensor ingestion requires a separate secret header.
 - Health endpoints are separated into liveness and readiness checks.
+- Backups are provided for PostgreSQL and must be restored in a test environment periodically.
 
 ## Intellectual-property protection
 
-The public GitHub repository is suitable for the showcase/demo and deployment templates. Do not publish the vendor private signing key, customer licenses, production database, or production-only code here.
+The public GitHub repository is suitable for the showcase/demo and deployment templates. Never publish the vendor private signing key, customer licenses, production database, production secrets, TLS private keys, or private production-only code here.
 
 For strong commercial protection, keep the production repository and production container image private. Give each customer a signed license and a customer-specific deployment artifact or private image credential. A public source tree cannot provide cryptographic protection against someone editing the code and removing a local license check.
 
+A signed license protects against copying a legitimate customer license to another installation because the InstallationId is checked at runtime. It does not prevent a privileged administrator from patching a locally controlled executable. A stronger anti-tamper architecture can add a private activation service and periodic online attestation with an offline grace period.
+
+## Vendor signing key
+
+The vendor master private key is generated outside GitHub. Keep it on a dedicated vendor machine or hardware-backed secret store. Never place it on a customer server. If it is exposed, immediately rotate the signing key, update the embedded public key, and reissue active licenses.
+
 ## Incident response
 
-If the vendor signing key is suspected to be exposed, stop issuing licenses with it and rotate the embedded public key in the next production release. Reissue all active customer licenses with the new key. Never store the private signing key on a customer server.
+If the vendor signing key is suspected to be exposed, stop issuing licenses with it and rotate the embedded public key in the next production release. Reissue all active customer licenses with the new key.
 
 ## Security reporting
 
