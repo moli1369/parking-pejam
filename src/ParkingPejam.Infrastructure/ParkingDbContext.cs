@@ -13,6 +13,7 @@ public sealed class ParkingDbContext(DbContextOptions<ParkingDbContext> options)
     public DbSet<ImportShipment> ImportShipments => Set<ImportShipment>();
     public DbSet<ImportedVehicle> ImportedVehicles => Set<ImportedVehicle>();
     public DbSet<VehicleArrivalRecord> VehicleArrivalRecords => Set<VehicleArrivalRecord>();
+    public DbSet<VehicleDispatchRecord> VehicleDispatchRecords => Set<VehicleDispatchRecord>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -101,6 +102,20 @@ public sealed class ParkingDbContext(DbContextOptions<ParkingDbContext> options)
             entity.Property(x => x.OperatorUsername).HasMaxLength(64);
             entity.Property(x => x.Notes).HasMaxLength(1000);
             entity.HasIndex(x => new { x.ImportShipmentId, x.TallySequence }).IsUnique();
+            entity.HasOne(x => x.ImportedVehicle).WithMany().HasForeignKey(x => x.ImportedVehicleId).OnDelete(DeleteBehavior.Cascade);
+        });
+
+        modelBuilder.Entity<VehicleDispatchRecord>(entity =>
+        {
+            entity.HasKey(x => x.Id);
+            entity.Property(x => x.DispatchReference).HasMaxLength(120).IsRequired();
+            entity.HasIndex(x => x.DispatchReference).IsUnique();
+            entity.Property(x => x.ReleaseAuthorization).HasMaxLength(120);
+            entity.Property(x => x.DriverName).HasMaxLength(160);
+            entity.Property(x => x.DriverId).HasMaxLength(100);
+            entity.Property(x => x.Destination).HasMaxLength(200);
+            entity.Property(x => x.TransportCompany).HasMaxLength(160);
+            entity.Property(x => x.OperatorUsername).HasMaxLength(128);
             entity.HasOne(x => x.ImportedVehicle).WithMany().HasForeignKey(x => x.ImportedVehicleId).OnDelete(DeleteBehavior.Cascade);
         });
     }
