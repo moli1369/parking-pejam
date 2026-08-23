@@ -1,232 +1,45 @@
 using System.Security.Claims;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 using ParkingPejam.Application.Contracts;
 using ParkingPejam.Domain.Entities;
 using ParkingPejam.Infrastructure;
 using ParkingPejam.Web;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddDbContext<ParkingDbContext>(options =>
-    options.UseSqlite(builder.Configuration.GetConnectionString("Parking") ?? "Data Source=parking.db"));
+builder.Services.AddDbContext<ParkingDbContext>(options => options.UseSqlite(builder.Configuration.GetConnectionString("Parking") ?? "Data Source=parking.db"));
 builder.Services.AddScoped<IParkingService, ParkingService>();
 builder.Services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
 builder.Services.AddHealthChecks().AddDbContextCheck<ParkingDbContext>();
 builder.Services.AddProblemDetails();
 builder.Services.AddOpenApi();
 builder.Services.AddHostedService<SimulationService>();
-builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-    .AddCookie(options =>
-    {
-        options.Cookie.Name = "parking-pejam-auth";
-        options.LoginPath = "/login.html";
-        options.AccessDeniedPath = "/login.html?denied=1";
-        options.ExpireTimeSpan = TimeSpan.FromHours(8);
-        options.SlidingExpiration = true;
-        options.Cookie.HttpOnly = true;
-        options.Cookie.SameSite = SameSiteMode.Lax;
-        options.Cookie.SecurePolicy = CookieSecurePolicy.SameAsRequest;
-    });
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options => { options.Cookie.Name="parking-pejam-auth"; options.LoginPath="/login.html"; options.AccessDeniedPath="/login.html?denied=1"; options.ExpireTimeSpan=TimeSpan.FromHours(8); options.SlidingExpiration=true; options.Cookie.HttpOnly=true; options.Cookie.SameSite=SameSiteMode.Lax; options.Cookie.SecurePolicy=CookieSecurePolicy.SameAsRequest; });
 builder.Services.AddAuthorization();
-
-var app = builder.Build();
-
-app.UseExceptionHandler();
-app.UseAuthentication();
-app.UseAuthorization();
-
-await using (var scope = app.Services.CreateAsyncScope())
-{
-    var db = scope.ServiceProvider.GetRequiredService<ParkingDbContext>();
-    await db.Database.EnsureCreatedAsync();
-    await SeedAsync(db, app.Configuration, scope.ServiceProvider.GetRequiredService<IPasswordHasher<User>>());
-}
-
-app.UseDefaultFiles();
-app.UseStaticFiles();
-app.MapOpenApi("/openapi/{documentName}.json");
-app.MapHealthChecks("/health");
-
-var auth = app.MapGroup("/api/auth");
-auth.MapPost("/login", async (LoginRequest request, ParkingDbContext db, IPasswordHasher<User> hasher, HttpContext context, CancellationToken ct) =>
-{
-    var username = request.Username?.Trim();
-    if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(request.Password))
-        return Results.BadRequest(new { message = "Username and password are required." });
-
-    var user = await db.Users.SingleOrDefaultAsync(x => x.Username == username && x.IsActive, ct);
-    if (user is null || hasher.VerifyHashedPassword(user, user.PasswordHash, request.Password) == PasswordVerificationResult.Failed)
-        return Results.Unauthorized();
-
-    var claims = new List<Claim>
-    {
-        new(ClaimTypes.NameIdentifier, user.Id.ToString()),
-        new(ClaimTypes.Name, user.Username),
-        new(ClaimTypes.Role, user.Role)
-    };
-    var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-    await context.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(identity));
-    return Results.Ok(new { username = user.Username, role = user.Role });
-});
-
-auth.MapPost("/logout", async (HttpContext context) =>
-{
-    await context.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-    return Results.Ok();
-});
-
-auth.MapGet("/me", (ClaimsPrincipal user) =>
-    user.Identity?.IsAuthenticated == true
-        ? Results.Ok(new { username = user.Identity.Name, role = user.FindFirstValue(ClaimTypes.Role) })
-        : Results.Unauthorized());
-
-var api = app.MapGroup("/api/parking").RequireAuthorization();
-
-api.MapGet("/spots", async (string? zone, IParkingService service, CancellationToken ct) =>
-    Results.Ok(await service.GetSpotsAsync(zone, ct)));
-api.MapGet("/spots/{id:guid}", async (Guid id, IParkingService service, CancellationToken ct) =>
-{
-    var spot = await service.GetSpotAsync(id, ct);
-    return spot is null ? Results.NotFound() : Results.Ok(spot);
-});
-api.MapGet("/statistics", async (IParkingService service, CancellationToken ct) => Results.Ok(await service.GetStatisticsAsync(ct)));
-api.MapGet("/events", async (int? take, IParkingService service, CancellationToken ct) => Results.Ok(await service.GetEventsAsync(take ?? 50, ct)));
-api.MapPut("/spots/{id:guid}/status", [Authorize(Roles = "Admin,Operator")] async (Guid id, ChangeParkingStatusRequest request, ClaimsPrincipal user, IParkingService service, CancellationToken ct) =>
-{
-    var updated = await service.ChangeStatusAsync(id, request.Status, request.Source ?? "web", user.Identity?.Name, ct);
-    return updated is null ? Results.NotFound() : Results.Ok(updated);
-});
-
-api.MapGet("/export/spots.csv", async (IParkingService service, CancellationToken ct) =>
-{
-    var spots = await service.GetSpotsAsync(cancellationToken: ct);
-    var csv = new StringBuilder("SpotNumber,Zone,Row,Column,Status,UpdatedAtUtc\n");
-    foreach (var s in spots) csv.AppendLine(string.Join(",", Csv(s.SpotNumber), Csv(s.Zone), s.Row, s.Column, Csv(s.Status.ToString()), Csv(s.UpdatedAtUtc.ToString("O"))));
-    return Results.File(Encoding.UTF8.GetBytes(csv.ToString()), "text/csv; charset=utf-8", $"parking-spots-{DateTime.UtcNow:yyyyMMdd-HHmmss}.csv");
-});
-api.MapGet("/export/events.csv", async (int? take, IParkingService service, CancellationToken ct) =>
-{
-    var events = await service.GetEventsAsync(take ?? 200, ct);
-    var csv = new StringBuilder("SpotNumber,OldStatus,NewStatus,Source,Actor,TimestampUtc\n");
-    foreach (var e in events) csv.AppendLine(string.Join(",", Csv(e.SpotNumber), Csv(e.OldStatus.ToString()), Csv(e.NewStatus.ToString()), Csv(e.Source), Csv(e.Actor), Csv(e.TimestampUtc.ToString("O"))));
-    return Results.File(Encoding.UTF8.GetBytes(csv.ToString()), "text/csv; charset=utf-8", $"parking-events-{DateTime.UtcNow:yyyyMMdd-HHmmss}.csv");
-});
-api.MapGet("/export/report.json", async (IParkingService service, CancellationToken ct) =>
-{
-    var stats = await service.GetStatisticsAsync(ct);
-    var spots = await service.GetSpotsAsync(cancellationToken: ct);
-    var events = await service.GetEventsAsync(200, ct);
-    return Results.Ok(new { generatedAtUtc = DateTimeOffset.UtcNow, statistics = stats, spots, events });
-});
-
-var sensors = app.MapGroup("/api/sensors");
-sensors.MapPost("/{externalId}/readings", async (string externalId, SensorReadingRequest request, HttpRequest httpRequest, ParkingDbContext db, CancellationToken ct) =>
-{
-    var expected = app.Configuration["Parking:SensorIngressKey"];
-    if (string.IsNullOrWhiteSpace(expected) || !httpRequest.Headers.TryGetValue("X-Sensor-Key", out var key) || !string.Equals(expected, key.ToString(), StringComparison.Ordinal))
-        return Results.Unauthorized();
-
-    var sensor = await db.ParkingSensors.Include(x => x.ParkingSpot).SingleOrDefaultAsync(x => x.ExternalId == externalId && x.IsActive, ct);
-    if (sensor?.ParkingSpot is null) return Results.NotFound();
-
-    var now = DateTimeOffset.UtcNow;
-    sensor.CurrentOccupied = request.Occupied;
-    sensor.LastSeenUtc = now;
-    sensor.UpdatedAtUtc = now;
-    db.ParkingSensorReadings.Add(new ParkingSensorReading
-    {
-        ParkingSensorId = sensor.Id,
-        Occupied = request.Occupied,
-        BatteryPercent = request.BatteryPercent,
-        TemperatureC = request.TemperatureC,
-        ReceivedAtUtc = now
-    });
-
-    var next = request.Occupied ? ParkingSpotStatus.Occupied : ParkingSpotStatus.Free;
-    if (sensor.ParkingSpot.Status != next)
-    {
-        var old = sensor.ParkingSpot.Status;
-        sensor.ParkingSpot.ChangeStatus(next);
-        db.ParkingEvents.Add(new ParkingEvent
-        {
-            ParkingSpotId = sensor.ParkingSpot.Id,
-            OldStatus = old,
-            NewStatus = next,
-            Source = "sensor",
-            Actor = externalId,
-            TimestampUtc = now
-        });
-    }
-
-    await db.SaveChangesAsync(ct);
-    return Results.Ok(new { sensor = externalId, spot = sensor.ParkingSpot.SpotNumber, status = sensor.ParkingSpot.Status.ToString(), receivedAtUtc = now });
-});
-
-sensors.MapGet("", [Authorize] async (ParkingDbContext db, CancellationToken ct) =>
-    Results.Ok(await db.ParkingSensors.AsNoTracking().Include(x => x.ParkingSpot).OrderBy(x => x.ExternalId).Select(x => new
-    {
-        x.ExternalId,
-        spot = x.ParkingSpot!.SpotNumber,
-        x.CurrentOccupied,
-        x.LastSeenUtc,
-        online = x.LastSeenUtc != null && x.LastSeenUtc > DateTimeOffset.UtcNow.AddMinutes(-2)
-    }).ToListAsync(ct)));
-
-app.MapGet("/", (ClaimsPrincipal user) => user.Identity?.IsAuthenticated == true ? Results.Ok(new { application = "Parking Pejam", status = "authenticated" }) : Results.Redirect("/login.html"));
-app.MapFallbackToFile("index.html");
-app.Run();
-
-static string Csv(string? value) => "\"" + (value ?? string.Empty).Replace("\"", "\"\"") + "\"";
-
-static async Task SeedAsync(ParkingDbContext db, IConfiguration config, IPasswordHasher<User> hasher)
-{
-    if (!await db.ParkingSpots.AnyAsync())
-    {
-        var spots = new List<ParkingSpot>();
-        for (var zi = 0; zi < 3; zi++)
-        {
-            var zone = ((char)('A' + zi)).ToString();
-            for (var row = 1; row <= 2; row++)
-            for (var column = 1; column <= 8; column++)
-                spots.Add(new ParkingSpot { Id = Guid.NewGuid(), SpotNumber = $"{zone}-{row:D1}{column:D2}", Zone = zone, Row = row, Column = column });
-        }
-        db.ParkingSpots.AddRange(spots);
-        await db.SaveChangesAsync();
-    }
-
-    if (!await db.Users.AnyAsync())
-    {
-        var password = config["Parking:BootstrapAdminPassword"];
-        if (!string.IsNullOrWhiteSpace(password))
-        {
-            var admin = new User { Id = Guid.NewGuid(), Username = "admin", Role = "Admin" };
-            admin.PasswordHash = hasher.HashPassword(admin, password);
-            db.Users.Add(admin);
-        }
-    }
-
-    if (!await db.ParkingSensors.AnyAsync())
-    {
-        var sensorKey = config["Parking:SensorIngressKey"];
-        if (!string.IsNullOrWhiteSpace(sensorKey))
-        {
-            var spots = await db.ParkingSpots.ToListAsync();
-            db.ParkingSensors.AddRange(spots.Select(s => new ParkingSensor
-            {
-                Id = Guid.NewGuid(),
-                ParkingSpotId = s.Id,
-                ExternalId = $"PEJAM-{s.SpotNumber}",
-                DeviceKey = sensorKey,
-                CurrentOccupied = false
-            }));
-        }
-    }
-
-    await db.SaveChangesAsync();
-}
-
-public sealed record LoginRequest(string? Username, string? Password);
-public sealed record SensorReadingRequest(bool Occupied, double? BatteryPercent = null, double? TemperatureC = null);
+var app=builder.Build();
+app.UseExceptionHandler(); app.UseAuthentication(); app.UseAuthorization();
+await using(var scope=app.Services.CreateAsyncScope()){var db=scope.ServiceProvider.GetRequiredService<ParkingDbContext>();await db.Database.EnsureCreatedAsync();await SeedAsync(db,app.Configuration,scope.ServiceProvider.GetRequiredService<IPasswordHasher<User>>());}
+app.UseDefaultFiles(); app.UseStaticFiles(); app.MapOpenApi("/openapi/{documentName}.json"); app.MapHealthChecks("/health");
+var auth=app.MapGroup("/api/auth");
+auth.MapPost("/login",async(LoginRequest request,ParkingDbContext db,IPasswordHasher<User> hasher,HttpContext ctx,CancellationToken ct)=>{var username=request.Username?.Trim();if(string.IsNullOrWhiteSpace(username)||string.IsNullOrWhiteSpace(request.Password))return Results.BadRequest(new{message="Username and password are required."});var user=await db.Users.SingleOrDefaultAsync(x=>x.Username==username&&x.IsActive,ct);if(user is null||hasher.VerifyHashedPassword(user,user.PasswordHash,request.Password)==PasswordVerificationResult.Failed)return Results.Unauthorized();var claims=new[]{new Claim(ClaimTypes.NameIdentifier,user.Id.ToString()),new Claim(ClaimTypes.Name,user.Username),new Claim(ClaimTypes.Role,user.Role)};await ctx.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,new ClaimsPrincipal(new ClaimsIdentity(claims,CookieAuthenticationDefaults.AuthenticationScheme)));return Results.Ok(new{username=user.Username,role=user.Role});});
+auth.MapPost("/logout",async(HttpContext ctx)=>{await ctx.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);return Results.Ok();});
+auth.MapGet("/me",(ClaimsPrincipal user)=>user.Identity?.IsAuthenticated==true?Results.Ok(new{username=user.Identity.Name,role=user.FindFirstValue(ClaimTypes.Role)}):Results.Unauthorized());
+var api=app.MapGroup("/api/parking").RequireAuthorization();
+api.MapGet("/spots",async(string? zone,IParkingService service,CancellationToken ct)=>Results.Ok(await service.GetSpotsAsync(zone,ct)));
+api.MapGet("/spots/{id:guid}",async(Guid id,IParkingService service,CancellationToken ct)=>{var spot=await service.GetSpotAsync(id,ct);return spot is null?Results.NotFound():Results.Ok(spot);});
+api.MapGet("/statistics",async(IParkingService service,CancellationToken ct)=>Results.Ok(await service.GetStatisticsAsync(ct)));
+api.MapGet("/events",async(int? take,IParkingService service,CancellationToken ct)=>Results.Ok(await service.GetEventsAsync(take??50,ct)));
+api.MapPut("/spots/{id:guid}/status",async(Guid id,ChangeParkingStatusRequest request,ClaimsPrincipal user,IParkingService service,CancellationToken ct)=>{if(!(user.IsInRole("Admin")||user.IsInRole("Operator")))return Results.Forbid();var updated=await service.ChangeStatusAsync(id,request.Status,request.Source??"web",user.Identity?.Name,ct);return updated is null?Results.NotFound():Results.Ok(updated);});
+api.MapGet("/export/spots.csv",async(IParkingService service,CancellationToken ct)=>{var spots=await service.GetSpotsAsync(cancellationToken:ct);var csv=new StringBuilder("SpotNumber,Zone,Row,Column,Status,UpdatedAtUtc\n");foreach(var s in spots)csv.AppendLine(string.Join(",",Csv(s.SpotNumber),Csv(s.Zone),s.Row,s.Column,Csv(s.Status.ToString()),Csv(s.UpdatedAtUtc.ToString("O"))));return Results.File(Encoding.UTF8.GetBytes(csv.ToString()),"text/csv; charset=utf-8",$"parking-spots-{DateTime.UtcNow:yyyyMMdd-HHmmss}.csv");});
+api.MapGet("/export/events.csv",async(int? take,IParkingService service,CancellationToken ct)=>{var events=await service.GetEventsAsync(take??200,ct);var csv=new StringBuilder("SpotNumber,OldStatus,NewStatus,Source,Actor,TimestampUtc\n");foreach(var e in events)csv.AppendLine(string.Join(",",Csv(e.SpotNumber),Csv(e.OldStatus.ToString()),Csv(e.NewStatus.ToString()),Csv(e.Source),Csv(e.Actor),Csv(e.TimestampUtc.ToString("O"))));return Results.File(Encoding.UTF8.GetBytes(csv.ToString()),"text/csv; charset=utf-8",$"parking-events-{DateTime.UtcNow:yyyyMMdd-HHmmss}.csv");});
+api.MapGet("/export/report.json",async(IParkingService service,CancellationToken ct)=>Results.Ok(new{generatedAtUtc=DateTimeOffset.UtcNow,statistics=await service.GetStatisticsAsync(ct),spots=await service.GetSpotsAsync(cancellationToken:ct),events=await service.GetEventsAsync(200,ct)}));
+var sensors=app.MapGroup("/api/sensors");
+sensors.MapPost("/{externalId}/readings",async(string externalId,SensorReadingRequest request,HttpRequest requestHttp,ParkingDbContext db,CancellationToken ct)=>{var expected=app.Configuration["Parking:SensorIngressKey"];if(string.IsNullOrWhiteSpace(expected)||!requestHttp.Headers.TryGetValue("X-Sensor-Key",out var key)||!string.Equals(expected,key.ToString(),StringComparison.Ordinal))return Results.Unauthorized();var sensor=await db.ParkingSensors.Include(x=>x.ParkingSpot).SingleOrDefaultAsync(x=>x.ExternalId==externalId&&x.IsActive,ct);if(sensor?.ParkingSpot is null)return Results.NotFound();var now=DateTimeOffset.UtcNow;sensor.CurrentOccupied=request.Occupied;sensor.LastSeenUtc=now;sensor.UpdatedAtUtc=now;db.ParkingSensorReadings.Add(new ParkingSensorReading{ParkingSensorId=sensor.Id,Occupied=request.Occupied,BatteryPercent=request.BatteryPercent,TemperatureC=request.TemperatureC,ReceivedAtUtc=now});var next=request.Occupied?ParkingSpotStatus.Occupied:ParkingSpotStatus.Free;if(sensor.ParkingSpot.Status!=next){var old=sensor.ParkingSpot.Status;sensor.ParkingSpot.ChangeStatus(next);db.ParkingEvents.Add(new ParkingEvent{ParkingSpotId=sensor.ParkingSpot.Id,OldStatus=old,NewStatus=next,Source="sensor",Actor=externalId,TimestampUtc=now});}await db.SaveChangesAsync(ct);return Results.Ok(new{sensor=externalId,spot=sensor.ParkingSpot.SpotNumber,status=sensor.ParkingSpot.Status.ToString(),receivedAtUtc=now});});
+sensors.MapGet("",async(ParkingDbContext db,CancellationToken ct)=>Results.Ok(await db.ParkingSensors.AsNoTracking().Include(x=>x.ParkingSpot).OrderBy(x=>x.ExternalId).Select(x=>new{x.ExternalId,spot=x.ParkingSpot!.SpotNumber,x.CurrentOccupied,x.LastSeenUtc,online=x.LastSeenUtc!=null&&x.LastSeenUtc>DateTimeOffset.UtcNow.AddMinutes(-2)}).ToListAsync(ct))).RequireAuthorization();
+app.MapGet("/",(ClaimsPrincipal user)=>user.Identity?.IsAuthenticated==true?Results.Ok(new{application="Parking Pejam",status="authenticated"}):Results.Redirect("/login.html"));
+app.MapFallbackToFile("index.html"); app.Run();
+static string Csv(string? value)=>"\""+(value??string.Empty).Replace("\"","\"\"")+"\"";
+static async Task SeedAsync(ParkingDbContext db,IConfiguration config,IPasswordHasher<User> hasher){if(!await db.ParkingSpots.AnyAsync()){var spots=new List<ParkingSpot>();for(var zi=0;zi<3;zi++){var zone=((char)('A'+zi)).ToString();for(var row=1;row<=2;row++)for(var column=1;column<=8;column++)spots.Add(new ParkingSpot{Id=Guid.NewGuid(),SpotNumber=$"{zone}-{row:D1}{column:D2}",Zone=zone,Row=row,Column=column});}db.ParkingSpots.AddRange(spots);await db.SaveChangesAsync();}if(!await db.Users.AnyAsync()){var password=config["Parking:BootstrapAdminPassword"];if(!string.IsNullOrWhiteSpace(password)){var admin=new User{Id=Guid.NewGuid(),Username="admin",Role="Admin"};admin.PasswordHash=hasher.HashPassword(admin,password);db.Users.Add(admin);}}if(!await db.ParkingSensors.AnyAsync()){var sensorKey=config["Parking:SensorIngressKey"];if(!string.IsNullOrWhiteSpace(sensorKey)){var spots=await db.ParkingSpots.ToListAsync();db.ParkingSensors.AddRange(spots.Select(s=>new ParkingSensor{Id=Guid.NewGuid(),ParkingSpotId=s.Id,ExternalId=$"PEJAM-{s.SpotNumber}",DeviceKey=sensorKey,CurrentOccupied=false}));}}await db.SaveChangesAsync();}
+public sealed record LoginRequest(string? Username,string? Password); public sealed record SensorReadingRequest(bool Occupied,double? BatteryPercent=null,double? TemperatureC=null);
