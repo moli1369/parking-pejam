@@ -1,0 +1,34 @@
+using Microsoft.EntityFrameworkCore;
+
+namespace ParkingPejam.Infrastructure;
+
+public static class AdvancedSchemaBootstrapper
+{
+    public static Task EnsureAsync(ParkingDbContext db, CancellationToken ct = default) => db.Database.ExecuteSqlRawAsync(@"
+CREATE TABLE IF NOT EXISTS ImportManifestEntries (Id TEXT NOT NULL CONSTRAINT PK_ImportManifestEntries PRIMARY KEY, ImportShipmentId TEXT NOT NULL, Vin TEXT NOT NULL, Make TEXT NULL, Model TEXT NULL, ModelYear INTEGER NULL, EngineNumber TEXT NULL, Color TEXT NULL, Destination TEXT NULL, MatchStatus INTEGER NOT NULL, CreatedAtUtc TEXT NOT NULL, UpdatedAtUtc TEXT NOT NULL);
+CREATE UNIQUE INDEX IF NOT EXISTS IX_ImportManifestEntries_Shipment_Vin ON ImportManifestEntries (ImportShipmentId, Vin);
+CREATE TABLE IF NOT EXISTS VehicleInspections (Id TEXT NOT NULL CONSTRAINT PK_VehicleInspections PRIMARY KEY, ImportedVehicleId TEXT NOT NULL, Status INTEGER NOT NULL, InspectorUsername TEXT NULL, DamageCode TEXT NULL, Notes TEXT NULL, InspectedAtUtc TEXT NOT NULL);
+CREATE TABLE IF NOT EXISTS VehicleInspectionPhotos (Id INTEGER NOT NULL CONSTRAINT PK_VehicleInspectionPhotos PRIMARY KEY AUTOINCREMENT, VehicleInspectionId TEXT NOT NULL, FileName TEXT NOT NULL, StorageKey TEXT NOT NULL, Caption TEXT NULL, CreatedAtUtc TEXT NOT NULL);
+CREATE TABLE IF NOT EXISTS VehicleHolds (Id INTEGER NOT NULL CONSTRAINT PK_VehicleHolds PRIMARY KEY AUTOINCREMENT, ImportedVehicleId TEXT NOT NULL, Type INTEGER NOT NULL, Status INTEGER NOT NULL, Reason TEXT NOT NULL, CreatedBy TEXT NULL, ReleasedBy TEXT NULL, CreatedAtUtc TEXT NOT NULL, ReleasedAtUtc TEXT NULL);
+CREATE TABLE IF NOT EXISTS YardNodes (Id TEXT NOT NULL CONSTRAINT PK_YardNodes PRIMARY KEY, ParentId TEXT NULL, Code TEXT NOT NULL, Name TEXT NOT NULL, NodeType INTEGER NOT NULL, IsActive INTEGER NOT NULL);
+CREATE UNIQUE INDEX IF NOT EXISTS IX_YardNodes_Code ON YardNodes (Code);
+CREATE TABLE IF NOT EXISTS YardQrCodes (Id INTEGER NOT NULL CONSTRAINT PK_YardQrCodes PRIMARY KEY AUTOINCREMENT, YardNodeId TEXT NOT NULL, Token TEXT NOT NULL, IsActive INTEGER NOT NULL);
+CREATE UNIQUE INDEX IF NOT EXISTS IX_YardQrCodes_Token ON YardQrCodes (Token);
+CREATE TABLE IF NOT EXISTS Drivers (Id TEXT NOT NULL CONSTRAINT PK_Drivers PRIMARY KEY, FullName TEXT NOT NULL, DriverNumber TEXT NULL, Phone TEXT NULL, TransportCompany TEXT NULL, IsActive INTEGER NOT NULL);
+CREATE UNIQUE INDEX IF NOT EXISTS IX_Drivers_DriverNumber ON Drivers (DriverNumber);
+CREATE TABLE IF NOT EXISTS TransportTrucks (Id TEXT NOT NULL CONSTRAINT PK_TransportTrucks PRIMARY KEY, PlateNumber TEXT NOT NULL, TruckType TEXT NULL, TransportCompany TEXT NULL, IsActive INTEGER NOT NULL);
+CREATE UNIQUE INDEX IF NOT EXISTS IX_TransportTrucks_PlateNumber ON TransportTrucks (PlateNumber);
+CREATE TABLE IF NOT EXISTS GateVisits (Id INTEGER NOT NULL CONSTRAINT PK_GateVisits PRIMARY KEY AUTOINCREMENT, ImportedVehicleId TEXT NOT NULL, Type INTEGER NOT NULL, Status INTEGER NOT NULL, GateCode TEXT NULL, VehiclePlate TEXT NULL, DriverName TEXT NULL, DriverId TEXT NULL, TruckPlate TEXT NULL, OperatorUsername TEXT NULL, StartedAtUtc TEXT NOT NULL, CompletedAtUtc TEXT NULL, Notes TEXT NULL);
+CREATE TABLE IF NOT EXISTS DispatchLoadPlans (Id TEXT NOT NULL CONSTRAINT PK_DispatchLoadPlans PRIMARY KEY, LoadReference TEXT NOT NULL, Destination TEXT NULL, TruckPlate TEXT NULL, DriverId TEXT NULL, Status INTEGER NOT NULL, CreatedAtUtc TEXT NOT NULL);
+CREATE UNIQUE INDEX IF NOT EXISTS IX_DispatchLoadPlans_LoadReference ON DispatchLoadPlans (LoadReference);
+CREATE TABLE IF NOT EXISTS DispatchLoadItems (Id INTEGER NOT NULL CONSTRAINT PK_DispatchLoadItems PRIMARY KEY AUTOINCREMENT, DispatchLoadPlanId TEXT NOT NULL, ImportedVehicleId TEXT NOT NULL, LoadSequence INTEGER NOT NULL, LoadedAtUtc TEXT NULL);
+CREATE UNIQUE INDEX IF NOT EXISTS IX_DispatchLoadItems_Plan_Vehicle ON DispatchLoadItems (DispatchLoadPlanId, ImportedVehicleId);
+CREATE TABLE IF NOT EXISTS VehicleDocuments (Id INTEGER NOT NULL CONSTRAINT PK_VehicleDocuments PRIMARY KEY AUTOINCREMENT, ImportedVehicleId TEXT NOT NULL, Type INTEGER NOT NULL, Status INTEGER NOT NULL, FileName TEXT NOT NULL, StorageKey TEXT NOT NULL, UploadedBy TEXT NULL, UploadedAtUtc TEXT NOT NULL, VerifiedAtUtc TEXT NULL);
+CREATE TABLE IF NOT EXISTS CustomerAccounts (Id TEXT NOT NULL CONSTRAINT PK_CustomerAccounts PRIMARY KEY, Name TEXT NOT NULL, ExternalReference TEXT NULL, IsActive INTEGER NOT NULL);
+CREATE UNIQUE INDEX IF NOT EXISTS IX_CustomerAccounts_ExternalReference ON CustomerAccounts (ExternalReference);
+CREATE TABLE IF NOT EXISTS VehicleCustomerLinks (Id INTEGER NOT NULL CONSTRAINT PK_VehicleCustomerLinks PRIMARY KEY AUTOINCREMENT, ImportedVehicleId TEXT NOT NULL, CustomerAccountId TEXT NOT NULL, Primary INTEGER NOT NULL);
+CREATE TABLE IF NOT EXISTS KeyAssignments (Id INTEGER NOT NULL CONSTRAINT PK_KeyAssignments PRIMARY KEY AUTOINCREMENT, ImportedVehicleId TEXT NOT NULL, KeyNumber TEXT NOT NULL, AssignedTo TEXT NULL, AssignedAtUtc TEXT NOT NULL, ReturnedAtUtc TEXT NULL);
+CREATE TABLE IF NOT EXISTS BillingActivities (Id INTEGER NOT NULL CONSTRAINT PK_BillingActivities PRIMARY KEY AUTOINCREMENT, ImportedVehicleId TEXT NOT NULL, Type INTEGER NOT NULL, Quantity REAL NOT NULL, UnitPrice REAL NOT NULL, Currency TEXT NOT NULL, ActivityAtUtc TEXT NOT NULL, Notes TEXT NULL);
+CREATE TABLE IF NOT EXISTS VehicleLprDetections (Id INTEGER NOT NULL CONSTRAINT PK_VehicleLprDetections PRIMARY KEY AUTOINCREMENT, ImportedVehicleId TEXT NULL, PlateNumber TEXT NOT NULL, Confidence REAL NOT NULL, CameraId TEXT NULL, DetectedAtUtc TEXT NOT NULL);
+", ct);
+}
