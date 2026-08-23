@@ -1,11 +1,13 @@
 using System.Security.Claims;
 using System.Text;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using ParkingPejam.Application.Contracts;
 using ParkingPejam.Domain.Entities;
 using ParkingPejam.Infrastructure;
+using ParkingPejam.Infrastructure.Licensing;
 using Npgsql;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -23,6 +25,7 @@ builder.Services.AddDbContext<ParkingDbContext>(options =>
 
 builder.Services.AddScoped<IParkingService, ParkingService>();
 builder.Services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
+builder.Services.AddSingleton<LicenseService>();
 builder.Services.AddHealthChecks().AddDbContextCheck<ParkingDbContext>();
 builder.Services.AddProblemDetails();
 builder.Services.AddOpenApi();
@@ -30,7 +33,32 @@ builder.Services.AddHostedService<SimulationService>();
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options => { options.Cookie.Name="parking-pejam-auth"; options.LoginPath="/login.html"; options.AccessDeniedPath="/login.html?denied=1"; options.ExpireTimeSpan=TimeSpan.FromHours(8); options.SlidingExpiration=true; options.Cookie.HttpOnly=true; options.Cookie.SameSite=SameSiteMode.Lax; options.Cookie.SecurePolicy=CookieSecurePolicy.SameAsRequest; });
 builder.Services.AddAuthorization();
 var app=builder.Build();
-app.UseExceptionHandler(); app.UseAuthentication(); app.UseAuthorization();
+app.UseExceptionHandler();
+app.UseStaticFiles();
+app.Use(async (ctx, next) =>
+{
+    if (!ctx.Request.Path.StartsWithSegments("/api/license") &&
+        !ctx.Request.Path.StartsWithSegments("/health") &&
+        ctx.Request.Path.StartsWithSegments("/api"))
+    {
+        var license = ctx.RequestServices.GetRequiredService<LicenseService>().Validate();
+        if (!license.IsValid)
+        {
+            ctx.Response.StatusCode = StatusCodes.Status423Locked;
+            ctx.Response.ContentType = "application/json";
+            await ctx.Response.WriteAsJsonAsync(new
+            {
+                error = "license_required",
+                status = license.Status,
+                message = license.Message ?? "A valid commercial license is required."
+            });
+            return;
+        }
+    }
+    await next();
+});
+app.UseAuthentication();
+app.UseAuthorization();
 await using(var scope=app.Services.CreateAsyncScope()){
     var db=scope.ServiceProvider.GetRequiredService<ParkingDbContext>();
     await db.Database.EnsureCreatedAsync();
@@ -42,7 +70,10 @@ await using(var scope=app.Services.CreateAsyncScope()){
     }
     await SeedAsync(db,app.Configuration,scope.ServiceProvider.GetRequiredService<IPasswordHasher<User>>());
 }
-app.UseDefaultFiles(); app.UseStaticFiles(); app.MapOpenApi("/openapi/{documentName}.json"); app.MapHealthChecks("/health");
+app.MapOpenApi("/openapi/{documentName}.json");
+app.MapHealthChecks("/health");
+var licenseApi=app.MapGroup("/api/license");
+licenseApi.MapGet("/status", (LicenseService service) => Results.Ok(service.Validate()));
 var auth=app.MapGroup("/api/auth");
 auth.MapPost("/login",async(LoginRequest request,ParkingDbContext db,IPasswordHasher<User> hasher,HttpContext ctx,CancellationToken ct)=>{var username=request.Username?.Trim();if(string.IsNullOrWhiteSpace(username)||string.IsNullOrWhiteSpace(request.Password))return Results.BadRequest(new{message="Username and password are required."});var user=await db.Users.SingleOrDefaultAsync(x=>x.Username==username&&x.IsActive,ct);if(user is null||hasher.VerifyHashedPassword(user,user.PasswordHash,request.Password)==PasswordVerificationResult.Failed)return Results.Unauthorized();var claims=new[]{new Claim(ClaimTypes.NameIdentifier,user.Id.ToString()),new Claim(ClaimTypes.Name,user.Username),new Claim(ClaimTypes.Role,user.Role)};await ctx.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,new ClaimsPrincipal(new ClaimsIdentity(claims,CookieAuthenticationDefaults.AuthenticationScheme)));return Results.Ok(new{username=user.Username,role=user.Role});});
 auth.MapPost("/logout",async(HttpContext ctx)=>{await ctx.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);return Results.Ok();});
