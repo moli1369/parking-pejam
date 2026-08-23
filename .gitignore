@@ -6,6 +6,7 @@
 *.suo
 *.user
 *.userosscache
+*.userosscache
 *.sln.docstates
 
 # Build results
@@ -67,6 +68,11 @@ license.json
 *.license.json
 *.pem
 !docs/keys/README.md
+deploy/secrets/
+secrets/
+
+# Customer deployment state
+.deploy/
 
 # Node / Python caches
 node_modules/
