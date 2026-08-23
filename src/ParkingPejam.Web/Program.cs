@@ -1,6 +1,5 @@
 using System.Security.Claims;
 using System.Text;
-using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -49,6 +48,7 @@ sensors.MapGet("",async(ParkingDbContext db,CancellationToken ct)=>Results.Ok(aw
 app.MapImportWorkflow();
 app.MapDispatchWorkflow();
 app.MapAdvancedOperations();
+app.MapOperationsQuery();
 app.MapGet("/",(ClaimsPrincipal user)=>user.Identity?.IsAuthenticated==true?Results.Ok(new{application="Parking Pejam",status="authenticated"}):Results.Redirect("/login.html"));
 app.MapFallbackToFile("index.html"); app.Run();
 static string Csv(string? value)=>"\""+(value??string.Empty).Replace("\"","\"\"")+"\"";
