@@ -8,17 +8,19 @@ namespace ParkingPejam.Infrastructure.Licensing;
 public sealed class LicenseService
 {
     // Vendor public key only. The matching private key must never be committed or shipped.
-    private const string PublicKeyPem = """-----BEGIN PUBLIC KEY-----
-MIIBojANBgkqhkiG9w0BAQEFAAOCAY8AMIIBigKCAYEA1CpbjCnFudMYXZ20O/v7
-Ykz16eVlxuVbWxfKwtNaT7IgbhEHgxKmPFb3e3GJX2WBg4W2+PeZesSaKkcUArVO
-yJbQ6VlQHCnwLLhrObrYa4BS9Xtkcsnqcvj8EJCyiQxnqNIM3Dc4bHJLiRn7gF2L
-GjuY1kL6LhWXnI/LD0VOwTJYe7mgTpseh7vUUKhDetlbOZpW6csQNijziI0cRE6r
-9uWHU+xQT3YatWiD5SGFyRcpG+WcbOjj0gD6RPp21j+n56koQG39VQ64p/0mYocv
-eBpZwn1Ip16rAw9Wz8mz8IdeHtHv1JmcdpV8iURQAEyhqnUruGHC+v+eBicDwOB
-W4XxBFjXsdxzClwlcbDTzdxo6Qo7RdLzLzR3JBdxgaj2X+/xGiRPt+Wz2Ku2mXXH
-C+bT+QcNMYK3xWZ2eecFr/cHkZxcaBttcW/ONoFRtqaXPo+IVfyj2WfJQCWXS1xk
-74U46ZWrTGPhXCOq62u1jI1Ka7396OvS6PGuDXj5oD+fAgMBAAE=
------END PUBLIC KEY-----""";
+    // Uses escaped string literal instead of raw string to avoid line-ending sensitivity.
+    private const string PublicKeyPem =
+        "-----BEGIN PUBLIC KEY-----\n" +
+        "MIIBojANBgkqhkiG9w0BAQEFAAOCAY8AMIIBigKCAYEA1CpbjCnFudMYXZ20O/v7\n" +
+        "Ykz16eVlxuVbWxfKwtNaT7IgbhEHgxKmPFb3e3GJX2WBg4W2+PeZesSaKkcUArVO\n" +
+        "yJbQ6VlQHCnwLLhrObrYa4BS9Xtkcsnqcvj8EJCyiQxnqNIM3Dc4bHJLiRn7gF2L\n" +
+        "GjuY1kL6LhWXnI/LD0VOwTJYe7mgTpseh7vUUKhDetlbOZpW6csQNijziI0cRE6r\n" +
+        "9uWHU+xQT3YatWiD5SGFyRcpG+WcbOjj0gD6RPp21j+n56koQG39VQ64p/0mYocv\n" +
+        "eBpZwn1Ip16rAw9Wz8mz8IdeHtHv1JmcdpV8iURQAEyhqnUruGHC+v+eBicDwOB\n" +
+        "W4XxBFjXsdxzClwlcbDTzdxo6Qo7RdLzLzR3JBdxgaj2X+/xGiRPt+Wz2Ku2mXXH\n" +
+        "C+bT+QcNMYK3xWZ2eecFr/cHkZxcaBttcW/ONoFRtqaXPo+IVfyj2WfJQCWXS1xk\n" +
+        "74U46ZWrTGPhXCOq62u1jI1Ka7396OvS6PGuDXj5oD+fAgMBAAE=\n" +
+        "-----END PUBLIC KEY-----";
 
     private readonly IConfiguration _configuration;
     private readonly JsonSerializerOptions _jsonOptions = new(JsonSerializerDefaults.Web) { WriteIndented = false };
