@@ -12,16 +12,16 @@ ENV ASPNETCORE_URLS=http://+:8080 \
     COMPlus_EnableDiagnostics=0 \
     DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=false
 
-RUN addgroup -g 1654 parking 2>/dev/null || true \
-    && adduser -D -H -u 1654 -G parking parking 2>/dev/null || adduser -D -H -u 1654 parking \
+RUN addgroup -g 1655 parking 2>/dev/null || true \
+    && adduser -D -H -u 1655 -G parking parking 2>/dev/null || adduser -D -H -u 1655 parking \
     && mkdir -p /app/Data /app/license /run/secrets \
-    && chown -R 1654:1654 /app
+    && chown -R 1655:1655 /app
 
-COPY --from=build --chown=1654:1654 /app/publish .
-COPY --chown=1654:1654 deploy/container-entrypoint.sh /usr/local/bin/parking-pejam-entrypoint
+COPY --from=build --chown=1655:1655 /app/publish .
+COPY --chown=1655:1655 deploy/container-entrypoint.sh /usr/local/bin/parking-pejam-entrypoint
 RUN chmod 0555 /usr/local/bin/parking-pejam-entrypoint
 
-USER 1654:1654
+USER 1655:1655
 EXPOSE 8080
 
 HEALTHCHECK --interval=30s --timeout=5s --start-period=20s --retries=5 \
