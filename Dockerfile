@@ -12,7 +12,8 @@ ENV ASPNETCORE_URLS=http://+:8080 \
     COMPlus_EnableDiagnostics=0 \
     DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=false
 
-RUN addgroup -S -g 1654 parking && adduser -S -D -H -u 1654 -G parking parking \
+RUN addgroup -g 1654 parking 2>/dev/null || true \
+    && adduser -D -H -u 1654 -G parking parking 2>/dev/null || adduser -D -H -u 1654 parking \
     && mkdir -p /app/Data /app/license /run/secrets \
     && chown -R 1654:1654 /app
 
