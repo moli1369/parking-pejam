@@ -11,6 +11,7 @@ using ParkingPejam.Application.Contracts;
 using ParkingPejam.Domain.Entities;
 using ParkingPejam.Infrastructure;
 using ParkingPejam.Infrastructure.Licensing;
+using ParkingPejam.Web;
 
 var builder = WebApplication.CreateBuilder(args);
 var provider = builder.Configuration["Database:Provider"]?.Trim().ToLowerInvariant() ?? "sqlite";
