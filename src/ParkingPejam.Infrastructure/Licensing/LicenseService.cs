@@ -1,4 +1,5 @@
 using System.Security.Cryptography;
+using Microsoft.Extensions.Configuration;
 using System.Text;
 using System.Text.Json;
 using ParkingPejam.Domain.Entities;
